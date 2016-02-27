@@ -1,0 +1,26 @@
+
+
+        #col div.panel-body {
+            min-height:220px;
+        }
+
+        .p-footer {
+            padding:10px;
+        }
+        
+        .p-footer .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        .p-footer .btn-default {
+            border: 1px solid gray;
+        }
+
+    
+        .panel-body ul li {
+            padding-bottom: 10px;
+        }
+        .panel-body {
+            height: 980px;
+        }
