@@ -1,0 +1,58 @@
+
+        input.form-control:focus, select.form-control:focus {
+            border-bottom: 3px solid red !important;
+        }
+
+      
+        table.table td {font-size:small !important;}
+
+        table.table thead {
+            font-size: small !important;
+        }
+
+
+        table.table caption {
+            font-size: small !important;
+        }
+
+
+        .input-group .input-group-addon {
+            background:#333;
+        }
+
+    
+        
+        .form-inline .form-group {
+            padding-top: 8px !important;
+        }
+
+        .line-total {
+            min-width: 90px;
+            /*background: #275b11 !important;*/
+        }
+
+        .checkbox label {
+            font-size:small;
+        }
+
+        /* VALIDATION ERRORS */
+        input.validate-error {
+            background: rgb(251, 221, 226);
+            
+        }
+        label.validate-error {
+            color: #FF8B8B;
+            font-weight: normal !important;
+        }
+   
+        ul.country-list li.country{
+            color:#333 !important;
+            font-size:90%;
+
+        }
+
+        .force-show {
+            display: inline-block !important;
+        }
+
+        
