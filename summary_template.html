@@ -1,0 +1,181 @@
+﻿<div>
+
+
+    <div class="col-lg-6">
+
+        <table class="table table-responsive table-bordered">
+            <caption>Main Contact</caption>
+            <thead>
+                <tr>
+                    <th colspan="2">{0}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{1}</td>
+                    <td>{2}yo</td>
+                </tr>
+                <tr>
+                    <td>{3}</td>
+                    <td>{4}</td>
+                </tr>
+                <tr>
+                    <td>Airbed Discount: <span class="label label-default">{5}</span></td>
+                    <td>Airport Transfer: <span class="label label-info">{6}</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2">{7}</td>
+                </tr>
+                <tr>
+                    <td>Fee</td>
+                    <td>${8}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <table class="table table-responsive table-bordered ">
+            <caption>Additional Notes</caption>
+            <thead>
+                <tr>
+                    <th>&nbsp; </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{9}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="col-lg-12 {10}">
+
+        <table class="table table-responsive table-bordered table-striped ">
+            <caption>Additional Registrants</caption>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Relation</th>
+                    <th>Family<br>Discount</th>
+                    <th>Airbed<br>Discount</th>
+                    <th>Airport<br>Transfer</th>
+                    <th>Fee</th>
+                </tr>
+            </thead>
+            <tbody>
+                {11}
+                <!--
+                    <tr>
+                        <td>Jennifer Hynh</td>
+                        <td>33</td>
+                        <td>Wife</td>
+                        <td> - </td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>$450</td>
+                    </tr>
+                    -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6"></td>
+                    <td style="border-bottom: 3px double black; border-top: 2px solid black">${12}</td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+
+    <div class="clearfix">&nbsp;</div>
+    <div class="clearfix">&nbsp;</div>
+    <div class="clearfix">&nbsp;</div>
+
+    <div class="col-lg-12" id="payment-summary">
+
+        <div class="panel panel-default">
+            
+            <div class="panel-body">
+
+                <div class="row">
+
+
+                    <div class="col-lg-6">
+
+
+                                <table class="table table-responsive table-bordered table-striped table-last-col-right">
+                                    <caption>Payment Calculation</caption>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Name</th>
+                                            <th>Age</th>
+                                            <th>Fee</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {13}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3"></td>
+                                            <td>
+                                                TOTAL PAYABLE: <span class="label label-success label-summary-total">${14}</span>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+
+
+                    </div>
+
+
+                    <div class="col-lg-6 text-left">
+
+                        <table class="table table-responsive table-bordered table-striped" style="margin-bottom:10px">
+                            <caption>Bank Details</caption>
+                            <thead>
+                                <tr>
+                                    <th>Please make all payments to the following Bank Details.</th>
+                                </tr>
+                            </thead>
+                        </table>
+                            <div class="alert alert-info bank-info">
+                           
+                                    <ul>
+                                        <li>Name: DaiHoi Melbourne 2016</li>
+                                        <li>Bank: Commonwealth Bank of Australia</li>
+                                        <li>BSB: 04 3170</li>
+                                        <li>Account: 032569 85489 9</li>
+                                    </ul>
+                             
+
+
+                            </div>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+                <div class="clearfix">&nbsp;</div>
+            </div>
+            <div class="panel-footer text-center">
+
+                <input type="button" value="SEND MY REGISTRATION NOW... " class="btn btn-primary" style="min-width:50%;" /> <input type="button" value="CANCEL" class="btn btn-default" onclick="swapRegoSummary()" />
+                
+            </div>
+        </div>
+
+    </div>
+
+</div>

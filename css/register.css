@@ -1,5 +1,5 @@
 
-        input.form-control:focus, select.form-control:focus {
+        input.form-control:focus, select.form-control:focus, textarea.form-control:focus {
             border-bottom: 3px solid red !important;
         }
 
@@ -54,5 +54,59 @@
         .force-show {
             display: inline-block !important;
         }
+
+
+        
+        .well-offset-color {
+            /*border: 1px solid #86A6C5 !important;*/
+            /*background-color: #2b3e50 !important;*/
+            min-height: 320px !important;
+        }
+            .well-offset-color table {
+                border-color: #637A90;
+            }
+
+            .well-offset-color table td {
+                font-size: 120% !important;
+            }
+
+                .well-offset-color table caption {
+                    font-size: 150% !important;
+                    color: #637A90;
+                }
+
+
+        #rego-summary {
+            display:none;
+        } 
+        #rego-summary div.well {
+            background-color: #213244;
+        }
+
+            #rego-summary table caption {
+                font-size: 150% !important;
+            }
+
+            table.table-last-col-right td:last-child, 
+            table.table-last-col-right th:last-child{
+                text-align:right;
+            }
+
+        #rego-summary .label-summary-total {
+            font-size:100%;    
+        } 
+            
+
+        #payment-summary table {
+            border-color:#637A90;
+        }
+        #payment-summary table caption {
+            color:#637A90;
+        }
+
+        #payment-summary .bank-info {
+            color:#213244;
+        }
+            
 
         
