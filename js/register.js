@@ -13,11 +13,11 @@
         this.AirportTransfer = false,
         this.Fee = 0,
         this.Registrants = [],
-        this.Notes = '',
+        this.Comments = '',
         this.Reference = '',
 
         this.generateReference = function (length) {
-            var chars = "ABCDEFGHIJKLMNOP1234567890";
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
             var pass = "";
             for (var x = 0; x < length; x++) {
                 var i = Math.floor(Math.random() * chars.length);
@@ -229,16 +229,16 @@
         var groupRego = new REGO();
         var info = getMainContactInfo();
 
-        groupRego.Name               = info.name;
-        groupRego.Age                = info.age;
-        groupRego.Church             = info.church;
-        groupRego.AirBedDiscount     = info.airbed;
-        groupRego.AirportTransfer    = info.airport;
-        groupRego.Fee                = info.fee;
-        groupRego.Phone              = info.phone;
-        groupRego.Email              = info.email;
-        groupRego.Notes              = info.notes;
-        groupRego.Reference          = groupRego.generateReference(10);
+        groupRego.Name            = info.name;
+        groupRego.Age             = info.age;
+        groupRego.Church          = info.church;
+        groupRego.AirBedDiscount  = info.airbed;
+        groupRego.AirportTransfer = info.airport;
+        groupRego.Fee             = info.fee;
+        groupRego.Phone           = info.phone;
+        groupRego.Email           = info.email;
+        groupRego.Comments        = info.notes;
+        groupRego.Reference       = groupRego.generateReference(10);
         
 
         var total = 0;
@@ -340,10 +340,10 @@
 
 
     // updates the data template with the rego data for summary
-    function updateSummary(data) {
+    function updateSummary(htmlTemplate) {
         var regoInfo = collectRegistrantInfo();
 
-        data = jQuery.validator.format(data);
+        htmlTemplate = jQuery.validator.format(htmlTemplate);
         //find out if there are any extra registrants for the rego
         var registrants = "";
         var paymentSummary = "";
@@ -389,7 +389,7 @@
 
 
         $("#summary-content").html(
-            $(data(
+            $(htmlTemplate(
                 regoInfo.Reference,
                 regoInfo.Name,
                 regoInfo.Age,
@@ -399,7 +399,7 @@
                 toYesNo(regoInfo.AirportTransfer),
                 regoInfo.Church,
                 regoInfo.Fee,
-                regoInfo.Notes,
+                regoInfo.Comments,
                 display,
                 registrants,
                 regoInfo.sumTotalFees(true),
@@ -516,7 +516,7 @@
             // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
             preferredCountries: ['au', 'nz', 'us', 'ca'],
             // separateDialCode: true,
-            utilsScript: "js/utils.js"
+            utilsScript: "/js/utils.js"
         });
 
         //telInput.intlTelInput("isValidNumber")
@@ -597,7 +597,7 @@
         .success(function (data) {
             //document.getElementById("summary-content").innerHTML = data;
             updateSummary(data);
-            swapRegoSummary()
+            swapRegoSummary();
         })
         .done(function (data) {
             //alert(data)
