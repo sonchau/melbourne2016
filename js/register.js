@@ -130,10 +130,10 @@
                 case (age > 5 && age <= 12):
                     fee = 350
                     break;
-                case (age > 12 && age < 64):
+                case (age > 12 && age < 65):
                     fee = 440
                     break;
-                case (age >= 64):
+                case (age >= 65):
                     fee = 390
                     break;
                 default:

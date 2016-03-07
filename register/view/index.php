@@ -35,7 +35,7 @@
 
             <?php 
             	if ($_GET["ref"] && $_GET["success"]) {
-						echo  '<div class="alert alert-dismissible alert-success font-normal"><button type="button" class="close" data-dismiss="alert">X</button><i class="fa fa-smile-o fa-5x pull-left"> </i><p><strong>Awesome!</strong> You have successfully submitted your registration details for Dai Hoi Melbourne 2016, please take note of your green reference number below. You can try to <a href="/contact/" class="alert-link">contact the conference team</a> for help concerning your registration.</p><p>On behalf of the conference, thank you and God bless.</p><div class="clearfix"></div></div>';
+						echo  '<div class="alert alert-dismissible alert-success font-normal no-print"><button type="button" class="close" data-dismiss="alert">X</button><i class="fa fa-smile-o fa-5x pull-left"> </i><p><strong>Awesome!</strong> You have successfully submitted your registration details for Dai Hoi Melbourne 2016, please take note of your green reference number below. You can try to <a href="/contact/" class="alert-link">contact the conference team</a> for help concerning your registration.</p><p>On behalf of the conference, thank you and God bless.</p><div class="clearfix"></div></div>';
 								
             	}
             ?>
@@ -48,8 +48,6 @@
                     </div>
                     <div class="clearfix">&nbsp;</div>
                 </div>
-
-     
             </div>
 
             <!-- footer -->

@@ -110,3 +110,24 @@
             
 
         
+
+        div#summary-content table, 
+        div#summary-content .panel-body table {
+            border-top: 1px solid #DF691A !important;
+            border-collapse: initial;
+            border-spacing: 2px;
+            border: none;
+        }
+
+        div#summary-content table caption {
+            color: #CAAB71;
+        }
+
+        div#summary-content table tbody tr {
+            background-color: #3C4C5A;
+        }
+
+        div#summary-content .panel-body table tbody tr {
+            background-color: #3C4C5A;
+        }
+

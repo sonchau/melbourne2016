@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
         Vietnamese Christians Fellowship Conference in Australia – Melbourne 2016
     </title>
 
-    <link href="/css/bootstrap.css" rel="stylesheet" id="css"f />
+    <link href="/css/bootstrap.css" rel="stylesheet" id="css" />
     <link href="/css/Site.css" rel="stylesheet" />
 
     <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
@@ -28,7 +28,7 @@
     
     <script src="/js/intlTelInput.min.js"></script>
     <link href="/css/intlTelInput.css" rel="stylesheet" />
-    <link href="/css/register.css" rel="stylesheet" />
+    <link href="/css/register.css?v1" rel="stylesheet" />
     <script src="/js/jquery.countdown.min.js"></script>
 
 
@@ -60,7 +60,7 @@
                     var obj = JSON.parse(data);    
                     if (obj.status){
                         setTimeout(function() {
-                            location.replace("/register/view?ref=" + obj.reference);
+                            location.replace("/register/view/?success=1&ref=" + obj.reference);
                         }, 100);
                     }else{
                         alert("registration error: \n" + obj.message);
@@ -78,6 +78,7 @@
                 console.log("complete");
                 $this.button('reset');
             });
+
 
         }
 
@@ -135,7 +136,7 @@
                     <div class="col-lg-10 col-lg-offset-1 ">
 
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-md-6 col-lg-6">
 
                                 <h4><i class="fa fa-plane text-info"> </i> Airport transfers </h4>
                                 <p>
@@ -145,7 +146,7 @@
                                 <div>&nbsp;</div>
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-md-6 col-lg-6">
                                 <h4><i class="fa fa-wheelchair  text-info"> </i> Disabilities </h4>
                                 <p>
                                     People with special needs will need to ensure that your requirements are known at the time of registration.
@@ -156,7 +157,7 @@
                         </div>
                         <div class="clearfix">&nbsp;</div>
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-md-6 col-lg-6">
 
                                 <h4><i class="fa fa-cutlery text-info"> </i> Food </h4>
                                 <p>
@@ -166,7 +167,7 @@
                                 <div>&nbsp;</div>
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-md-6 col-lg-6">
 
                                 <h4><i class="fa fa-bank  text-info"> </i> Payment </h4>
                                 <p>
@@ -185,6 +186,10 @@
 
                     </div>
                     <div class="col-lg-1"></div>
+
+
+
+
                 </div>
             </div>
 
@@ -199,7 +204,7 @@
                     <p>All prices are in AUD unless otherwise speicified.</p>
 
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-md-4 col-lg-4">
 
                             <div class="well well-offset-color">
 
@@ -227,7 +232,7 @@
                                             <td>$440</td>
                                         </tr>
                                         <tr>
-                                            <td>64 and above or Pensioner</td>
+                                            <td>65 and above or Pensioner</td>
                                             <td>$390</td>
                                         </tr>
 
@@ -238,7 +243,7 @@
 
                         </div>
 
-                        <div class="col-lg-4">
+                        <div class="col-md-4 col-lg-4">
 
                             <div class="well well-offset-color">
                                 <table class="table table-hover table-bordered table-striped ">
@@ -274,7 +279,7 @@
                         </div>
 
 
-                        <div class="col-lg-4">
+                        <div class="col-md-4 col-lg-4">
 
                             <div class="well well-offset-color">
                                 <table class="table table-hover table-bordered">

@@ -1,4 +1,7 @@
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_cMail.php');?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_cSms.php');?>
 	<?php
+
 		class Person {
 			var $FullName        = "";
 			var $Age             = "";
@@ -16,6 +19,7 @@
 				//Name and Age is required and age must be a number
 				return !($this->FullName == "" or $this->Age == "" or is_numeric($this->Age) == false) ;
 			}
+
 
 		}
 
@@ -40,8 +44,13 @@
 			var $errMsg			 = "";
 			var $Reference		 = "";
 
+			const SQL_DB_NAME 		= 'melbou99_mysql';
+			const SQL_DB_USERNAME 	= 'melbou99_mysql';
+			const SQL_DB_PASSWORD 	= 'daihoi2016!';
 
-			//new
+			/*
+			// constructor
+			*/
 			function Registration($json) {
 				$this->JSON = $json;
 
@@ -49,6 +58,9 @@
 				$this->DateTimeEntered = date("Y/m/d H:i:s");
 			}
 
+			/*
+			// logs an error
+			*/
 			function logError($err){
 				$this->errMsg .= $err . "\n";
 				if ($this->debug){
@@ -56,7 +68,104 @@
 				}
 			}
 
+			/*
+			// validates the entire fee structure
+			// this function used to check the integrity of the inputted fees against the fee structure.
+			*/
+			function validateFees(){
+				$fee = $this->calculateFee($this->Age, '-', $this->Airbed , $this->AirportTransfer );
+				if ($fee !== $this->Fee){
+					return false;
+				}
 
+
+					foreach ($this->PersonStack as $member) {
+
+							if ($member->isValid()) {
+								$fee = $this->calculateFee($member->Age, $member->FamilyDiscoun, $member->Airbed , $member->AirportTransfer );
+
+								if ($fee !== $member->Fee){
+									return false;
+								}								
+							}	
+
+					}
+
+
+				return true;
+			}
+
+
+			/*
+			//	calculates a fee 
+			*/
+			function calculateFee($Age = 0, $FamilyDiscount = '-', 
+									$Airbed = 0, 
+									$AirportTransfer = 0){
+
+
+        		$family_discount1_amount = 50;
+		        $family_discount2_amount = 100;
+		        $airbed_discount_amount = 20;
+		        $airport_fee = 25;
+		        $fee = 0;
+
+		        //normaling pricing
+	            switch (true) {
+	                case ($Age <= 5):
+	                    $fee = 50;
+	                    break;
+	                case ($Age > 5 && $Age <= 12):
+	                    $fee = 350;
+	                    break;
+	                case ($Age > 12 && $Age < 65):
+	                    $fee = 440;
+	                    break;
+	                case ($Age >= 65):
+	                    $fee = 390;
+	                    break;
+                    default:
+						# code...
+						break;
+	            }
+
+	            //any family discounts
+				switch ($FamilyDiscount) {
+					case '2nd child 5yo and under':
+						$fee = $fee - $family_discount1_amount;
+						break;
+					case '2nd child over 5yo':
+						$fee = $fee - $family_discount2_amount;
+						break;
+					default:
+						# code...
+						break;					
+				}
+
+				if ($Airbed) { //airbed discount
+					$fee = $fee - $airbed_discount_amount;
+				}
+
+
+				//airport transfer fee
+				if ($AirportTransfer) {
+					$fee = $fee + $airport_fee;
+				}
+
+
+				//adjustment of fee
+        		if ($fee < 0) { 
+        			$fee = 0 ;
+        		}
+
+            	return fee;
+
+			}
+
+
+			/*
+			// will convert json data to object
+			*/
 			function parseJSON(){
 
 					if ($this->JSON == ""){
@@ -69,15 +178,15 @@
 
 
 					//assign the property of the object from the json array
-					$this->FullName        = $rego['Name'];
+					$this->FullName        = trim($rego['Name']);
 					$this->Age             = $rego['Age'];
-					$this->Church          = $rego['Church'];
-					$this->Email           = $rego['Email'];
-					$this->Phone           = $rego['Phone'];
+					$this->Church          = trim($rego['Church']);
+					$this->Email           = trim($rego['Email']);
+					$this->Phone           = trim($rego['Phone']);
 					$this->Airbed          = $rego['AirBedDiscount'];
 					$this->AirportTransfer = $rego['AirportTransfer'];
 					$this->Fee             = $rego['Fee'];
-					$this->Comments        = $rego['Comments'];
+					$this->Comments        = trim($rego['Comments']);
 
 
 					foreach ($rego['Registrants'] as $member) {
@@ -87,7 +196,7 @@
 						$newPerson = new Person();
 						
 						//assign property to person object from json array
-						$newPerson->FullName        = $member['Name'];
+						$newPerson->FullName        = trim($member['Name']);
 						$newPerson->Age             = $member['Age'];
 						$newPerson->Relation        = $member['Relation'];
 						$newPerson->FamilyDiscount  = $member['DiscountFamily'];
@@ -164,6 +273,9 @@
 			}			
 
 
+			/*
+			// adds the current object to the database
+			*/
 			function commitDB(){
 				$myJSON = $this->JSON;
 				
@@ -173,17 +285,11 @@
 				}
 
 
-				$mysqli = new mysqli("localhost", "melbou99_mysql", "daihoi2016!", "melbou99_mysql");
+				$mysqli = new mysqli("localhost", self::SQL_DB_USERNAME, self::SQL_DB_PASSWORD, self::SQL_DB_NAME);
 				if ($mysqli->connect_errno) {
 				    $this->logError("Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
 				}
 				//echo $mysqli->host_info . "\n";
-
-				$mysqli = new mysqli("127.0.0.1", "melbou99_mysql", "daihoi2016!", "melbou99_mysql", 3306);
-				if ($mysqli->connect_errno) {
-				    $this->logError("Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
-				}
-				//echo $mysqli->host_info . "\n" ;
 
 
 				/* change character set to utf8 */
@@ -223,7 +329,7 @@
 
 
 				/* Prepared statement, stage 1: prepare */
-				if (!($stmt = $mysqli->prepare("INSERT INTO MainContact (FullName, Age, Church, Email, ContactNumber, DateTimeEntered, AirportTransfer, Airbed, Comments, Fee, Reference) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"))) {
+				if (!($stmt = $mysqli->prepare("INSERT INTO MainContact (FullName, Age, Church, Email, Phone, DateTimeEntered, AirportTransfer, Airbed, Comments, Fee, Reference) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"))) {
 				    $this->logError("Prepare failed MainContact: (" . $mysqli->errno . ") " . $mysqli->error);
 				}
 
@@ -232,7 +338,7 @@
 				$Age             = $this->Age;
 				$Church          = $this->Church;
 				$Email           = $this->Email;
-				$ContactNumber   = $this->Phone;
+				$Phone			 = $this->Phone;
 				$DateTimeEntered = $this->DateTimeEntered;
 				$AirportTransfer = $this->AirportTransfer;
 				$Airbed          = $this->Airbed; 
@@ -244,7 +350,7 @@
 															$Age, 
 															$Church, 
 															$Email, 
-															$ContactNumber, 
+															$Phone, 
 															$DateTimeEntered, 
 															$AirportTransfer, 
 															$Airbed, 
@@ -370,20 +476,18 @@
 
 			}
 
-			function viewRego($ref){
 
-					$mysqli = new mysqli("localhost", "melbou99_mysql", "daihoi2016!", "melbou99_mysql");
+			/*
+			// fetches registration from database
+			*/
+			function getRego($ref){
+
+					$mysqli = new mysqli("localhost", self::SQL_DB_USERNAME, self::SQL_DB_PASSWORD, self::SQL_DB_NAME);
 					if ($mysqli->connect_errno) {
 					    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 					}
 					//echo $mysqli->host_info . "\n";
 
-					$mysqli = new mysqli("127.0.0.1", "melbou99_mysql", "daihoi2016!", "melbou99_mysql", 3306);
-					if ($mysqli->connect_errno) {
-					    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-					}
-
-					//echo $mysqli->host_info . "\n";
 
 					//echo "<hr />";
 					/* change character set to utf8 */
@@ -394,7 +498,7 @@
 					    //printf("Current character set: %s\n", $mysqli->character_set_name());
 					}
 
-
+					$output = "";
 
 					// selects
 					if ($res = $mysqli->query("SELECT C.*, R.FullName RName, R.Age RAge, R.Relation RRelation, R.FamilyDiscount RFamilyDiscount, R.Airbed RAirBed, R.AirportTransfer RAirportTransfer, R.Fee RFee  FROM MainContact C LEFT OUTER JOIN Registrant R ON R.MainContactId=C.MainContactId WHERE C.Reference = '" . $ref . "';")){
@@ -496,8 +600,8 @@
 									$html  = str_replace("REGISTER ME !"," PRINT ",$html);
 									$html  = str_replace("swapRegoSummary","return false;void",$html);
 
-								
-									echo sprintf($html, 
+									
+									$output = sprintf($html, 
 										'<span class="pull-right">Reference: <span class="label label-success label-summary-total">' . $this->Reference . '</span></span>', 
 										$this->FullName, 
 										$this->Age, 
@@ -519,14 +623,14 @@
 
 							}else{
 								//no records
-								echo  '<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">X</button><i class="fa fa-frown-o fa-5x pull-left"> </i><strong>Oh no!</strong> We could not find any records the given reference number. You can try to <a href="/contact/" class="alert-link">contact the conference team</a>. for help concerning your registration.<div class="clearfix"></div></div>';
+								$output = '<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">X</button><i class="fa fa-frown-o fa-5x pull-left"> </i><strong>Oh no!</strong> We could not find any records the given reference number. You can try to <a href="/contact/" class="alert-link">contact the conference team</a>. for help concerning your registration.<div class="clearfix"></div></div>';
 								
 							}
 
 
-
 						/* free result set */
     					$res->close();
+
 					}
 		
 
@@ -534,21 +638,66 @@
 
 				$mysqli->close();
 
-				return true;
+				
+				return $output;
 
 
 			}
 
+
+			/*
+			//	updates the SMS message Id to the data log
+			*/
+			function updateSMSMessageId($ref, $messageId){
+
+					$mysqli = new mysqli("localhost", self::SQL_DB_USERNAME, self::SQL_DB_PASSWORD, self::SQL_DB_NAME);
+					if ($mysqli->connect_errno) {
+					    $this->logError("Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
+					}
+					//echo $mysqli->host_info . "\n";
+
+
+					/* change character set to utf8 */
+					if (!$mysqli->set_charset("utf8")) {
+					    $this->logError("Error loading character set utf8:" . $mysqli->error);
+					    exit();
+					} else {
+					    //printf("Current character set: %s\n", $mysqli->character_set_name());
+					}
+
+
+					//we isnert json into log
+					/* Prepared statement, stage 1: prepare */
+					if (!($stmt = $mysqli->prepare("UPDATE DataLog SET messageId = ? WHERE Reference = ? AND (messageId = '' OR messageId IS NULL);" ))) {
+					    $this->logError("Prepare failed for DataLog: (" . $mysqli->errno . ") " . $mysqli->error);
+					}				
+
+
+					if (!$stmt->bind_param("ss",  $messageId, $ref )) {
+					    $this->logError("Binding parameters failed for DataLog: (" . $stmt->errno . ")<br />  " . $stmt->error);
+					}
+
+					if (!$stmt->execute()) {
+					    $this->logError("Execute failed DataLog: (" . $stmt->errno . ")<br /> " . $stmt->error);
+					}
+
+
+
+					$mysqli->close();
+
+			}
 
 
 		   
 		} // end of class rego
 
 
+
+
 		function viewRego(){
 			if ($_GET["ref"] ){
 				$rego = new Registration("");
-				$rego->viewRego($_GET["ref"]);
+				echo $rego->getRego($_GET["ref"]);
 			}else{
 
 					echo '
@@ -571,9 +720,6 @@
 
 		function processRegoSubmission(){
 
-				$json = '{"Name":"Kyle","Age":"16","Church":"Hội Thánh Tin Lành Springvale (VECA)","Email":"kyle@instil.org.au","Phone":"+61404558997","AirBedDiscount":true,"AirportTransfer":true,"Fee":445,"Registrants":[{"Name":"JENNIFER HUYNH","Age":35,"Relation":"Wife","DiscountFamily":"-","AirBedDiscount":false,"AirportTransfer":true,"Fee":465},{"Name":"LARA HUYNH","Age":7,"Relation":"Daughter","DiscountFamily":"-","AirBedDiscount":false,"AirportTransfer":true,"Fee":375},{"Name":"EMMA HUYNH","Age":4,"Relation":"Daughter","DiscountFamily":"2nd child 5yo and under","AirBedDiscount":false,"AirportTransfer":true,"Fee":25},{"Name":"MARCUS","Age":1,"Relation":"Son","DiscountFamily":"2nd child over 5yo","AirBedDiscount":false,"AirportTransfer":true,"Fee":0},{"Name":"LAN TRAN","Age":50,"Relation":"Mum","DiscountFamily":"-","AirBedDiscount":true,"AirportTransfer":true,"Fee":445},{"Name":"","Age":null,"Relation":"-","DiscountFamily":false,"AirBedDiscount":false,"AirportTransfer":false,"Fee":0},{"Name":"","Age":null,"Relation":"-","DiscountFamily":false,"AirBedDiscount":false,"AirportTransfer":false,"Fee":0}],"Comments":"Phí bao gồm tất cả chi phí tại Hội nghị : chỗ ở, thực phẩm (ẩm thực Việt Nam - phục vụ của nhà thờ ) và tất cả các cơ sở trong thời gian hội nghị.\n\nGiao thông vận tải : Đưa đón sân bay từ và tới sân bay vào ngày 27 và 31 có thể được sắp xếp nếu cần - đặt phòng trước ngày yêu cầu và chi phí riêng biệt áp dụng.\n\nHội nghị sẽ bắt đầu vào tối ngày 27 tháng mười hai năm 2016 và kết thúc vào lúc trưa ngày 31 tháng 12 năm 2016 .\n\nThức ăn : món ăn Việt Nam sẽ là món ăn chính cung cấp tại 2.016 hội nghị Melbourne. cầu dinh dưỡng đặc biệt phải được thực hiện được biết đến tại thời điểm đăng ký - chúng tôi không thể đảm bảo tất cả các nhu cầu dinh dưỡng khác nhau có thể được đáp ứng.","Reference":"87ICF324I6"}';
-
-
 
 				if( $_POST["json"] || $_POST["reference"] ) {
 
@@ -584,7 +730,44 @@
 						
 						//$rego->toString();
 						if ($rego->commitDB()){
-							echo '{"status": 1, "reference": "' . $rego->Reference . '","message":""}';
+							
+
+							//send sms
+							try {
+								//we try this as we dont want to show error if sms fails
+								//we still want to show the registration information
+
+								//check for aussie mobile prefix
+								if ( substr($rego->Phone,0,5) == "+6104" || substr($rego->Phone,0,4) == "+614") {
+							        $sms = new SMS();
+							        if($sms->access_token){
+							            $messageId =  $sms->send($rego->Phone, 
+							            	'Hi ' . $rego->FullName . ', your ref is ' . $rego->Reference .'. View your info at http://goo.gl/asxolc.\n\nDaiHoi Melbourne2016 Team.'); 
+
+							            if($messageId){
+							            	$rego->updateSMSMessageId($rego->Reference, $messageId);
+							            }
+
+							        }									
+								}
+
+							} catch (Exception $e) {
+								//should log error in db
+							}
+
+							//we send email
+							try {
+								//we try this as we dont want to show error if email fails
+								//we still want to show the registration information
+								$message = $rego->getRego($rego->Reference);
+								$email = new Mailer();
+								$email->sendMail($rego->Email, "DaiHoi 2016 Registration for: " . $rego->FullName, $message);
+							} catch (Exception $e) {
+									//should log error in db
+							}
+
+							echo '{"status": 1, "reference": "' . $rego->Reference . '","message":"' . $rego->errMsg . '"}';
+
 						}else{
 							echo '{"status": 0, "reference":"" ,"message": "' . $rego->errMsg . '"}';
 						}
