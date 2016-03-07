@@ -17,7 +17,7 @@
 
 			function isValid(){
 				//Name and Age is required and age must be a number
-				return !($this->FullName == "" or $this->Age == "" or is_numeric($this->Age) == false) ;
+				return !($this->FullName == "" || $this->Age == "" || is_numeric($this->Age) == false) ;
 			}
 
 
@@ -75,6 +75,7 @@
 			function validateFees(){
 				$fee = $this->calculateFee($this->Age, '-', $this->Airbed , $this->AirportTransfer );
 				if ($fee !== $this->Fee){
+					$this->logError('Main Fee expected is ' . $fee . ', but recieved is ' . $this->Fee . '.');
 					return false;
 				}
 
@@ -82,9 +83,9 @@
 					foreach ($this->PersonStack as $member) {
 
 							if ($member->isValid()) {
-								$fee = $this->calculateFee($member->Age, $member->FamilyDiscoun, $member->Airbed , $member->AirportTransfer );
-
+								$fee = $this->calculateFee($member->Age, $member->FamilyDiscount, $member->Airbed , $member->AirportTransfer );
 								if ($fee !== $member->Fee){
+									$this->logError('Member ('. $member.FullName .') Fee expected is ' . $fee . ', but recieved is ' . $member->Fee . '.');
 									return false;
 								}								
 							}	
@@ -96,10 +97,41 @@
 			}
 
 
+			function isValid(){ //checks if object is valid, usally after parseJSON
+				//Name and Age is required and age must be a number
+				$res = !($this->FullName == "" || $this->Age == "" || is_numeric($this->Age) == false || $this->Email == "" || $this->Phone == "");
+				if ($res == false){
+					$this->logError("Main contact failed integrity check.");
+					return false;
+				}
+
+				//check all members are valid
+				foreach ($this->PersonStack as $member) {
+
+					if ($member->isValid() == false) {
+						$this->logError("Members failed integrity check.");
+						return false;
+					}	
+
+				}				
+
+				//check the fee
+				if ($this->validateFees() == false){
+					$this->logError("Fees failed integrity check.");
+					return false;
+				}
+
+
+				return true;
+
+			}
+
+
 			/*
 			//	calculates a fee 
 			*/
-			function calculateFee($Age = 0, $FamilyDiscount = '-', 
+			function calculateFee(	$Age = 0, 
+									$FamilyDiscount = '-', 
 									$Airbed = 0, 
 									$AirportTransfer = 0){
 
@@ -158,7 +190,7 @@
         			$fee = 0 ;
         		}
 
-            	return fee;
+            	return $fee;
 
 			}
 
@@ -204,8 +236,11 @@
 						$newPerson->AirportTransfer = $member['AirportTransfer'];
 						$newPerson->Fee             = $member['Fee'];
 
-						//add to array
-						array_push($this->PersonStack, $newPerson);
+
+						if ($newPerson->isValid()) {
+							//add to array if valid
+							array_push($this->PersonStack, $newPerson);
+						}
 
 
 					}
@@ -692,6 +727,24 @@
 		} // end of class rego
 
 
+		class OUTPUTj { //class to hold output to json
+			var $status    = 0;
+			var $reference = "";
+			var $message   = "";
+			
+			function OUTPUTj($s, $r, $m){
+
+				$this->status    = $s;
+				$this->reference = $r;
+				$this->message   = $m;
+
+			}
+
+			function toJSON(){
+				return json_encode($this);
+			}
+
+		}
 
 
 		function viewRego(){
@@ -719,15 +772,23 @@
 		}
 
 		function processRegoSubmission(){
-
+				
 
 				if( $_POST["json"] || $_POST["reference"] ) {
 
 			      	if ($_POST["json"] <> ""){
 
 						$rego = new Registration($_POST["json"]);
-						$rego->parseJSON();
-						
+						$rego->parseJSON(); //json to objects
+
+						if ($rego->isValid() == false){
+							$out = new OUTPUTj(0,"",$rego->errMsg);
+							echo $out->toJSON();
+							return false;
+						}						
+
+
+
 						//$rego->toString();
 						if ($rego->commitDB()){
 							
@@ -766,10 +827,14 @@
 									//should log error in db
 							}
 
-							echo '{"status": 1, "reference": "' . $rego->Reference . '","message":"' . $rego->errMsg . '"}';
+							$out = new OUTPUTj(1,$rego->Reference,$rego->errMsg);
+							echo $out->toJSON();
 
 						}else{
-							echo '{"status": 0, "reference":"" ,"message": "' . $rego->errMsg . '"}';
+							
+							$out = new OUTPUTj(0,"",$rego->errMsg);
+							echo $out->toJSON();
+
 						}
 					
 					}

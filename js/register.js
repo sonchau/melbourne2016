@@ -46,14 +46,21 @@
 
         this.validate = function () {
 
-            var errMsg = ""
+            var errMsg = "";
+            var b = false;
+
             if (isNaN(this.Age)) {
-                errMsg = "Error: Main contact age is not a number.\m"
-                b = false
+                errMsg = "Error: Main contact age is not a number.\n";
+
+	           	return {
+	                isValid: b,
+	                errMsg: errMsg
+	            }
+
             }
             
 
-            var b = false;
+            
             //make sure there is a main contact.
             if (this.Age >= 16
                 && this.Name !== ""
@@ -112,7 +119,13 @@
         this.DiscountFamily = false,
         this.AirBedDiscount = false,
         this.AirportTransfer = false,
-        this.Fee = 0
+        this.Fee = 0,
+
+        //checks objec validiity
+        this.isValid = function () {
+			return  (isNaN(this.Age) == false && this.Name !== "") ;
+			
+        }
     }
 
     var REGO_CALCULATOR = {
@@ -242,16 +255,22 @@
         
 
         var total = 0;
+        var person;
         $(".form-inline .row input[type=text].name").each(function (index, el) {
-            groupRego.Registrants[index] = updateRowFee(el)
-            total = total + groupRego.Registrants[index].Fee;
+        	person = updateRowFee(el);
+        	
+        	if (person.isValid()){ //only add to array if person is valid
+        		groupRego.Registrants[index] = person;
+            	total = total + person.Fee;
+        	}
+            
         })
 
-        total = total + groupRego.Fee
+        total = total + groupRego.Fee;
 
         document.getElementById("TotalAmount").value = total;
 
-        showJSON = 1;
+        showJSON = 0;
         if (showJSON) {
             //alert(JSON.stringify(aa))
             $("#json").html(JSON.stringify(groupRego))
@@ -266,7 +285,7 @@
         var groups = new REGISTRANT();
 
 
-        var age = -1;
+        var age = "";
         var name = "";
         var fee = 0;
 
@@ -280,7 +299,7 @@
         })
 
 
-        if (name !== "") {
+        if (name !== "" && isNaN(age) == false) {
             fee = REGO_CALCULATOR.calculateFee(age);
         }
             
