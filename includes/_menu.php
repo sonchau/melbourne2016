@@ -6,12 +6,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="" id="A1" class="navbar-brand">Melbourne 2016</a>
+                <a href="/" id="A1" class="navbar-brand">Melbourne 2016</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
-                    <li><a href="index.vn.html">Tiếng Việt</a></li>
+                    <li><a href="/index.vn.html">Tiếng Việt</a></li>
                     <!--<li><a href="#">Location</a></li>
                     <li><a href="#">Registration</a></li>
                     <li><a href="#">FAQ</a></li>

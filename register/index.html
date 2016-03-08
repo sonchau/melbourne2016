@@ -82,6 +82,74 @@
 
         }
 
+        function random(length) {
+            var chars1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var chars2 = "1234567890";
+
+            var chars = chars1;
+
+            var pass = "";
+            for (var x = 0; x < length; x++) {
+                var i = Math.floor(Math.random() * chars.length);
+                pass += chars.charAt(i);
+            }
+            return pass;
+        }
+
+        function randomN(max, min) {
+            return Math.floor((Math.random() * max) + min);
+        }
+
+        function test() {
+            
+            $("#rego-form input").each(function (index, el) {
+                
+                switch ($(this).attr("type")) {
+                    case "email":
+                        el.value = "kyle@instil.org.au";
+                        break;
+                    case "text":
+                        if (el.id == "tPhone") {
+                            el.value = "03 9548 5689"
+                        } else {
+                            el.value = random(10);
+                        }
+                        break;
+                    case "number":
+                        el.value = randomN(99,1);
+                        break;
+                    case "checkbox":
+                        el.checked = (randomN(2, 1) == 2);
+                        break;
+                }
+
+            });
+
+
+            $("#rego-form select").each(function (index, el) {
+                el.selectedIndex = randomN(el.length - 1, 0);
+            });
+
+
+
+
+            collectRegistrantInfo(false);
+
+        }
+
+
+        function loading(el) {
+
+            
+                var $this = $(el);
+                $this.button('loading');
+                setTimeout(function () {
+                    $this.button('reset');
+                }, 8000);
+            
+
+        }
+
     </script>
 </head>
 <body>
@@ -336,7 +404,7 @@
                             <div class="form-horizontal">
 
                                 <div class="bs-callout bs-callout-info col-lg-11 col-lg-push-1">
-                                    <h4><i class="fa fa-user text-info"> </i> Main Contact </h4>
+                                    <h4 onclick="test()"><i class="fa fa-user text-info"> </i> Main Contact </h4>
                                     The nominated person will receive all the comminucation via email and or contact number. Please supply valid and current update to date details.
                                 </div>
                                 <div class="clearfix">&nbsp;</div>
@@ -346,7 +414,7 @@
                                     <label class="col-md-2 control-label">Full Name</label>
                                     <div class="col-md-6">
                                         <input type="text" name="FullName" class="form-control" id="tFullName"
-                                               maxlength="100" placeholder="Your fullname"
+                                               maxlength="50" placeholder="Your fullname"
                                                data-rule-required="true" />
                                     </div>
 
@@ -522,7 +590,7 @@
                                     <label class="col-md-2 control-label">Email</label>
 
                                     <div class="col-md-10">
-                                        <input type="text" name="tEmail" id="tEmail" class="form-control" maxlength="200" placeholder="Email Address"
+                                        <input type="email" name="tEmail" id="tEmail" class="form-control" maxlength="200" placeholder="Email Address"
                                                data-rule-email="true"
                                                data-msg-email="Please enter a valid email address"
                                                data-rule-required="true" />

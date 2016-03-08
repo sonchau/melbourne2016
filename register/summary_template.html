@@ -1,6 +1,27 @@
 <div>
 
+    <div class="print-only hidden col-lg-12">
+        <!-- <h4 style="color: #CAAB71;     border-bottom: 1px solid #DF691A ;     padding-bottom: 10px;     margin-bottom: 25px;">Viewing Your Registraion</h4> -->
+                    <table class="table table-responsive table-bordered table-striped" style="margin-bottom:10px">
+                        <caption>Viewing Your Registraion</caption>
+                    </table>        
+            <div>
+                
+                <img style="float: left; margin: 0 10px 10px 10px;" src="https://chart.googleapis.com/chart?chs=120x120&cht=qr&chl=melbourne2016.net.au/register/view?ref={REFERENCE}&choe=UTF-8&chld=Q|0" 
+                align="left" />
+            
 
+                <p>
+                    You can view your registration at anytime using the following link <a href="http://melbourne2016.net.au/register/view/?ref={REFERENCE}">http://melbourne2016.net.au/</a>, along with your reference: <b>{REFERENCE}</b>
+                    <p> For those more technology adept, you can use the QR Code on the left.</p>
+                </p>
+                
+                
+                <div class="clearfix">&nbsp;</div>            
+        </div>
+        <div>&nbsp;</div>    
+    </div>
+    <div>&nbsp;</div>
     <div class="col-lg-6">
 
         <table class="table table-responsive table-bordered">
@@ -152,20 +173,19 @@
                     </div>
 
 
-
                 </div>
 
 
                 <div class="clearfix">&nbsp;</div>
             </div>
             <div class="panel-footer text-center">
+                <button type="button" class="btn btn-primary no-print"
+                        onclick="submitRegistration(this)" id="process-rego-button" 
+                        data-loading-text="&lt;i class=&#39;fa fa-circle-o-notch fa-spin&#39;&gt;&lt;/i&gt; Processing, please wait...">
+                    REGISTER ME !
+                </button>
 
-                <input type="button" value=" REGISTER ME !" 
-                class="btn btn-primary no-print " 
-                onclick="submitRegistration(this)" 
-                id="process-rego-button"
-                data-loading-text="Processing, please wait..." /> 
-                <input type="button" value="CANCEL" class="btn btn-default no-print " onclick="swapRegoSummary()" />
+                <button type="button" class="btn btn-default no-print" onclick="swapRegoSummary();">CANCEL</button>
                 
             </div>
         </div>

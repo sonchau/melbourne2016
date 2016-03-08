@@ -9,18 +9,32 @@
     </title>
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_scripts.php');?>
 
+	<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+	<style type="text/css">
+		.panel-footer button {
+			display: none;
+		}
 
-<style type="text/css">
-	.panel-footer input {
-	    display: none;
-	}
+		#process-rego-button {
+			display: block;
+			min-width: 50%;
+			margin: 0 auto;
+		}
+	</style>
+	<script>
+		$(function(){
+			return;
+			$("#qr-code").qrcode({
+				"render": "image",
+				"size": 100,
+                "ecLevel": "Q",
+				"color": "#3a3",
+				"text": "http://www.melbourne2016.net.au/register/view/?ref="
+			});		
+		
+		})
+	</script>
 
-	#process-rego-button {
-	    display: block;
-	    min-width: 50%;
-	    margin: 0 auto;
-	}
-</style>
 
 </head>
 <body>
@@ -35,7 +49,7 @@
 
             <?php 
             	if ($_GET["ref"] && $_GET["success"]) {
-						echo  '<div class="alert alert-dismissible alert-success font-normal no-print"><button type="button" class="close" data-dismiss="alert">X</button><i class="fa fa-smile-o fa-5x pull-left"> </i><p><strong>Awesome!</strong> You have successfully submitted your registration details for Dai Hoi Melbourne 2016, please take note of your green reference number below. You can try to <a href="/contact/" class="alert-link">contact the conference team</a> for help concerning your registration.</p><p>On behalf of the conference, thank you and God bless.</p><div class="clearfix"></div></div>';
+						echo  '<div class="alert alert-dismissible alert-success font-normal no-print"><button type="button" class="close" data-dismiss="alert">X</button><i class="fa fa-smile-o fa-5x pull-left"> </i><p><strong>Awesome!</strong> You have successfully submitted your registration details for Dai Hoi Melbourne 2016, please take note of your green reference number below. <p>On behalf of the conference, thank you and God bless.</p><div class="clearfix"></div></div>';
 								
             	}
             ?>

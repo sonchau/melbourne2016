@@ -134,7 +134,7 @@
 								            text-align:right;
 								        }
 
-										.panel-footer input {
+										.panel-footer button {
 										    display: none;
 										}
 
@@ -147,7 +147,7 @@
 								        }
 
 								        .hidden {display:none;}
-										
+										.print-only {display:block !important;}
 								    </style>
 								</head>
 								<body>

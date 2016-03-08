@@ -4,9 +4,30 @@
 	    {
 	        display: none !important;
 	    }
+
+        .print-only, .print-only *
+        {
+            display: block !important;
+        }
+
+        a[href]:after {
+            content: none !important;
+        }
+
 	}
 
     .no-print, .no-print *
     {
         display: none !important;
     }
+
+
+    .print-only, .print-only *
+    {
+        display: block !important;
+    }
+
+
+      a[href]:after {
+        content: none !important;
+      }

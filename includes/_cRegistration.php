@@ -634,6 +634,7 @@
 									$html  = str_replace("submitRegistration(this)","window.print();",$html);
 									$html  = str_replace("REGISTER ME !"," PRINT ",$html);
 									$html  = str_replace("swapRegoSummary","return false;void",$html);
+									$html  = str_replace("{REFERENCE}",$ref,$html);
 
 									
 									$output = sprintf($html, 
@@ -647,7 +648,7 @@
 										$this->Church, 
 										$this->Fee,
 										$this->Comments,
-										((count($this->PersonStack)) == 1) ? 'X1' : 'hidden', //hidden if no members
+										((count($this->PersonStack)) > 1) ? 'X1' : 'hidden', //hidden if no members
 										$memberRowHtml,
 										$membersFeeTotal,
 										$paymentRowHtml,
@@ -792,6 +793,7 @@
 						//$rego->toString();
 						if ($rego->commitDB()){
 							
+							$ref = $rego->Reference;
 
 							//send sms
 							try {
@@ -803,7 +805,7 @@
 							        $sms = new SMS();
 							        if($sms->access_token){
 							            $messageId =  $sms->send($rego->Phone, 
-							            	'Hi ' . $rego->FullName . ', your ref is ' . $rego->Reference .'. View your info at http://goo.gl/asxolc.\n\nDaiHoi Melbourne2016 Team.'); 
+							            	'Hi ' . $rego->FullName . ', your ref is ' . $ref  .'. View your info at http://goo.gl/asxolc.\n\nDaiHoi Melbourne2016 Team.'); 
 
 							            if($messageId){
 							            	$rego->updateSMSMessageId($rego->Reference, $messageId);
@@ -820,14 +822,14 @@
 							try {
 								//we try this as we dont want to show error if email fails
 								//we still want to show the registration information
-								$message = $rego->getRego($rego->Reference);
+								$message = $rego->getRego($ref);
 								$email = new Mailer();
-								$email->sendMail($rego->Email, "DaiHoi 2016 Registration for: " . $rego->FullName, $message);
+								$email->sendMail($rego->Email, 'DaiHoi 2016 Registration [' . $ref . '] for: ' . $rego->FullName , $message);
 							} catch (Exception $e) {
 									//should log error in db
 							}
 
-							$out = new OUTPUTj(1,$rego->Reference,$rego->errMsg);
+							$out = new OUTPUTj(1,$ref,$rego->errMsg);
 							echo $out->toJSON();
 
 						}else{
