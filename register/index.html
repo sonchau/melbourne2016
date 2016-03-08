@@ -53,7 +53,7 @@
                 url: '/register/process/?process=1',
                 type: 'POST',
                 dataType: 'html',
-                data: { reference: "test", json: JSON.stringify(rego), cache: Math.random() },
+                data: { reference: "1", json: JSON.stringify(rego), cache: Math.random() },
             })
             .done(function (data) {
                 if (data !== "" ){
@@ -132,23 +132,10 @@
 
 
 
-
             collectRegistrantInfo(false);
 
         }
 
-
-        function loading(el) {
-
-            
-                var $this = $(el);
-                $this.button('loading');
-                setTimeout(function () {
-                    $this.button('reset');
-                }, 8000);
-            
-
-        }
 
     </script>
 </head>

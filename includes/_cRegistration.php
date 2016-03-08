@@ -435,6 +435,18 @@
 					    $membersUpdateError =1;
 					}				
 
+					if (!$stmt->bind_param("ssssssss", $newMainContactId, 
+														$FullName, 
+														$Age, 
+														$Relation,
+														$FamilyDiscount,
+														$Airbed, 
+														$AirportTransfer, 
+														$Fee)) {
+
+					    $this->logError("Binding parameters failed members: (" . $stmt->errno . ")<br />  " . $stmt->error);
+						$membersUpdateError =1;
+					}
 
 					foreach ($this->PersonStack as $member) {
 
@@ -449,18 +461,7 @@
 									$Fee             = $member->Fee; 
 									
 								
-									if (!$stmt->bind_param("ssssssss", $newMainContactId, 
-																		$FullName, 
-																		$Age, 
-																		$Relation,
-																		$FamilyDiscount,
-																		$Airbed, 
-																		$AirportTransfer, 
-																		$Fee)) {
 
-									    $this->logError("Binding parameters failed members: (" . $stmt->errno . ")<br />  " . $stmt->error);
-										$membersUpdateError =1;
-									}
 
 									if (!$stmt->execute()) {
 									    $this->logError("Execute failed members: (" . $stmt->errno . ")<br /> " . $stmt->error);
@@ -491,9 +492,6 @@
 					    $this->logError("Execute failed DataLog Update 2: (" . $stmt->errno . ")<br /> " . $stmt->error);
 					}
 					//end update status
-
-
-					//echo "done...!";
 
 
 				}
@@ -724,6 +722,49 @@
 			}
 
 
+			/*
+			//	checks if rego exists based on json 
+			*/
+			function exists(){
+					$json = $this->JSON;
+					$return = false;
+
+					$mysqli = new mysqli("localhost", self::SQL_DB_USERNAME, self::SQL_DB_PASSWORD, self::SQL_DB_NAME);
+					if ($mysqli->connect_errno) {			
+			     		$this->logError("Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
+					}
+					
+
+					/* change character set to utf8 */
+					if (!$mysqli->set_charset("utf8")) {
+					    $this->logError("Error loading character set utf8:" . $mysqli->error);
+					    exit();
+					} 
+
+					
+					if (!($stmt = $mysqli->prepare("SELECT * FROM DataLog WHERE jsonData = ? AND Status > 0"))) {
+					    $this->logError("Prepare failed for DataLog Update query: (" . $mysqli->errno . ") " . $mysqli->error);
+					}				
+
+					if (!$stmt->bind_param("s", $json)) {
+					    $this->logError("Binding parameters failed for DataLog Update 2query (" . $stmt->errno . ")<br />  " . $stmt->error);
+					}
+
+					if (!$stmt->execute()) {
+					    $this->logError("Execute failed DataLog Update query: (" . $stmt->errno . ")<br /> " . $stmt->error);
+					}
+
+					if ($stmt->fetch() > 0) {
+						$return = true;
+					}
+
+					$mysqli->close();
+
+					return $return;
+
+			}
+
+
 		   
 		} // end of class rego
 
@@ -745,7 +786,7 @@
 				return json_encode($this);
 			}
 
-		}
+		} // endclass to hold output to json
 
 
 		function viewRego(){
@@ -779,11 +820,22 @@
 
 			      	if ($_POST["json"] <> ""){
 
+			      		//create new object with json data
 						$rego = new Registration($_POST["json"]);
-						$rego->parseJSON(); //json to objects
 
-						if ($rego->isValid() == false){
-							$out = new OUTPUTj(0,"",$rego->errMsg);
+						//check if json data exists
+						if ($rego->exists()) {
+							$out = new OUTPUTj(0,"","This registration information already exists!");
+							echo $out->toJSON();
+							return false;
+						}
+
+						//json to objects
+						$rego->parseJSON(); 
+
+						//make sure the json converted is valid
+						if ($rego->isValid() == false){ 
+							$out = new OUTPUTj(0,"",$rego->errMsg); 
 							echo $out->toJSON();
 							return false;
 						}						

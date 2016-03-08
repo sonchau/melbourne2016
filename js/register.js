@@ -251,7 +251,7 @@
         groupRego.Phone           = info.phone;
         groupRego.Email           = info.email;
         groupRego.Comments        = info.notes;
-        groupRego.Reference       = groupRego.generateReference(10);
+        groupRego.Reference       = "MELBOURNE2016";    //groupRego.generateReference(10);
         
 
         var total = 0;
