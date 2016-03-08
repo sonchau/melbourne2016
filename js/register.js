@@ -1,5 +1,5 @@
 
-
+    var PAGE_VALIDATOR;
     var ROW_COUNTER = 1;
     
 
@@ -34,7 +34,7 @@
             var person;
             for (var index in this.Registrants) {
                 person = this.Registrants[index];
-                if (person.Age !== "" && person.Name !== ""){
+                if (person.isValid()){
                     total += person.Fee;
                 }
     
@@ -49,7 +49,7 @@
             var errMsg = "";
             var b = false;
 
-            if (isNaN(this.Age)) {
+            if (!isNumeric(this.Age)) {
                 errMsg = "Error: Main contact age is not a number.\n";
 
 	           	return {
@@ -72,7 +72,7 @@
                 for (var index in this.Registrants) {
                     person = this.Registrants[index];
 
-                    var isAgeNumeric = !isNaN(person.Age);
+                    var isAgeNumeric = isNumeric(person.Age);
                     
                     if (person.Name !== "") {
                         if (!isAgeNumeric) {
@@ -121,9 +121,9 @@
         this.AirportTransfer = false,
         this.Fee = 0,
 
-        //checks objec validiity
+        //checks object validiity
         this.isValid = function () {
-			return  (isNaN(this.Age) == false && this.Name !== "") ;
+			return  (isNumeric(this.Age) && $.trim(this.Name) !== "") ;
 			
         }
     }
@@ -188,10 +188,15 @@
 
         }
 
+
+        $(".form-inline input[type=number].age").each(function (index, el) {
+            //triggers the age validation for the newly created rows
+            PAGE_VALIDATOR.element(el);
+        })
+
         attachEventsToRegistrants();
         collectRegistrantInfo();
-
-
+        
     }
 
 
@@ -378,10 +383,12 @@
 
         
         var person;
+        var personCounter=0;
         for (var index in regoInfo.Registrants) {
             person = regoInfo.Registrants[index];
 
-            if (person.Age !== "" && person.Name !== "") {
+            if (person.isValid()) {
+                personCounter += 1
                 registrants += html.replace("{NAME}",       person.Name)
                                     .replace("{AGE}",       person.Age)
                                     .replace("{RELATION}",  person.Relation)
@@ -393,7 +400,7 @@
 
                 paymentSummary += htmlShort.replace("{NAME}",       person.Name)
                                             .replace("{AGE}",       person.Age)
-                                            .replace("{COUNTER}",   (parseInt(index) + 2))
+                                            .replace("{COUNTER}",   (parseInt(personCounter) + 2))
                                             .replace("{FEE}",       person.Fee);
 
             }
@@ -441,26 +448,23 @@
             return true;
         }
         return !this.optional(element) && !this.optional($(element).parent().prev().children("input[type=text].name")[0]);
-    }, "Name &amp; Age required");
+    }, "Name &amp; Age required 1");
 
-
-
-
-
+   
     $(function () {
 
         attachEventsToMainContact();
         attachEventsToRegistrants();
         addCountriesToPhone();
 
-        $("#rego-form").validate({
+        PAGE_VALIDATOR =  $("#rego-form").validate({
             debug: true,
             focusInvalid: false,
             errorClass: "validate-error",
             submitHandler: function (form) {
 
                 var groupRego = collectRegistrantInfo();
-                var result = groupRego.validate();
+                var result = groupRego.validate(); //does the main contact validation 
                 
                 if (!result.isValid) {
                     alert(result.errMsg)
@@ -655,3 +659,7 @@
     function htmlDecode(value) {
         return $('<div/>').html(value).text();
     }
+
+    function isNumeric(n) {
+      return !isNaN(parseFloat(n)) && isFinite(n);
+    }    
