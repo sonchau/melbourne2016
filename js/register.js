@@ -400,7 +400,7 @@
 
                 paymentSummary += htmlShort.replace("{NAME}",       person.Name)
                                             .replace("{AGE}",       person.Age)
-                                            .replace("{COUNTER}",   (parseInt(personCounter) + 2))
+                                            .replace("{COUNTER}",   (parseInt(personCounter) + 1))
                                             .replace("{FEE}",       person.Fee);
 
             }
@@ -443,12 +443,16 @@
 
     //validator hookup for age and name to be dependant on each other
     $.validator.addMethod("age", function (value, element) { 
-        //alert(value)
-        if ($.trim(value) == "") {
+
+        var dependantLen = $.trim($(element).parent().prev().children("input[type=text].name:first").val()).length;
+        var currentLen = $.trim(value).length;
+        if ($.trim(value) == "" && dependantLen == 0) {
             return true;
         }
-        return !this.optional(element) && !this.optional($(element).parent().prev().children("input[type=text].name")[0]);
-    }, "Name &amp; Age required 1");
+        var b = currentLen > 0 && dependantLen > 0;
+        return b;
+
+    }, "Name &amp; Age required");
 
    
     $(function () {
