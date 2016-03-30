@@ -11,10 +11,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
-                    <li><a href="/index.vn.html">Tiếng Việt</a></li>
-                    <!--<li><a href="#">Location</a></li>
-                    <li><a href="#">Registration</a></li>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a href="/">Tiếng Việt</a></li>
+                    <li><a href="/en/speakers.html">Speakers</a></li>
+                    <li><a href="/en/faq.html">FAQ</a></li>
+                    <!--<li><a href="#">FAQ</a></li>
                     <li><a href="#">Help</a></li>-->
 
                 </ul>

@@ -5,11 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-        Vietnamese Christians Fellowship Conference in Australia – Melbourne 2016
+        View | Vietnamese Christians Fellowship Conference in Australia – Melbourne 2016
     </title>
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_scripts.php');?>
-
-	<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 	<style type="text/css">
 		.panel-footer button {
 			display: none;
@@ -20,22 +18,9 @@
 			min-width: 50%;
 			margin: 0 auto;
 		}
+
+        .view-only { display: block !important; }
 	</style>
-	<script>
-		$(function(){
-			return;
-			$("#qr-code").qrcode({
-				"render": "image",
-				"size": 100,
-                "ecLevel": "Q",
-				"color": "#3a3",
-				"text": "http://www.melbourne2016.net.au/register/view/?ref="
-			});		
-		
-		})
-	</script>
-
-
 </head>
 <body>
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_menu.php');?>

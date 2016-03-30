@@ -85,7 +85,7 @@
 							if ($member->isValid()) {
 								$fee = $this->calculateFee($member->Age, $member->FamilyDiscount, $member->Airbed , $member->AirportTransfer );
 								if ($fee !== $member->Fee){
-									$this->logError('Member ('. $member.FullName .') Fee expected is ' . $fee . ', but recieved is ' . $member->Fee . '.');
+									$this->logError('Member ('. $member->FullName . ') Fee expected is ' . $fee . ', but recieved is ' . $member->Fee . '.');
 									return false;
 								}								
 							}	
@@ -215,7 +215,7 @@
 					$this->Church          = trim($rego['Church']);
 					$this->Email           = trim($rego['Email']);
 					$this->Phone           = trim($rego['Phone']);
-					$this->Airbed          = $rego['AirBedDiscount'];
+					$this->Airbed          = false; //$rego['AirBedDiscount'];
 					$this->AirportTransfer = $rego['AirportTransfer'];
 					$this->Fee             = $rego['Fee'];
 					$this->Comments        = trim($rego['Comments']);
@@ -232,7 +232,7 @@
 						$newPerson->Age             = $member['Age'];
 						$newPerson->Relation        = $member['Relation'];
 						$newPerson->FamilyDiscount  = $member['DiscountFamily'];
-						$newPerson->Airbed          = $member['AirBedDiscount'];
+						$newPerson->Airbed          = false; //$member['AirBedDiscount'];
 						$newPerson->AirportTransfer = $member['AirportTransfer'];
 						$newPerson->Fee             = $member['Fee'];
 
@@ -541,9 +541,8 @@
 						
 
 
-
 									//the row templates
-				        			$row1 = "<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>$%s</td></tr>";
+				        			$row1 = "<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>$%d</td></tr>";
 				        			$row2 = "<tr><td>%s.</td><td>%s</td><td>%s</td><td>$%s</td></tr>";
 
 									$memberRowHtml = "";
@@ -602,9 +601,8 @@
 																			$newPerson->Age, 
 																			$newPerson->Relation, 
 																			$newPerson->FamilyDiscount, 
-																			$this->ToYesNo($newPerson->Airbed),  
 																			$this->ToYesNo($newPerson->AirportTransfer),  
-																			$newPerson->Fee, null);
+																			$newPerson->Fee, null); //$this->ToYesNo($newPerson->Airbed),  
 
 
 												//add to payment summary row
@@ -624,15 +622,19 @@
 
 
 									//finds template and formats to php formatted string
-									$html = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/register/summary_template.html");
+									$html = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/register/summary_template.php");
 									for ($i=0; $i < 16 ;  $i++) { 
 										$html = str_replace( "{" . $i . "}", "%s", $html);
 									}
 									//replace the js functions
-									$html  = str_replace("submitRegistration(this)","window.print();",$html);
+									$html  = str_replace("SUBMISSION.submitRegistration(this)","window.print();",$html);
 									$html  = str_replace("REGISTER ME !"," PRINT ",$html);
 									$html  = str_replace("swapRegoSummary","return false;void",$html);
 									$html  = str_replace("{REFERENCE}",$ref,$html);
+
+									$html  = str_replace('<?php include($_SERVER["DOCUMENT_ROOT"] . "/includes/_bankdetails.php");?>',
+										file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/includes/_bankdetails.php")
+										,$html);
 
 									
 									$output = sprintf($html, 
@@ -814,14 +816,15 @@
 		}
 
 		function processRegoSubmission(){
-				
+				$json = $_POST["json"];
 
-				if( $_POST["json"] || $_POST["reference"] ) {
 
-			      	if ($_POST["json"] <> ""){
+				if( $json || $_POST["reference"] ) {
+
+			      	if ($json<> ""){
 
 			      		//create new object with json data
-						$rego = new Registration($_POST["json"]);
+						$rego = new Registration($json);
 
 						//check if json data exists
 						if ($rego->exists()) {
@@ -895,8 +898,6 @@
 
 			   }
 		}
-
-			
 
 
 	?>
