@@ -1,3 +1,9 @@
+    jQuery.extend({
+      getQueryParameters : function(str) {
+          return (str || document.location.search).replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0];
+      }
+    });
+
 
     var PAGE_VALIDATOR;
     var ROW_COUNTER = 1;
@@ -206,10 +212,12 @@
 
         //fee calculation for main contact
         var fee = REGO_CALCULATOR.calculateFee(age);
-        var airbed = document.getElementById("airbed00").checked
-        var airport = document.getElementById("airport00").checked
+        var airbed = document.getElementById("airbed00").checked;
+        var airport = document.getElementById("airport00").checked;
 
-        if (airbed) { fee = fee - REGO_CALCULATOR.airbed_discount_amount }
+        //removed airbed option, therefore airbed will always be false
+        airbed = false;
+        //if (airbed) { fee = fee - REGO_CALCULATOR.airbed_discount_amount }
         if (airport) { fee = fee + REGO_CALCULATOR.airport_fee }
 
         //update the display
@@ -275,10 +283,12 @@
 
         document.getElementById("TotalAmount").value = total;
 
-        showJSON = 0;
-        if (showJSON) {
-            //alert(JSON.stringify(aa))
-            $("#json").html(JSON.stringify(groupRego))
+
+        var queryParams = $.getQueryParameters();
+        if (queryParams.debug == "1"){
+                //alert(JSON.stringify(aa))
+                $("#json").html(JSON.stringify(groupRego)).show();
+            
         }
 
         return groupRego;
@@ -326,11 +336,13 @@
             });
 
 
-            //find the airbed discount
+            //find the airbed discount (removed)
+            /*
             $(div).find("input[type=checkbox].discount-airbed:checked").each(function (index, el) {
                 fee = fee - REGO_CALCULATOR.airbed_discount_amount
                 groups.AirBedDiscount = el.checked;
             });
+            */
 
 
             //find the airport transfer
@@ -372,7 +384,7 @@
         var registrants = "";
         var paymentSummary = "";
 
-        var html = "<tr><td>{NAME}</td><td>{AGE}</td><td>{RELATION}</td><td>{FAMILY}</td><td>{AIRBED}</td><td>{AIRPORT}</td><td>${FEE}</td></tr>";
+        var html = "<tr><td>{NAME}</td><td>{AGE}</td><td>{RELATION}</td><td>{FAMILY}</td><td>{AIRPORT}</td><td>${FEE}</td></tr>"; //<td>{AIRBED}</td>
         var htmlShort = "<tr><td>{COUNTER}.</td><td>{NAME}</td><td>{AGE}</td><td>${FEE}</td></tr>";
 
         //add the main contact to the payment summary
@@ -396,6 +408,7 @@
                                     .replace("{AIRBED}",    toYesNo(person.AirBedDiscount))
                                     .replace("{AIRPORT}",   toYesNo(person.AirportTransfer))
                                     .replace("{FEE}",       person.Fee);
+                                    
 
 
                 paymentSummary += htmlShort.replace("{NAME}",       person.Name)
@@ -616,7 +629,7 @@
 
 
         $.ajax({
-            url: 'summary_template.html',
+            url: 'summary_template.php',
             type: 'GET',
             dataType: 'html',
             data: { cache: Math.random() },
