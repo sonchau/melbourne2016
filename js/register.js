@@ -9,160 +9,7 @@
     var ROW_COUNTER = 1;
     
 
-    var REGO = function () {
-        this.Name = '',
-        this.Age = '',
-        this.Church = '',
-        this.Email = '',
-        this.Phone = '',
-        this.AirBedDiscount = false,
-        this.AirportTransfer = false,
-        this.Fee = 0,
-        this.Registrants = [],
-        this.Comments = '',
-        this.Reference = '',
 
-        this.generateReference = function (length) {
-            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-            var pass = "";
-            for (var x = 0; x < length; x++) {
-                var i = Math.floor(Math.random() * chars.length);
-                pass += chars.charAt(i);
-            }
-            return pass;
-        }
-
-        this.sumTotalFees = function (additionalsOnly) {
-            if (typeof additionalsOnly === "undefined") { additionalsOnly = false } //makes the param optional
-
-            var total = (additionalsOnly === true ? 0 : this.Fee);
-
-            var person;
-            for (var index in this.Registrants) {
-                person = this.Registrants[index];
-                if (person.isValid()){
-                    total += person.Fee;
-                }
-    
-            }
-
-            return total;
-        }
-
-
-        this.validate = function () {
-
-            var errMsg = "";
-            var b = false;
-
-            if (!isNumeric(this.Age)) {
-                errMsg = "Error: Main contact age is not a number.\n";
-
-	           	return {
-	                isValid: b,
-	                errMsg: errMsg
-	            }
-
-            }
-            
-
-            
-            //make sure there is a main contact.
-            if (this.Age >= 16
-                && this.Name !== ""
-                && this.Phone !== ""
-                && this.Email !== "") {
-
-                b = true;
-
-                for (var index in this.Registrants) {
-                    person = this.Registrants[index];
-
-                    var isAgeNumeric = isNumeric(person.Age);
-                    
-                    if (person.Name !== "") {
-                        if (!isAgeNumeric) {
-                            //console.log("Error: Person age is not a number.")
-                            errMsg += "Person " + (parseInt(index) + 1) + " has no age.\n"
-                            b = false;
-                        } else {
-                            b = true;
-                        }
-                    }
-
-                    if (isAgeNumeric) {
-                        if (person.Name == "") {
-                            //console.log("Error: Person has age but no Name.")
-                            errMsg += "Person " + (parseInt(index) + 1) + " has no Name.\n"
-                            b = false;
-                        } else {
-                            b = true;
-                        }
-                    }
-
-                }
-
-
-
-
-            } else {
-                errMsg += "Please ensure you have the main contact details correctly filled out.\n"
-                b = false
-            }
-
-            return {
-                isValid: b,
-                errMsg: errMsg
-            }
-        }
-
-    }
-
-    var REGISTRANT = function (name, age, rel) {
-        this.Name = name,
-        this.Age = age,
-        this.Relation = rel,
-        this.DiscountFamily = false,
-        this.AirBedDiscount = false,
-        this.AirportTransfer = false,
-        this.Fee = 0,
-
-        //checks object validiity
-        this.isValid = function () {
-			return  (isNumeric(this.Age) && $.trim(this.Name) !== "") ;
-			
-        }
-    }
-
-    var REGO_CALCULATOR = {
-        type: "calculation",
-        family_discount1_amount: 50,
-        family_discount2_amount: 100,
-        airbed_discount_amount: 20,
-        airport_fee: 25,
-        calculateFee: function (age) {
-            var fee = 0;
-            switch (true) {
-                case (age <= 5):
-                    fee = 50
-                    break;
-                case (age > 5 && age <= 12):
-                    fee = 350
-                    break;
-                case (age > 12 && age < 65):
-                    fee = 440
-                    break;
-                case (age >= 65):
-                    fee = 390
-                    break;
-                default:
-
-            }
-
-            return fee
-
-        }
-    }
 
 
 
@@ -211,9 +58,10 @@
         var age = el.options[el.selectedIndex].text;
 
         //fee calculation for main contact
-        var fee = REGO_CALCULATOR.calculateFee(age);
-        var airbed = document.getElementById("airbed00").checked;
+        var fee     = REGO_CALCULATOR.calculateFee(age);
+        var airbed  = document.getElementById("airbed00").checked;
         var airport = document.getElementById("airport00").checked;
+
 
         //removed airbed option, therefore airbed will always be false
         airbed = false;
@@ -227,10 +75,15 @@
         //collect other information
         el = document.getElementById("tChurch");
         var church = el.options[el.selectedIndex].text;
-        var phone = $("#tPhone").intlTelInput("getNumber"); //document.getElementById("tPhone").value;
-        var name = document.getElementById("tFullName").value;
-        var email = document.getElementById("tEmail").value;
-        var notes = document.getElementById("tNotes").value;
+        var phone  = $("#tPhone").intlTelInput("getNumber"); //document.getElementById("tPhone").value;
+        var name   = document.getElementById("tFullName").value;
+        var email  = document.getElementById("tEmail").value;
+        var notes  = document.getElementById("tNotes").value;
+        el = document.getElementById("tGender");
+        var gender   = el.options[el.selectedIndex].value;
+        el = document.getElementById("tRole");
+        var role = el.options[el.selectedIndex].value;
+
 
         return {
             email       : htmlEncode($.trim(email)),
@@ -241,7 +94,9 @@
             airport     : airport,
             church      : htmlEncode($.trim(church)),
             phone       : htmlEncode($.trim(phone)),
-            notes       : htmlEncode($.trim(notes))
+            notes       : htmlEncode($.trim(notes)),
+            role        : role,
+            gender      : gender
         }
 
 
@@ -258,14 +113,15 @@
         groupRego.Name            = info.name;
         groupRego.Age             = info.age;
         groupRego.Church          = info.church;
-        groupRego.AirBedDiscount  = info.airbed;
+        groupRego.Airbed          = info.airbed;
         groupRego.AirportTransfer = info.airport;
         groupRego.Fee             = info.fee;
         groupRego.Phone           = info.phone;
         groupRego.Email           = info.email;
         groupRego.Comments        = info.notes;
         groupRego.Reference       = "MELBOURNE2016";    //groupRego.generateReference(10);
-        
+        groupRego.Role            = info.role;
+        groupRego.Gender          = info.gender
 
         var total = 0;
         var person;
@@ -299,20 +155,27 @@
 
         var groups = new REGISTRANT();
 
-
-        var age = "";
-        var name = "";
-        var fee = 0;
+        
+        var age    = "";
+        var name   = "";
+        var fee    = 0;
+        var role   = "";
+        var gender = "";
 
         var div = $(el).parents("div.row:first");
             
         $(div).find("input[type=text].name").each(function () {
             name = htmlEncode($.trim($(this).val()));
-        })
+        });
         $(div).find("input[type=number].age").each(function () {
-            age = parseInt($(this).val())
-        })
-
+            age = parseInt($(this).val());
+        });
+        $(div).find("select.role").each(function () {
+            role = $(this).val();
+        });
+        $(div).find("select.gender").each(function () {
+            gender = $(this).val();
+        });
 
         if (name !== "" && isNaN(age) == false) {
             fee = REGO_CALCULATOR.calculateFee(age);
@@ -325,7 +188,10 @@
             $(div).find("select.family-discount").each(function (index, e) {
                 switch (e.selectedIndex) {
                     case 1:
-                        fee = fee - REGO_CALCULATOR.family_discount1_amount
+                        //if this is 5 or under, then apply then discount
+                        if (age < 6){
+                            fee = fee - REGO_CALCULATOR.family_discount1_amount
+                        }
                         break;
                     case 2:
                         fee = fee - REGO_CALCULATOR.family_discount2_amount
@@ -340,7 +206,7 @@
             /*
             $(div).find("input[type=checkbox].discount-airbed:checked").each(function (index, el) {
                 fee = fee - REGO_CALCULATOR.airbed_discount_amount
-                groups.AirBedDiscount = el.checked;
+                groups.Airbed = el.checked;
             });
             */
 
@@ -363,11 +229,14 @@
         });
 
 
+        
+        groups.Age      = age;
+        groups.Name     = $(div).find("input[type=text].name").val();
+        groups.Fee      = fee;
+        groups.Relation = $(div).find("select.relation:first").val();
+        groups.Role     = role;
+        groups.Gender   = gender;
 
-        groups.Age = age;
-        groups.Name = $(div).find("input[type=text].name").val();
-        groups.Fee = fee;
-        groups.Relation = $(div).find("select.relation:first").val()
 
         return groups
 
@@ -384,13 +253,15 @@
         var registrants = "";
         var paymentSummary = "";
 
-        var html = "<tr><td>{NAME}</td><td>{AGE}</td><td>{RELATION}</td><td>{FAMILY}</td><td>{AIRPORT}</td><td>${FEE}</td></tr>"; //<td>{AIRBED}</td>
+        var html = "<tr><td>{NAME}</td><td>{AGE}</td><td>{GENDER}</td><td>{RELATION}</td><td>{FAMILY}</td><td>{AIRPORT}</td><td>{ROLE}</td><td>${FEE}</td></tr>"; //<td>{AIRBED}</td>
         var htmlShort = "<tr><td>{COUNTER}.</td><td>{NAME}</td><td>{AGE}</td><td>${FEE}</td></tr>";
 
         //add the main contact to the payment summary
         paymentSummary = htmlShort.replace("{NAME}",        regoInfo.Name)
                                     .replace("{AGE}",       regoInfo.Age)
                                     .replace("{COUNTER}",   "1")
+                                    .replace("{GENDER}",    regoInfo.Gender)
+                                    .replace("{ROLE}",      regoInfo.Role)
                                     .replace("{FEE}",       regoInfo.Fee);
 
         
@@ -405,8 +276,10 @@
                                     .replace("{AGE}",       person.Age)
                                     .replace("{RELATION}",  person.Relation)
                                     .replace("{FAMILY}",    person.DiscountFamily)
-                                    .replace("{AIRBED}",    toYesNo(person.AirBedDiscount))
+                                    .replace("{AIRBED}",    toYesNo(person.Airbed))
                                     .replace("{AIRPORT}",   toYesNo(person.AirportTransfer))
+                                    .replace("{GENDER}",    person.Gender)
+                                    .replace("{ROLE}",      person.Role)
                                     .replace("{FEE}",       person.Fee);
                                     
 
@@ -434,7 +307,9 @@
                 regoInfo.Age,
                 regoInfo.Email,
                 regoInfo.Phone,
-                toYesNo(regoInfo.AirBedDiscount),
+                regoInfo.Role,
+                regoInfo.Gender,
+                //toYesNo(regoInfo.Airbed),
                 toYesNo(regoInfo.AirportTransfer),
                 regoInfo.Church,
                 regoInfo.Fee,
@@ -680,3 +555,375 @@
     function isNumeric(n) {
       return !isNaN(parseFloat(n)) && isFinite(n);
     }    
+
+
+
+
+        //SHEPARD
+
+        var tour;
+
+        $(function(){
+
+
+
+            tour = new Shepherd.Tour({
+
+              defaults: {
+
+                classes: 'shepherd-theme-arrows',
+
+                showCancelLink: true,
+
+                when: {
+
+                    show: function() {
+
+                        $("#rego-form").addClass('shepherd-active');
+
+                        var x = $(formatAttachTo(this.options.attachTo));
+                        var offsetTop = 250;
+                        var wHeight = $(window).height();
+
+                        if (wHeight < 660){
+                            if (this.id == "OtherRegos" || this.id == "OtherFee" || this.id == "MoreRegos" || this.id == "TotalFee" || this.id == "Comments"){
+                                offsetTop = 350;
+                            }
+                        }
+
+                        $('html, body').animate({scrollTop : x.offset().top - offsetTop}, "slow");
+
+                        console.log(this.id)
+
+                    },
+
+                    cancel: function(){
+
+                        doneShepard();
+
+                    }
+                     
+
+                }                 
+
+              }
+
+            });
+
+
+
+            tour.addStep('FullName', {
+
+              title: 'FullName',
+
+              text: 'It is important the Name is entered correctly (especially Vietnamese punctuations) <br> as this field will be used for your name tag.',
+
+              attachTo: '#tFullName bottom',
+
+                 buttons: [
+
+                        {
+
+                          text: 'Exit',
+                          classes: 'shepherd-button-secondary',
+                          action: tour.cancel,
+                          action: function(){
+                                tour.cancel();
+                                doneShepard();
+                          }
+
+                        }, {
+
+                          text: 'Next',
+
+                          action: tour.next
+
+                        }
+
+                      ]            
+
+            });
+
+
+
+//
+
+            tour.addStep('Fee', {
+
+              title: 'Fee',
+
+              text: 'Your fee calculated for this registrant.',
+
+              attachTo: 'body > .container.body-content > div:first-child > form:last-child > .panel.panel-default > .panel-body > .form-horizontal > .form-group .line-total bottom',
+
+                 buttons: [
+
+                        {
+
+                          text: 'Back',
+
+                          classes: 'shepherd-button-secondary',
+
+                          action: tour.back
+
+                        }, {
+
+                          text: 'Next',
+
+                          action: tour.next
+
+                        }
+
+                      ]            
+
+            });            
+
+
+
+
+
+            tour.addStep('OtherRegos', {
+
+              title: 'Other Registrants',
+
+              text: 'Add more registrants using here, <br />you must enter, at least, the Name & Age.',
+
+              attachTo: '.form-inline.custom > .row:first-child top',
+
+                 buttons: [
+
+                        {
+
+                          text: 'Back',
+
+                          classes: 'shepherd-button-secondary',
+
+                          action: tour.back
+
+                        }, {
+
+                          text: 'Next',
+
+                          action: tour.next
+
+                        }
+
+                      ]            
+
+            });   
+
+
+
+
+
+
+
+            tour.addStep('OtherFee', {
+
+              title: 'Other Registrants - Fee',
+
+              text: 'Fee for the individual registrant.',
+
+              attachTo: 'body > .container.body-content > div:first-child > form:last-child > .panel.panel-default > .panel-body > .col-md-11.col-md-offset-1 > .form-inline.custom > .row:first-child div.line-total top',
+
+                 buttons: [
+
+                        {
+
+                          text: 'Back',
+
+                          classes: 'shepherd-button-secondary',
+
+                          action: tour.back
+
+                        }, {
+
+                          text: 'Next',
+
+                          action: tour.next
+
+                        }
+
+                      ]            
+
+            });   
+
+
+
+
+
+            tour.addStep('MoreRegos', {
+
+              title: 'More Registrants',
+
+              text: 'Click to add more registrants.',
+
+              attachTo: '#add-more-button-row .btn top',
+
+                 buttons: [
+
+                        {
+
+                          text: 'Back',
+
+                          classes: 'shepherd-button-secondary',
+
+                          action: tour.back
+
+                        }, {
+
+                          text: 'Next',
+
+                          action: tour.next
+
+                        }
+
+                      ]            
+
+            });
+
+
+
+
+
+            tour.addStep('TotalFee', {
+
+              title: 'Total Fee',
+
+              text: 'Your total calculated Fee Amount<br>for the entire registration.<br>(Main Contact & Other Registrants).',
+
+              attachTo: '#TotalAmount top',
+
+                 buttons: [
+
+                        {
+
+                          text: 'Back',
+
+                          classes: 'shepherd-button-secondary',
+
+                          action: tour.back
+
+                        }, {
+
+                          text: 'Next',
+
+                          action: tour.next
+
+                        }
+
+                      ]            
+
+            }); 
+
+
+
+            tour.addStep('Comments', {
+
+              title: 'Your Comments',
+
+              text: 'Include your Airport Transfer information<br> (flight ref, arrival and departure times), <br> dietary requests, special needs if applicable.',
+
+              attachTo: '#tNotes top',
+
+                 buttons: [
+
+                        {
+
+                          text: 'Back',
+
+                          classes: 'shepherd-button-secondary',
+
+                          action: tour.back
+
+                        }, {
+
+                          text: 'Next',
+
+                          action: tour.next
+
+                        }
+
+                      ]            
+
+            }); 
+
+
+
+
+
+            tour.addStep('Done', {
+
+              title: 'Done',
+
+              text: 'When you are done, click to proceed.',
+
+              attachTo: 'body > .container.body-content > div:first-child > form:last-child > .panel.panel-default > .panel-body > .col-md-11.col-md-offset-1 > .row input.btn bottom',     
+
+                     buttons: [
+
+                        {
+
+                          text: 'Back',
+
+                          classes: 'shepherd-button-secondary',
+
+                          action: tour.back
+
+                        }, {
+
+                         id : 'test1',
+
+                          text: 'Done',
+
+                          action: function(){
+                                tour.next();
+                                doneShepard();
+                          }
+
+                        }
+
+                      ]            
+
+            }); 
+
+
+
+
+
+
+
+            //tour.start();
+
+
+
+        });
+
+
+
+
+
+        function formatAttachTo(s){
+
+            var ss = s.split(" ");
+
+            ss.pop();
+
+            return ss.join(" ");
+
+        }
+
+
+
+        function doneShepard(){
+
+            var x = $("#rego-form");
+
+            x.removeClass('shepherd-active');
+
+            $('html, body').animate({scrollTop : x.offset().top}, "slow");
+
+            
+
+        }
+

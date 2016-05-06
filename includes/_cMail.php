@@ -17,7 +17,7 @@
 					$headers 	= "MIME-Version: 1.0" . "\r\n";
 					$headers 	.= "Content-type:text/html;charset=UTF-8" . "\r\n"; 		
 					$headers 	.= "From: DaiHoi Melbourne2016 <registration@melbourne2016.net.au>" . "\r\n";
-					$headers 	.= "Bcc: kyle@instil.org.au" . "\r\n";
+					$headers 	.= "Bcc: kyle@instil.org.au; registration@melbourne2016.net.au" . "\r\n";
 					
 					$html = '<!DOCTYPE html>
 								<html lang="en">
@@ -128,10 +128,18 @@
 								        .label-success {
 								            background-color:#73a839;
 								            color:#fff;
+								            padding:5px;
 								        }
 
 								        label-summary-total {
 								            text-align:right;
+								        }
+
+
+								        .label-warning {
+								            background-color:#f0ad4e;
+								            color:#fff;
+								            padding:5px
 								        }
 
 										.panel-footer button {
@@ -171,7 +179,7 @@
 					$html = str_replace('<!--CONTENT-->', $message, $html);
 
 					try {
-						mail($to,$subject,$html,$headers);
+						mail($to, '✝ ' . $subject,$html,$headers);
 						return true;
 					} catch (Exception $e) {
 						echo 'Caught exception: ',  $e->getMessage(), "\n";

@@ -1,4 +1,5 @@
-﻿    <link href="/css/bootstrap.css" rel="stylesheet" id="css"/>
+﻿    <!-- <link href="/css/bootstrap.css" rel="stylesheet" id="css"/> -->
+    <link href="/css/cosmo.css" rel="stylesheet" id="css"/>
     <link href="/css/Site.css" rel="stylesheet" />
     <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="/css/checkbox.css" rel="stylesheet" type="text/css" />
@@ -14,6 +15,6 @@
     <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
     <script src="/js/intlTelInput.min.js"></script>
     <link href="/css/intlTelInput.css" rel="stylesheet" />
-    <link href="/css/register.css" rel="stylesheet" />
-    <link href="/css/print.css" rel="stylesheet" media="print" />
-    <script src="/js/jquery.countdown.min.js"></script>
+    <link href="/css/register.css?v39111" rel="stylesheet" />
+    <link href="/css/print.css?v1" rel="stylesheet" media="print" />
+    <link href="/css/panels.css" rel="stylesheet" media="print" />
