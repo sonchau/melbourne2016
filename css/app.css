@@ -90,7 +90,7 @@
     }
 
     .panel img.panel3 {
-        content:url(".panel3x720.jpg");
+        content:url("/panel3x720.jpg");
     }
 
 
@@ -141,6 +141,36 @@
 
 /***************** LOCATION ***************/
 
+     #location-image-holder {
+        width:80%;
+        background-color: #F5F5F5;
+        padding: 10px 0; border-radius: 7px;
+        margin: 0 auto;
+    }
+
+
+@media only screen and (min-width:640px) { 
+    #location-image-holder {
+        width:450px;
+    }
+}
+
+
+
+@media only screen and (min-width:960px) { 
+     #location-image-holder {
+        width:550px;
+    }
+}
+
+
+@media only screen and (min-width:1190px) { 
+     #location-image-holder {
+        width:700px;
+    }
+}
+
+
   #location{
       position: relative;
       z-index: 1;
@@ -148,7 +178,7 @@
 
 
   @media (min-width: 960px) {
-      #contact{
+      #location{
           height: 550px;
       }
 
