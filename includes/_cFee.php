@@ -12,6 +12,8 @@
 
 	    const AIRPORT_FEE = 25;
 
+	    const EARLY_BIRD_DISCOUNT_AMOUNT = 25;
+
 
 		function FeeCalculator(){
 
@@ -119,9 +121,6 @@
 				}
 
 
-
-
-
 				//adjustment of fee
 
         		if ($fee < 0) { 
@@ -131,10 +130,7 @@
         		}
 
 
-
             	return $fee;
-
-
 
 			}
 

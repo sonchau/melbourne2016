@@ -7,4 +7,4 @@
                                         <option>Truyền đạo</option>
                                         <option>Chấp sự</option>
                                         <option>Hội viên Hội thánh</option>
-                                        <option>Thân hữu</option>
+                                        <option>Thân hữu</option> 
