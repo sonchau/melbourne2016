@@ -23,16 +23,17 @@ var SUBMISSION =  {
                             location.replace("/register/view/?success=1&ref=" + obj.reference);
                         }, 100);
                     }else{
-                        alert("registration error: \n" + obj.message);
+                        //alert("registration error: \n" + obj.message);
+                        $("#myModal").modal("show").find("div.modal-body").text(obj.message + ', please try again or contact the registration team.')
                     }
                 }else {
-                    alert("registration error, no data returned.");
+                    $("#myModal").modal("show").find("div.modal-body").text("Error: registration error, no data returned, please try again or contact the registration team.");
                 }
                 
             })
             .fail(function () {
                 console.log("error");
-                alert("error")
+                $("#myModal").modal("show").find("div.modal-body").text("Error: failed sync, please try again or contact the registration team.");
             })
             .always(function () {
                 console.log("complete");
@@ -76,7 +77,7 @@ var SUBMISSION =  {
 
         var x = this.randomN(names.length + 1, 1) - 1;
         var y = this.randomN(names.length + 1, 1) - 1;
-        return names[x] + ' ' + names[y];       
+        return names[x].trim();// + ' ' + names[y];       
 
     },
 

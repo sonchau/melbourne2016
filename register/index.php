@@ -1,10 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head> 
-
-
     <meta charset="utf-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
@@ -24,7 +21,6 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-
     <title>
         Register | Vietnamese Christians Fellowship Conference in Australia – Melbourne 2016 
     </title>
@@ -32,124 +28,46 @@
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_scripts.php'); ?>
     <script type="text/javascript" src="/js/charlimit.js"></script>
     <script type="text/javascript">
-
         $(function () {
-
             $('#tNotes').charlimit({ 'limit':500, 'color':1});
 
         });
-
     </script>
 
-
-
-
-
-
-
     <style type="text/css">
-
-
-
         @media (min-width: 768px) {
-
-
-
             .custom .age { max-width: 80px; }
-
-
-
             .custom select { font-size: 85%; padding: 4px; }
-
-
-
         }
-
-
-
-
-
-
 
         select.validate-error {
-
-
-
             background-color: #FBDDE2 !important;
-
-
-
         }
-
-
-
-
-
-
 
         .panel-default {
-
-
-
             background-color: #f5f5f5;
-
-
-
         }
 
-
-
-            
-
-
-
-        
-
-
-
+ 
         .panel-default .panel-heading {
-
-
-
             background-color: #4e5d6c;
-
-
-
             color:white;
-
-
-
         }
 
-
-
-
+        .other-registrants {
+            background-color: #EFEFEF;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            border-bottom: 1px solid #a5a5a5;
+        }
 
 
 
     </style>
 
-
-
-
-
-
-
 </head>
-
-
-
 <body>
-
-
-
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_menu.php');?>
-
-
-
-
-
-
 
     <div class="container body-content" id="body-wrapper">
 
@@ -176,10 +94,8 @@
 
                                 <h4><i class="fa fa-plane text-info"> </i> Airport transfers </h4>
                                 <p>
-
                                     Airport transfers from and to airport on the 27th and the 31st can be arranged if required – booking
                                     before December required and separate fees applied.
-
                                 </p>
                                 <p>
 
@@ -191,12 +107,10 @@
                             </div>
 
                             <div class="col-md-6 col-lg-6">
-
                                 <h4><i class="fa fa-wheelchair text-info"> </i> Disabilities </h4>
                                 <p>
                                     People with special needs will need to ensure that your requirements are known at the time of registration.
                                 </p>
-
                             </div>
                         </div>
 
@@ -206,31 +120,21 @@
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
                                 <h4><i class="fa fa-cutlery text-info"> </i> Food </h4>
-
                                 <p>
-
                                     Vietnamese cuisine will be the main dishes provided at the Melbourne 2016 conference.
-
                                     Special dietary requirements must be made known at the time of registration – we cannot guarantee all different dietary needs can be met.
-
                                 </p>
-
                                 <div>&nbsp;</div>
 
                             </div>
 
 
                             <div class="col-md-6 col-lg-6">
-
                                 <h4><i class="fa fa-bank  text-info"> </i> Payment </h4>
-
                                 <p>
                                     Payment is to be made to the below account.
-
                                     <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_bankdetails.php');?>
-
                                 </p>
-
                             </div>
 
 
@@ -238,11 +142,7 @@
 
                         <div class="clearfix">&nbsp;</div>
 
-
                     </div>
-
-
-
                     <div class="col-lg-1"></div>
 
                 </div>
@@ -263,6 +163,19 @@
                 <div class="panel-body">
 
                     <p>All prices are in AUD unless otherwise specified.</p>
+
+                    <div class="row">
+
+                        <div class="col-md-12 col-lg-12 center-block text-center">
+                            <div class="alert alert-info" style="background-color: #1abc9c !important;">
+                                <i class="fa fa-heart fa-x2" aria-hidden="true" style="color:pink"> </i>
+                                <strong style="color:pink">Early Bird Love</strong> 
+                                <p style="font-weight: normal;">Complete your registration <u>before</u> Friday 30th September 2016, and receive a $40 discount off each person registered.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
 
                     <div class="row">
 
@@ -318,36 +231,23 @@
 
                                             <th>Eligibility</th>
                                             <th>Discount</th>
-
                                        </tr>
-
                                     </thead>
-
                                     <tbody>
-
                                         <tr>
-
                                             <td colspan="2" class="text-info">
                                                 Family with 2 parents & 2 or more children gets family discount.
-
                                                 First oldest child full fee according to standard fee
-
-
                                             </td>
-
                                         </tr>
-
                                         <tr>
                                             <td>2nd child thereafter 5 years of age or under</td>
                                             <td>Free</td>
                                         </tr>
-
                                         <tr>
 
                                             <td>2nd child thereafter 6 years of age and above</td>
-
                                             <td>$100</td>
-
                                         </tr>
 
                                     </tbody>
@@ -378,35 +278,20 @@
                                 <table class="table">
                                     <caption>Airbed Discount</caption>
                                     <thead>
-
                                         <tr>
-
                                             <th>Discount</th>
-
                                         </tr>
-
                                     </thead>
-
                                     <tbody>
-
                                         <tr>
-
                                             <td>
-
                                            <p>We unfortunately have only 350 beds avaliable, the balance of the conference will be provided with airbeds and will be eligilble for a $20 discount.</p>
-
                                             <p>
-
                                             <span class="label label-warning">IMPORTANT</span>
-
                                             Each bedroom will have one single bed and one air bed in the room.</p>
-
                                             </td>
-
                                         </tr>
-
                                     </tbody>
-
                                 </table>
 
                             </div>
@@ -420,31 +305,16 @@
                 </div>
 
                 <div id="fee-structure-end"></div>
-
-
-
             </div>
 
 
-
-
-
-
-
             <div class="row" id="rego-summary">
-
                 <div class="well">
-
                     <h2 class="text-center">Summary</h2>
-
                     <div id="summary-content">
-
                     </div>
-
                     <div class="clearfix">&nbsp;</div>
-
                 </div>
-
             </div>
 
 
@@ -458,8 +328,6 @@
 
                     <div class="panel-heading">Registration Form</div>
                     <div class="panel-body" style="padding:24px">
-
-
 
                             <div class="row">
                                 <div class="col-lg-12">
@@ -485,38 +353,34 @@
 
                                 </div>
 
-
-
                                 <div class="clearfix">&nbsp;</div>
                                 <div class="clearfix">&nbsp;</div>
-
-
 
                                 <div class="form-group">
 
                                     <label class="col-md-2 control-label">Full Name</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-7">
 
-                                        <input type="text" name="FullName" class="form-control" id="tFullName"
-                                               maxlength="50" placeholder="Your fullname"
-                                               data-rule-required="true" />
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                            <input type="text" name="FullName" class="form-control" id="tFullName"
+                                                   maxlength="50" placeholder="Firstname"
+                                                   data-rule-required="true" />                                        
+                                            </div>
+                                            <div class="col-md-6">
+                                            <input type="text" name="Surname" class="form-control" id="tSurname"
+                                                   maxlength="50" placeholder="Surname"
+                                                   data-rule-required="true" />                    
+                                            </div>                                        
+                                        </div>
 
                                     </div>
 
 
 
-
-
-
-
-
-
-
-
                                     <label class="col-md-1 control-label">Age</label>
-                                    <div class="col-md-3">
-
+                                    <div class="col-md-2">
 
                                          <select name="tAge" id="tAge" class="form-control">
                                              <option>16</option>
@@ -610,39 +474,21 @@
 
 
                                 <div class="form-group">
-
                                     <label class="col-md-2 control-label">Role</label>                  
-
-                                    <div class="col-md-6">
-
+                                    <div class="col-md-7">
                                             <select name="tRole" id="tRole" class="form-control role" data-rule-required="true">
-
                                                 <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_roles.php');?>
-
                                             </select>     
 
                                     </div>
 
-
-
-
-
-
-
                                     <label class="col-md-1 control-label">Gender</label>
-
-                                    <div class="col-md-3">
-
+                                    <div class="col-md-2">
                                             <select name="tGender" id="tGender" class="form-control gender" data-rule-required="true">
-
                                                 <option value="">- M/F -</option>
-
                                                 <option value="M">Male</option>
-
                                                 <option value="F">Female</option>
-
                                             </select>      
-
                                     </div>
           
 
@@ -651,32 +497,16 @@
 
 
 
-
-
-
                                 <div class="form-group">
 
                                     <label class="col-md-2 control-label">Church</label>
-
                                     <div class="col-md-10">
-
                                         <select name="tChurch" id="tChurch" class="form-control">
-
                                             <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_churches.php');?>
-
                                         </select>
-
                                     </div>
 
                                 </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -709,22 +539,12 @@
                                         <input type="text" id="tPhone" name="tPhone" class="form-control" maxlength="12" 
                                         data-rule-required="true" 
                                         data-msg-required="Contact number required" />
-
                                         <span id="phone-valid-msg" class="hidden label label-success">✓ Valid</span>
-
                                         <span id="phone-error-msg" class="hidden label label-danger">Invalid number</span>
-
 
                                     </div>
 
-
-
                                 </div>
-
-
-
-
-
 
 
 
@@ -736,13 +556,9 @@
                                     <label class="col-md-2 control-label"> </label>
 
                                     <div class="col-md-3">
-
                                         <div class="checkbox checkbox-info form-control1">
-
                                             <input type="checkbox" class="airport-transfer styled" value="1" id="airport00" name="airport00">
-
                                             <label for="airport00">Airport Transfer</label>
-
                                         </div>
 
                                     </div>
@@ -752,11 +568,8 @@
                                     <div class="col-md-7">
 
                                         <div class="checkbox checkbox-info form-control1 hidden">
-
                                             <input type="checkbox" class="discount-airbed styled" value="1" id="airbed00" name="airbed00">
-
                                             <label for="airbed00">Airbed Discount</label>
-
                                         </div>                          
 
                                     </div>
@@ -765,24 +578,11 @@
 
 
 
-
-
-
-
-
-
-
-
                                 <div class="form-group">
-
                                     <label class="col-md-2 control-label"> </label>
-
                                     <div class="col-md-offset-8 col-md-2 ">
-
                                         <div class="input-group">
-
                                             <div class="input-group-addon line-total">$ 0.00</div>
-
                                         </div>
 
                                     </div>
@@ -806,12 +606,9 @@
                             <div class="bs-callout bs-callout-info col-lg-11 col-lg-push-1">
 
                                 <h4><i class="fa fa-users text-info"> </i> Members </h4>
-
                                 <p>Please supply the correct details of all other persons you would like to register under this registration.</p>
-
                                     <div>&nbsp;</div>
-
-                                    <div class="text-warning"><span class="label label-warning">IMPORTANT</span> It is important the Name is entered correctly (especially Vietnamese punctuations) as this field will be used for your name tag.</div>
+                                    <div class="text-warning"><span class="label label-warning">IMPORTANT</span> It is important the Name is entered correctly (especially Vietnamese punctuations and accents) as this field will be used for your name tag.</div>
 
                             </div>
 
@@ -819,46 +616,33 @@
 
                             <div class="clearfix">&nbsp;</div><div class="clearfix">&nbsp;</div>
 
-
                             <div class="col-md-11 col-md-offset-1">
-
-
                                 <div class="form-inline custom">
 
-                                    <div class="row">
-
-
+                                    <div class="row other-registrants">
                                         <div class="form-group">
                                             <label class="sr-only">Name:</label>
-
-                                            <input type="text" class="form-control name" name="name-{0}" placeholder="Enter name" />
+                                            <input type="text" class="form-control name" name="name-{0}" placeholder="Firstname" />
                                         </div>
 
+                                        <div class="form-group">
+                                            <label class="sr-only">Surname:</label>
+                                            <input type="text" class="form-control surname" name="surname-{0}" placeholder="Surname" />
+                                        </div>
 
                                         <div class="form-group">
-
                                             <label class="sr-only">Age:</label>
-
                                             <input type="number" class="form-control age" name="age-{0}" placeholder="Age" maxlength="3" min="0" max="100" step="1" />
 
                                         </div>
 
 
-
-
-
-
-
                                         <div class="form-group">
 
                                             <label class="sr-only">Gender:</label>
-
                                             <select class="form-control gender" name="gender-{0}">
-
                                                 <option value="">M/F</option>
-
                                                 <option value="M">M</option>
-
                                                 <option value="F">F</option>
 
                                             </select> 
@@ -868,79 +652,46 @@
 
 
                                         <div class="form-group">
-
                                             <label class="sr-only">Relation:</label>
-
                                             <select name="relation-{0}" class="form-control relation">
-
                                                 <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_relationships.php');?>
-
-
                                             </select>
-
                                         </div>
 
 
 
 
-
-
-
                                         <div class="form-group">
-
-
                                             <label class="sr-only">Discount:</label>
-
                                             <select name="family-{0}" class="form-control family-discount">
-
                                                 <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_familydiscounts.php');?>
-
                                             </select>
-
-
-
                                         </div>
 
 
 
                                         <div class="form-group">
-
-
                                            <div class="checkbox checkbox-info form-control hidden">
-
                                                 <input type="checkbox" class="discount-airbed styled" value="1" id="airbed-{0}" name="airbed-{0}">
-
                                                 <label for="airbed-{0}">Airbed Discount</label>
-
                                             </div>
-
-
 
                                         </div>
 
 
 
                                         <div class="form-group">
-
                                             <div class="checkbox checkbox-info form-control">
-
                                                 <input type="checkbox" class="airport-transfer styled" value="1" id="airport-{0}" name="airport-{0}">
-
                                                 <label for="airport-{0}">Airport Transfer</label>
-
                                             </div>
-
-
                                         </div>
 
 
 
                                         <div class="form-group">
-
                                             <select class="form-control role" name="role-{0}">
-
                                                 <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_roles.php');?>
-
                                             </select>
 
                                         </div>
@@ -948,32 +699,20 @@
 
 
                                         <div class="form-group">
-
                                             <label class="sr-only">Fee:</label>
-
                                             <div class="input-group">
-
                                                 <div class="input-group-addon line-total">$ 0.00</div>
-
                                             </div>
-
-
 
                                         </div>
 
 
 
                                         <div class="form-group {1}" style="display:none;">
-
                                             <label class="sr-only">Action:</label>
-
                                             <div class="input-group">
-
                                                 <button class="btn btn-warning btn-sm pull-right" onclick="removeRow(this); return false;"> X </button>
-
                                             </div>
-
-
                                         </div>
 
 
@@ -985,14 +724,8 @@
 
 
                                     <div class="row" id="add-more-button-row">
-
                                         <div class="col-md-12">
-
-
                                             <button class="btn btn-info btn-sm pull-right" onclick="addMoreRegistrants(); return false;"> <i class="fa fa-plus" aria-hidden="true"></i> MORE ROWS</button>
-
-
-
                                         </div>
 
 
@@ -1002,33 +735,15 @@
                                     <div>&nbsp;</div>
 
 
-
                                     <div class="row">
-
-
-
-
-
-
-
                                         <div class="form-group">
-
                                             <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-
                                             <div class="input-group pull-right">
-
-
                                                 <div class="input-group-addon">$</div>
-
-
                                                 <input type="number" class="form-control disabled text-right" disabled placeholder="Total Amount" id="TotalAmount">
-
                                                 <div class="input-group-addon">.00</div>
-
                                             </div>
-
                                         </div>
-
                                     </div>
 
                                 </div>
@@ -1036,16 +751,12 @@
 
                             </div>
 
-
                             <div class="clearfix">&nbsp;</div>
  
                             <hr />
 
 
-
                             <div>&nbsp;</div>
-
-
 
                             <h3>Additional Information</h3>
 
@@ -1056,21 +767,14 @@
                                 <div class="row">
 
                                     <div class="bs-callout bs-callout-info">
-
                                         <p>Please enter:</p>
-
                                         <ul>
 
                                             <li>dietary requests,</li>
-
                                             <li>airport information for transfer </li>
-
                                             <li>flight number, times, etc</li>
-
                                             <li>special needs</li>
-
                                             <li>disability requirements</li>
-
 
                                         </ul>
 
@@ -1078,33 +782,18 @@
 
 
                                     <span class="help-block"></span>
-
-
-
                                     <textarea class="form-control" rows="4" id="tNotes" name="tNotes"></textarea>
-
-
-
                                 </div>
 
 
 
                                 <div class="clearfix">&nbsp;</div>
-
-
                                 <div class="row">
-
-
                                     <input type="submit" class="btn btn-info" style="min-width:250px;" value=" NEXT >> " />
-
-
+ 
                                 </div>
 
-
-
                             <div class="clearfix">&nbsp;</div>
-
-
 
                         </div>
 
@@ -1127,6 +816,27 @@
         <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_footer.php');?> 
 
     <div id="json" style="display: none !important;"></div>    
+
+
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title text-danger"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Oh no...</h4>
+          </div>
+          <div class="modal-body text-center" style="padding-bottom: 35px; padding-top: 35px;">
+            <p>
+                
+
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>    
 
 
     <script src="/js/register_objects.js?v=2"></script>
@@ -1152,30 +862,19 @@
 
 
     #rego-form.shepherd-hilite > *,
-
     #rego-form .shepherd-target.shepherd-enabled {
-
         opacity: 1 !important;
-
         pointer-events: auto !important; 
-
         -webkit-box-shadow: 0 0 15px 15px #FF3030;
-
         box-shadow: 0 0 15px 15px #FF3030;
-
         border:1px solid red;
-
         background-color: pink;
-
-
-
     }
 
 
         .shepherd-content header{
             background-color:#222 !important;
             color:#fff !important;
-
         }
 
 
@@ -1211,13 +910,7 @@
 
         }
 
-
-
     }
-
-
-
-
 
 </style>
 

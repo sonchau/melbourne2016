@@ -9,10 +9,6 @@
     var ROW_COUNTER = 1;
     
 
-
-
-
-
     function removeRow(el) {
         if (ROW_COUNTER == 1 ) {
             return false;
@@ -28,14 +24,14 @@
 
     function addMoreRegistrants() {
             
-        if (ROW_COUNTER > 9) {
-            alert("You can only add 10 registrants at a time.");
+        if (ROW_COUNTER > 12) {
+            alert("You can only add 12 registrants at a time.");
             return false;
         }
 
         for (var x = 1; x < 4; x++) {
             var html = $(".form-inline div.row:first").html();
-            html = '<div class="row">' + html + "</div><div>&nbsp;</div>";
+            html = '<div class="row other-registrants">' + html + "</div><div>&nbsp;</div>";
             var template = jQuery.validator.format(html);
             $(template(ROW_COUNTER++, "force-show")).insertBefore("#add-more-button-row");
 
@@ -77,6 +73,7 @@
         var church = el.options[el.selectedIndex].text;
         var phone  = $("#tPhone").intlTelInput("getNumber"); //document.getElementById("tPhone").value;
         var name   = document.getElementById("tFullName").value;
+        var surname= document.getElementById("tSurname").value;
         var email  = document.getElementById("tEmail").value;
         var notes  = document.getElementById("tNotes").value;
         el = document.getElementById("tGender");
@@ -88,6 +85,7 @@
         return {
             email       : htmlEncode($.trim(email)),
             name        : htmlEncode($.trim(name)),
+            surname     : htmlEncode($.trim(surname)),
             fee         : fee,
             age         : age,
             airbed      : airbed,
@@ -110,7 +108,8 @@
         var groupRego = new REGO();
         var info = getMainContactInfo();
 
-        groupRego.Name            = info.name;
+        groupRego.Firstname       = info.name;
+        groupRego.Surname         = info.surname;
         groupRego.Age             = info.age;
         groupRego.Church          = info.church;
         groupRego.Airbed          = info.airbed;
@@ -154,19 +153,24 @@
     function updateRowFee(el) {
 
         var groups = new REGISTRANT();
-
         
-        var age    = "";
-        var name   = "";
-        var fee    = 0;
-        var role   = "";
-        var gender = "";
+        var age      = "";
+        var name     = "";
+        var surname  = "";
+        var fee      = 0;
+        var role     = "";
+        var gender   = "";
 
         var div = $(el).parents("div.row:first");
             
         $(div).find("input[type=text].name").each(function () {
             name = htmlEncode($.trim($(this).val()));
         });
+
+        $(div).find("input[type=text].surname").each(function () {
+            surname = htmlEncode($.trim($(this).val()));
+        });
+
         $(div).find("input[type=number].age").each(function () {
             age = parseInt($(this).val());
         });
@@ -177,7 +181,7 @@
             gender = $(this).val();
         });
 
-        if (name !== "" && isNaN(age) == false) {
+        if (name !== "" && surname !== "" && isNaN(age) == false) {
             fee = REGO_CALCULATOR.calculateFee(age);
         }
             
@@ -219,6 +223,7 @@
 
         }
 
+
         if (fee < 0) { fee = 0 }
 
 
@@ -230,16 +235,16 @@
 
 
         
-        groups.Age      = age;
-        groups.Name     = $(div).find("input[type=text].name").val();
-        groups.Fee      = fee;
-        groups.Relation = $(div).find("select.relation:first").val();
-        groups.Role     = role;
-        groups.Gender   = gender;
+        groups.Age       = age;
+        groups.Firstname = $(div).find("input[type=text].name").val();
+        groups.Surname   = $(div).find("input[type=text].surname").val();
+        groups.Fee       = fee;
+        groups.Relation  = $(div).find("select.relation:first").val();
+        groups.Role      = role;
+        groups.Gender    = gender;
 
 
-        return groups
-
+        return groups;
 
     }
 
@@ -257,7 +262,7 @@
         var htmlShort = "<tr><td>{COUNTER}.</td><td>{NAME}</td><td>{AGE}</td><td>${FEE}</td></tr>";
 
         //add the main contact to the payment summary
-        paymentSummary = htmlShort.replace("{NAME}",        regoInfo.Name)
+        paymentSummary = htmlShort.replace("{NAME}",        regoInfo.Name())
                                     .replace("{AGE}",       regoInfo.Age)
                                     .replace("{COUNTER}",   "1")
                                     .replace("{GENDER}",    regoInfo.Gender)
@@ -272,7 +277,7 @@
 
             if (person.isValid()) {
                 personCounter += 1
-                registrants += html.replace("{NAME}",       person.Name)
+                registrants += html.replace("{NAME}",       person.Name())
                                     .replace("{AGE}",       person.Age)
                                     .replace("{RELATION}",  person.Relation)
                                     .replace("{FAMILY}",    person.DiscountFamily)
@@ -284,7 +289,7 @@
                                     
 
 
-                paymentSummary += htmlShort.replace("{NAME}",       person.Name)
+                paymentSummary += htmlShort.replace("{NAME}",       person.Name())
                                             .replace("{AGE}",       person.Age)
                                             .replace("{COUNTER}",   (parseInt(personCounter) + 1))
                                             .replace("{FEE}",       person.Fee);
@@ -303,7 +308,7 @@
         $("#summary-content").html(
             $(htmlTemplate(
                 regoInfo.Reference,
-                regoInfo.Name,
+                regoInfo.Name(),
                 regoInfo.Age,
                 regoInfo.Email,
                 regoInfo.Phone,
@@ -332,7 +337,7 @@
     //validator hookup for age and name to be dependant on each other
     $.validator.addMethod("age", function (value, element) { 
 
-        var dependantLen = $.trim($(element).parent().prev().children("input[type=text].name:first").val()).length;
+        var dependantLen = $.trim($(element).parent().prev().prev().children("input[type=text].name:first").val()).length;
         var currentLen = $.trim(value).length;
         if ($.trim(value) == "" && dependantLen == 0) {
             return true;
@@ -565,20 +570,12 @@
 
         $(function(){
 
-
-
             tour = new Shepherd.Tour({
-
               defaults: {
-
                 classes: 'shepherd-theme-arrows',
-
                 showCancelLink: true,
-
                 when: {
-
                     show: function() {
-
                         $("#rego-form").addClass('shepherd-active');
 
                         var x = $(formatAttachTo(this.options.attachTo));
@@ -590,20 +587,12 @@
                                 offsetTop = 350;
                             }
                         }
-
                         $('html, body').animate({scrollTop : x.offset().top - offsetTop}, "slow");
-
                         console.log(this.id)
-
                     },
-
                     cancel: function(){
-
-                        doneShepard();
-
+                        doneShepherd();
                     }
-                     
-
                 }                 
 
               }
@@ -613,172 +602,97 @@
 
 
             tour.addStep('FullName', {
-
               title: 'FullName',
-
               text: 'It is important the Name is entered correctly (especially Vietnamese punctuations) <br> as this field will be used for your name tag.',
-
               attachTo: '#tFullName bottom',
-
                  buttons: [
-
                         {
-
                           text: 'Exit',
                           classes: 'shepherd-button-secondary',
                           action: tour.cancel,
                           action: function(){
                                 tour.cancel();
-                                doneShepard();
+                                doneShepherd();
                           }
-
                         }, {
-
                           text: 'Next',
-
                           action: tour.next
-
                         }
-
-                      ]            
+                    ]            
 
             });
 
 
 
-//
-
             tour.addStep('Fee', {
-
               title: 'Fee',
-
               text: 'Your fee calculated for this registrant.',
-
               attachTo: 'body > .container.body-content > div:first-child > form:last-child > .panel.panel-default > .panel-body > .form-horizontal > .form-group .line-total bottom',
-
                  buttons: [
-
                         {
-
                           text: 'Back',
-
                           classes: 'shepherd-button-secondary',
-
                           action: tour.back
-
                         }, {
-
                           text: 'Next',
-
                           action: tour.next
-
                         }
-
-                      ]            
+                    ]            
 
             });            
 
 
-
-
-
             tour.addStep('OtherRegos', {
-
               title: 'Other Registrants',
-
               text: 'Add more registrants using here, <br />you must enter, at least, the Name & Age.',
-
               attachTo: '.form-inline.custom > .row:first-child top',
-
                  buttons: [
-
                         {
-
                           text: 'Back',
-
                           classes: 'shepherd-button-secondary',
-
                           action: tour.back
-
                         }, {
-
                           text: 'Next',
-
                           action: tour.next
-
                         }
-
-                      ]            
-
+                    ]            
             });   
-
-
-
-
 
 
 
             tour.addStep('OtherFee', {
-
               title: 'Other Registrants - Fee',
-
               text: 'Fee for the individual registrant.',
-
               attachTo: 'body > .container.body-content > div:first-child > form:last-child > .panel.panel-default > .panel-body > .col-md-11.col-md-offset-1 > .form-inline.custom > .row:first-child div.line-total top',
-
                  buttons: [
-
                         {
-
                           text: 'Back',
-
                           classes: 'shepherd-button-secondary',
-
                           action: tour.back
-
                         }, {
-
                           text: 'Next',
-
                           action: tour.next
-
                         }
-
-                      ]            
+                    ]            
 
             });   
 
 
 
-
-
             tour.addStep('MoreRegos', {
-
               title: 'More Registrants',
-
               text: 'Click to add more registrants.',
-
               attachTo: '#add-more-button-row .btn top',
-
                  buttons: [
-
                         {
-
                           text: 'Back',
-
                           classes: 'shepherd-button-secondary',
-
                           action: tour.back
-
                         }, {
-
                           text: 'Next',
-
                           action: tour.next
-
                         }
-
-                      ]            
+                    ]            
 
             });
 
@@ -787,89 +701,49 @@
 
 
             tour.addStep('TotalFee', {
-
               title: 'Total Fee',
-
               text: 'Your total calculated Fee Amount<br>for the entire registration.<br>(Main Contact & Other Registrants).',
-
               attachTo: '#TotalAmount top',
-
                  buttons: [
-
                         {
-
                           text: 'Back',
-
                           classes: 'shepherd-button-secondary',
-
                           action: tour.back
-
                         }, {
-
                           text: 'Next',
-
                           action: tour.next
-
                         }
-
-                      ]            
+                    ]            
 
             }); 
-
 
 
             tour.addStep('Comments', {
-
               title: 'Your Comments',
-
               text: 'Include your Airport Transfer information<br> (flight ref, arrival and departure times), <br> dietary requests, special needs if applicable.',
-
               attachTo: '#tNotes top',
-
                  buttons: [
 
                         {
-
                           text: 'Back',
-
                           classes: 'shepherd-button-secondary',
-
                           action: tour.back
-
                         }, {
-
                           text: 'Next',
-
                           action: tour.next
-
                         }
-
-                      ]            
-
+                    ]            
             }); 
 
-
-
-
-
             tour.addStep('Done', {
-
               title: 'Done',
-
               text: 'When you are done, click to proceed.',
-
               attachTo: 'body > .container.body-content > div:first-child > form:last-child > .panel.panel-default > .panel-body > .col-md-11.col-md-offset-1 > .row input.btn bottom',     
-
                      buttons: [
-
                         {
-
                           text: 'Back',
-
                           classes: 'shepherd-button-secondary',
-
                           action: tour.back
-
                         }, {
 
                          id : 'test1',
@@ -878,24 +752,13 @@
 
                           action: function(){
                                 tour.next();
-                                doneShepard();
+                                doneShepherd();
                           }
-
                         }
-
-                      ]            
+                    ]            
 
             }); 
-
-
-
-
-
-
-
             //tour.start();
-
-
 
         });
 
@@ -904,26 +767,18 @@
 
 
         function formatAttachTo(s){
-
             var ss = s.split(" ");
-
             ss.pop();
-
             return ss.join(" ");
 
         }
 
 
 
-        function doneShepard(){
-
+        function doneShepherd(){
             var x = $("#rego-form");
-
             x.removeClass('shepherd-active');
-
-            $('html, body').animate({scrollTop : x.offset().top}, "slow");
-
-            
+            $('html, body').animate({scrollTop : x.offset().top}, "slow");          
 
         }
 

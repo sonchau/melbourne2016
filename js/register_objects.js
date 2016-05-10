@@ -1,5 +1,6 @@
     var REGO = function () {
-        this.Name            = '',
+        this.Firstname       = '',
+        this.Surname         = '',
         this.Age             = '',
         this.Role            = '',
         this.Gender          = '',
@@ -13,7 +14,13 @@
         this.Comments        = '',
         this.Reference       = '',
         this.Cancelled       = false,
+        this.DiscountAmount  = 0,
 
+
+        this.Name = function(){
+            var n = this.Firstname + ' ' + this.Surname; 
+            return n.trim();
+        }
 
         this.generateReference = function (length) {
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -62,9 +69,9 @@
             
             //make sure there is a main contact.
             if (this.Age >= 16
-                && this.Name    !== ""
-                && this.Phone   !== ""
-                && this.Email   !== "") {
+                && this.Name()      !== ""
+                && this.Phone       !== ""
+                && this.Email       !== "") {
 
                 b = true;
 
@@ -73,7 +80,7 @@
 
                     var isAgeNumeric = isNumeric(person.Age);
                     
-                    if (person.Name !== "") {
+                    if (person.Name() !== "") {
                         if (!isAgeNumeric) {
                             //console.log("Error: Person age is not a number.")
                             errMsg += "Person " + (parseInt(index) + 1) + " has no age.\n"
@@ -84,7 +91,7 @@
                     }
 
                     if (isAgeNumeric) {
-                        if (person.Name == "") {
+                        if (person.Name() == "") {
                             //console.log("Error: Person has age but no Name.")
                             errMsg += "Person " + (parseInt(index) + 1) + " has no Name.\n"
                             b = false;
@@ -111,8 +118,9 @@
 
     }
 
-    var REGISTRANT = function (name, age, rel) {
-        this.Name            = name,
+    var REGISTRANT = function (name, surname, age, rel) {
+        this.Firstname       = name,
+        this.Surname         = surname,
         this.Age             = age,
         this.Role            = '',
         this.Gender          = '',
@@ -122,11 +130,17 @@
         this.AirportTransfer = false,
         this.Fee             = 0,
         this.Cancelled       = false,
+        this.DiscountAmount  = 0,
 
+
+        this.Name = function(){
+            var n = this.Firstname + ' ' + this.Surname; 
+            return n.trim();
+        }
 
         //checks object validiity
         this.isValid = function () {
-            return  (isNumeric(this.Age) && $.trim(this.Name) !== "") ;
+            return  (isNumeric(this.Age) && $.trim(this.Name()) !== "") ;
             
         }
     }
@@ -137,6 +151,8 @@
         family_discount2_amount: 100,
         airbed_discount_amount: 20,
         airport_fee: 25,
+        early_bird_discount_amount: 40,
+
         calculateFee: function (age) { //does fee calculate on age
             var fee = 0;
             switch (true) {
@@ -155,6 +171,9 @@
                 default:
 
             }
+
+            
+            fee = this.calculateEarlyBirdDiscount(fee);
 
             return fee;
 
@@ -196,12 +215,32 @@
             }            
             
 
+            fee = this.calculateEarlyBirdDiscount(fee);
+
             if (fee < 0) { fee = 0 }
 
 
             return fee;
 
+        },
+        calculateEarlyBirdDiscount: function (fee) { //does fee calculate on age
+            if (isNaN(fee)){
+                return fee;
+            }
+
+
+            var nowDate = new Date();
+            var earlybirdDate = new Date(2016,09,30);
+            if (nowDate < earlybirdDate){
+                fee = fee - REGO_CALCULATOR.early_bird_discount_amount;
+            }
+
+            return fee;
+
         }
+
+
+
 
 
 

@@ -8,8 +8,9 @@
 
 		class Person {
 
+			var $Firstname       = "";
 
-			var $FullName        = "";
+			var $Surname         = "";
 
 			var $Age             = "";
 
@@ -39,7 +40,7 @@
 				function isValid(){
 
 					//Name and Age is required and age must be a number
-					return !($this->FullName == "" || $this->Age == "" || is_numeric($this->Age) == false) ;
+					return !($this->FullName() == "" || $this->Age == "" || is_numeric($this->Age) == false) ;
 
 				}
 
@@ -61,6 +62,11 @@
 				}
 
 
+				function FullName(){
+					return trim($this->Firstname . ' ' . $this->Surname);
+				}
+
+
 		}
 
 
@@ -74,7 +80,9 @@
 
 			var $MainContactId   = -1;
 
-			var $FullName        = "";
+			var $Firstname       = "";
+
+			var $Surname         = "";
 
 			var $Age             = 0;
 
@@ -141,21 +149,20 @@
 			// logs an error
 			*/
 			function logError($err){
-
 				$this->errMsg .= $err . "\n";
-
 				if ($this->debug){
-
 					echo $err;
-
 				}
-
-
 
 			}
 
 
-
+			/*
+			// gets the fullname
+			*/
+			function FullName(){
+				return trim($this->Firstname . ' ' . $this->Surname);
+			}
 
 
 
@@ -170,7 +177,7 @@
 
 				if ($fee !== $this->Fee){
 
-					$this->logError('Main Fee expected is ' . $fee . ', but recieved is ' . $this->Fee . '.');
+					$this->logError('Main Fee expected: ' . $fee . ', but received: ' . $this->Fee . '.');
 
 					return false;
 
@@ -186,7 +193,7 @@
 
 								if ($fee !== $member->Fee){ //validates fee
 
-									$this->logError('Member ('. $member->FullName . ') Fee expected is ' . $fee . ', but recieved is ' . $member->Fee . '.');
+									$this->logError('Member ('. $member->FullName() . ') Fee expected: ' . $fee . ', but received:  ' . $member->Fee . '.');
 
 									return false;
 
@@ -213,7 +220,7 @@
 			function isValid(){ //checks if object is valid, usally after parseJSON
 
 				//Name and Age is required and age must be a number
-				$res = !($this->FullName == "" || $this->Age == "" || is_numeric($this->Age) == false || $this->Email == "" || $this->Phone == "");
+				$res = !($this->FullName() == "" || $this->Age == "" || is_numeric($this->Age) == false || $this->Email == "" || $this->Phone == "");
 
 				if ($res == false){
 
@@ -241,7 +248,7 @@
 						//validates any family discount
 						if ($member->validateFamilyDiscount() ==  false){
 
-							$this->logError('Member ('. $member->FullName . ') FamilyDiscount (' . $member->FamilyDiscount . ') must be 5yo or under and Relation must be Son or Daughter.'  );
+							$this->logError('Member ('. $member->FullName() . ') FamilyDiscount (' . $member->FamilyDiscount . ') must be 5yo or under and Relation must be Son or Daughter.'  );
 
 							return false;
 
@@ -312,26 +319,28 @@
 					//echo $group['Registrants'][0]['Name'];
 
 					//assign the property of the object from the json array
-					$this->FullName        = trim($rego['Name']);
-
+					$this->Firstname       = trim($rego['Firstname']);
+					
+					$this->Surname         = trim($rego['Surname']);
+					
 					$this->Age             = $rego['Age'];
-
+					
 					$this->Church          = trim($rego['Church']);
-
+					
 					$this->Email           = trim($rego['Email']);
-
+					
 					$this->Phone           = trim($rego['Phone']);
-
+					
 					$this->Airbed          = false; //$rego['Airbed'];
-
+					
 					$this->AirportTransfer = $rego['AirportTransfer'];
-
+					
 					$this->Fee             = $rego['Fee'];
-
+					
 					$this->Comments        = trim($rego['Comments']);
-
+					
 					$this->Gender          = $rego['Gender'];
-
+					
 					$this->Role            = $rego['Role'];
 
 
@@ -346,7 +355,9 @@
 	
 						//assign property to person object from json array
 
-						$newPerson->FullName        = trim($member['Name']);
+						$newPerson->Firstname       = trim($member['Firstname']);
+
+						$newPerson->Surname        	= trim($member['Surname']);
 
 						$newPerson->Age             = $member['Age'];
 
@@ -595,7 +606,7 @@
 
 				/* Prepared statement, stage 1: prepare */
 
-				if (!($stmt = $mysqli->prepare("INSERT INTO MainContact (FullName, Age, Church, Email, Phone, DateTimeEntered, AirportTransfer, Airbed, Comments, Fee, Reference, Role, Gender) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"))) {
+				if (!($stmt = $mysqli->prepare("INSERT INTO MainContact (FullName, Age, Church, Email, Phone, DateTimeEntered, AirportTransfer, Airbed, Comments, Fee, Reference, Role, Gender, Firstname, Surname) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"))) {
 
 				    $this->logError("Prepare failed MainContact: (" . $mysqli->errno . ") " . $mysqli->error);
 
@@ -608,60 +619,50 @@
 
 
 				/* Prepared statement, stage 2: bind and execute */
-				$FullName        = $this->FullName;
-
+				$FullName        = $this->FullName();
+				$Firstname       = $this->Firstname;
+				$Surname         = $this->Surname;
+				
 				$Age             = $this->Age;
-
+				
 				$Church          = $this->Church;
-
+				
 				$Email           = $this->Email;
-
-				$Phone			 = $this->Phone;
-
+				
+				$Phone           = $this->Phone;
+				
 				$DateTimeEntered = $this->DateTimeEntered;
-
+				
 				$AirportTransfer = $this->AirportTransfer;
-
+				
 				$Airbed          = $this->Airbed; 
-
+				
 				$Comments        = $this->Comments;
-
+				
 				$Fee             = $this->Fee;
-
-				$Role 			 = $this->Role;
-
-				$Gender 		 = $this->Gender;
-
-
+				
+				$Role            = $this->Role;
+				
+				$Gender          = $this->Gender;
 
 
-				if (!$stmt->bind_param("sssssssssssss", $FullName, 
 
+
+				if (!$stmt->bind_param("sssssssssssssss", $FullName, 
 															$Age, 
-
 															$Church, 
-
 															$Email, 
-
 															$Phone, 
-
 															$DateTimeEntered, 
-
 															$AirportTransfer, 
-
 															$Airbed, 
-
 															$Comments, 
-
 															$Fee,
-
 															$Reference,
-
 															$Role,
-
-															$Gender)) {
-
-														
+															$Gender,
+															$Firstname,
+															$Surname)) {												
 
 				    $this->logError( "Binding parameters failed MainContact: (" . $stmt->errno . ")<br />  " . $stmt->error);
 
@@ -672,13 +673,8 @@
 
 
 
-
-
-
 				if (!$stmt->execute()) {
-
 				    $this->logError("Execute failed MainContact: (" . $stmt->errno . ")<br /> " . $stmt->error);
-
 				    return false;
 				}
 
@@ -687,88 +683,60 @@
 
 
 				$newMainContactId = mysqli_insert_id($mysqli);
-	
 				//update the status
 				$status = 1;
 
 				if (!($stmt = $mysqli->prepare("UPDATE DataLog SET  Status = ? WHERE jsonData = ? AND IP = ? AND Reference = ?"))) {
-
 				    $this->logError("Prepare failed for DataLog Update 1: (" . $mysqli->errno . ") " . $mysqli->error);
-
 				}				
 
 
 
 				if (!$stmt->bind_param("ssss", $status , $myJSON, $ip , $Reference)) {
-
 				    $this->logError("Binding parameters failed for DataLog Update 1: (" . $stmt->errno . ")<br />  " . $stmt->error);
-
 				}
-
 
 
 
 				if (!$stmt->execute()) {
-
 				    $this->logError("Execute failed DataLog Update 1: (" . $stmt->errno . ")<br /> " . $stmt->error);
-
 				}
-
-
-
 				//end update status
 
 
+
 				$len = count($this->PersonStack) ;
-
 				if ( $len > 0) {
-
-
-
 					$membersUpdateError = 0;
-
 
 					//insert any members in group
  					/* Prepared statement, stage 1: prepare */
-					if (!($stmt = $mysqli->prepare("INSERT INTO Registrant (MainContactId, FullName, Age, Relation, FamilyDiscount, Airbed, AirportTransfer,Fee, Role, Gender) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+					if (!($stmt = $mysqli->prepare("INSERT INTO Registrant (MainContactId, FullName, Age, Relation, FamilyDiscount, Airbed, AirportTransfer,Fee, Role, Gender, Firstname, Surname) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 					    $this->logError("Prepare failed members: (" . $mysqli->errno . ") " . $mysqli->error);
-
 					    $membersUpdateError =1;
-
-
-
 					}				
 
 
 
-					if (!$stmt->bind_param("ssssssssss", $newMainContactId, 
-
+					if (!$stmt->bind_param("ssssssssssss", $newMainContactId, 
 														$FullName, 
-
 														$Age, 
-
 														$Relation,
-
 														$FamilyDiscount,
-
 														$Airbed, 
-
 														$AirportTransfer, 
-
 														$Fee,
-
 														$Role, 
-
-														$Gender)) {
+														$Gender,
+														$Firstname,
+														$Surname)) {
 
 
 
 					    $this->logError("Binding parameters failed members: (" . $stmt->errno . ")<br />  " . $stmt->error);
 
 						$membersUpdateError =1;
-
-
 
 					}
 
@@ -779,83 +747,51 @@
 
 
 					foreach ($this->PersonStack as $member) {
-
-
 								if ($member->isValid()) {
-
-						
-									$FullName        = $member->FullName;
-
+				
+									$FullName        = $member->FullName();
+									$Firstname       = $member->Firstname;
+									$Surname         = $member->Surname;
 									$Age             = $member->Age;
-
 									$Relation        = $member->Relation;
-
 									$FamilyDiscount  = $member->FamilyDiscount;
-
 									$AirportTransfer = $member->AirportTransfer;
-
 									$Airbed          = $member->Airbed; 
-
 									$Fee             = $member->Fee; 
-
 									$Role            = $member->Role; 
-
 									$Gender          = $member->Gender; 
 
 
-
-
 									if (!$stmt->execute()) {
-
 									    $this->logError("Execute failed members: (" . $stmt->errno . ")<br /> " . $stmt->error);
-
 									    $membersUpdateError =1;
-
-
 									}else{
-
 										//echo "<br />Records created for person" . $FullName . "...<hr />"	;		
-
 									}
 
 								}	
 
-
-
 					}
-
 
 
 					//if theres an error we update status to 2, if no error then we update to 3
 					$status = ($membersUpdateError == 1) ? 2 : 3 ;
 
 
-
-
 					//update the status
 					if (!($stmt = $mysqli->prepare("UPDATE DataLog SET  Status = ? WHERE jsonData = ? AND IP = ? AND Reference = ?"))) {
-
 					    $this->logError("Prepare failed for DataLog Update 2: (" . $mysqli->errno . ") " . $mysqli->error);
-
 					}				
 
 
 					if (!$stmt->bind_param("ssss", $status , $myJSON, $ip , $Reference)) {
-
 					    $this->logError("Binding parameters failed for DataLog Update 2: (" . $stmt->errno . ")<br />  " . $stmt->error);
-
 					}
-
-
 
 
 					if (!$stmt->execute()) {
-
 					    $this->logError("Execute failed DataLog Update 2: (" . $stmt->errno . ")<br /> " . $stmt->error);
-
 					}
-
-
 					//end update status
 
 				}
@@ -960,7 +896,7 @@
 
 					// selects
 
-					if ($res = $mysqli->query("SELECT C.*, R.FullName RName, R.Age RAge, R.Relation RRelation, R.FamilyDiscount RFamilyDiscount, R.Airbed RAirBed, R.AirportTransfer RAirportTransfer, R.Fee RFee, R.Gender RGender, R.Role RRole, R.Cancelled RCancelled, IFNULL((SELECT SUM(P.PaidAmount) FROM Payment P WHERE P.MainContactId = C.MainContactId),0) TotalPaid FROM MainContact C LEFT OUTER JOIN Registrant R ON R.MainContactId=C.MainContactId WHERE C.Reference = '" . $ref . "';")){
+					if ($res = $mysqli->query("SELECT C.*, R.Firstname RFirstname, R.Surname RSurname, R.Age RAge, R.Relation RRelation, R.FamilyDiscount RFamilyDiscount, R.Airbed RAirBed, R.AirportTransfer RAirportTransfer, R.Fee RFee, R.Gender RGender, R.Role RRole, R.Cancelled RCancelled, IFNULL((SELECT SUM(P.PaidAmount) FROM Payment P WHERE P.MainContactId = C.MainContactId),0) TotalPaid FROM MainContact C LEFT OUTER JOIN Registrant R ON R.MainContactId=C.MainContactId WHERE C.Reference = '" . $ref . "';")){
 
 
 
@@ -1008,7 +944,9 @@
 
 
 
-												$this->FullName        = $row['FullName'];
+												$this->Firstname       = $row['Firstname'];
+
+												$this->Surname         = $row['Surname'];
 
 												$this->Age             = $row['Age'];
 
@@ -1043,7 +981,7 @@
 
 													($this->Cancelled) ? $rowCancelled2 : $row2 
 
-													, $counter , $this->FullName, $this->Age, $this->Fee);
+													, $counter , $this->FullName(), $this->Age, $this->Fee);
 
 
 
@@ -1060,7 +998,9 @@
 
 
 											//assign property to person object from json array
-											$newPerson->FullName        = $row['RName'];
+											$newPerson->Firstname       = $row['RFirstname'];
+
+											$newPerson->Surname         = $row['RSurname'];
 
 											$newPerson->Age             = $row['RAge'];
 
@@ -1082,11 +1022,8 @@
 
 
 											//totals the members (not main contact)
-
 											if ($newPerson->Cancelled == false){
-
 												$membersFeeTotal = $membersFeeTotal + $newPerson->Fee;
-
 											}
 
 
@@ -1095,11 +1032,9 @@
 											if ($newPerson->isValid()){
 
 												$memberRowHtml .= sprintf(
-													($newPerson->Cancelled) ? $rowCancelled1 : $row1
-													, 
+													($newPerson->Cancelled) ? $rowCancelled1 : $row1 , 
 
-
-																			$newPerson->FullName, 
+																			$newPerson->FullName(), 
 
 																			$newPerson->Age, 
 
@@ -1118,19 +1053,16 @@
 
 
 												//add to payment summary row
-
-
-
 												$paymentRowHtml .= sprintf(
-
-													($newPerson->Cancelled) ? $rowCancelled2 : $row2
-
-													, ($counter + 1) , $newPerson->FullName, $newPerson->Age, $newPerson->Fee);
+													($newPerson->Cancelled) ? $rowCancelled2 : $row2, 
+																							($counter + 1), 
+																							$newPerson->FullName(), 
+																							$newPerson->Age, 
+																							$newPerson->Fee);
 
 
 
 												//add to array
-
 												array_push($this->PersonStack, $newPerson);													
 
 
@@ -1173,31 +1105,14 @@
 
 
 
-
-
-
 									//user payment logic
-
-
-
 									$totalPayableAmount = $membersFeeTotal;
-
 									if ($this->Cancelled == false){
-
 										$totalPayableAmount = $totalPayableAmount + $this->Fee;
-
 									}
 
 
-
-
-
-
-
 									//if paid in full
-
-
-
 									if ($PaidAmountTotal == $totalPayableAmount){
 
 										setlocale(LC_MONETARY, 'en_AU'); 
@@ -1222,13 +1137,8 @@
 									}
 
 
-
-
-
 									$html  = str_replace('<?php include($_SERVER["DOCUMENT_ROOT"] . "/includes/_bankdetails.php");?>',
-										file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/includes/_bankdetails.php")
-
-									,$html);
+										file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/includes/_bankdetails.php"),$html);
 
 
 
@@ -1237,7 +1147,7 @@
 
 										'<span class="pull-right">Reference: <span class="label label-success label-summary-total">' . $this->Reference . '</span></span>', 
 
-										$this->FullName, 
+										$this->FullName(), 
 
 										$this->Age, 
 
@@ -1284,14 +1194,8 @@
 							}
 
 
-
-
-
 						/* free result set */
-
     					$res->close();
-
-
 
 					}
 
@@ -1533,34 +1437,23 @@
 						//check if json data exists
 
 						if ($rego->exists()) {
-
 							$out = new OUTPUTj(0,"","This registration information already exists!");
-
 							echo $out->toJSON();
-
 							return false;
-
-
 						}
 
 
 
 
 						//json to objects
-
 						$rego->parseJSON(); 
 
 
 						//make sure the json converted is valid
-
 						if ($rego->isValid() == false){ 
-
 							$out = new OUTPUTj(0,"",$rego->errMsg); 
-
 							echo $out->toJSON();
-
 							return false;
-
 						}						
 
 
@@ -1572,10 +1465,7 @@
 				
 							$ref = $rego->Reference;
 
-
 							//send sms
-
-
 							try {
 
 								//we try this as we dont want to show error if sms fails
@@ -1589,11 +1479,9 @@
 							        $sms = new SMS();
 
 							        if($sms->access_token){
-
-
 							            $messageId =  $sms->send($rego->Phone, 
 
-							            	'Hi ' . $rego->FullName . ', your ref is ' . $ref  .'. View your info at http://goo.gl/asxolc.\n\nDaiHoi Melbourne2016 Team.'); 
+							            	'Hi ' . $rego->FullName() . ', your ref is ' . $ref  .'. View your info at http://goo.gl/asxolc.\n\nDaiHoi Melbourne2016 Team.'); 
 
 							            if($messageId){
 
@@ -1623,37 +1511,25 @@
 								//we try this as we dont want to show error if email fails
 								//we still want to show the registration information
 
-
 								$message = $rego->getRego($ref);
 								$email = new Mailer();
-								$email->sendMail($rego->Email, 'DaiHoi 2016 Registration [' . $ref . '] for: ' . $rego->FullName , $message);
+								$email->sendMail($rego->Email, 'DaiHoi 2016 Registration [' . $ref . '] for: ' . $rego->FullName() , $message);
 
 
 
 							} catch (Exception $e) {
-
-
 								//should log error in db
-
 							}
-
-
 
 							$out = new OUTPUTj(1,$ref,$rego->errMsg);
 							echo $out->toJSON();
 
-
-
 						}else{
 
-					
 							$out = new OUTPUTj(0,"",$rego->errMsg);
-
 							echo $out->toJSON();
 
-
 						}
-
 
 					}
 
