@@ -214,8 +214,8 @@
                 fee = fee + this.airport_fee;
             }            
             
-
-            fee = this.calculateEarlyBirdDiscount(fee);
+            //no need to recalculate early bird fee as its already called in: this.calculateFee(age);
+            //fee = this.calculateEarlyBirdDiscount(fee);
 
             if (fee < 0) { fee = 0 }
 
