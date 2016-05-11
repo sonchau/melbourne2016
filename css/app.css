@@ -1,0 +1,67 @@
+
+
+        #col div.panel-body {
+            min-height:220px;
+        }
+
+        .p-footer {
+            padding:10px;
+        }
+        
+        .p-footer .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        .p-footer .btn-default {
+            border: 1px solid gray;
+        }
+
+    
+        .panel-body ul li {
+            padding-bottom: 10px;
+        }
+        .panel-body {
+            height: 1050px;
+        }
+
+.container .jumbotron.banner, 
+.container-fluid .jumbotron.banner {
+    background-image: url("../img/banner.jpg"); 
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    background-position: center center;
+    background-color: #414192;
+}
+.jumbotron h1, .jumbotron .h1,
+.jumbotron p, .jumbotron .p,
+.jumbotron cite {
+    color:  #414192;
+}
+.navbar-brand img {
+    width: 30px;
+    height: 30px;
+    margin-top: -7px;
+}
+
+.container.question-answer h2 {
+        color:  #E2EBF8;
+        text-align: center;
+}
+
+.container.question-answer h4 {
+        color:  #C76910;
+        margin-bottom: 30px;
+        text-align: center;
+}
+
+.container.question-answer h5 {
+        color:  #d9534f;
+        margin-bottom: 20px;
+}
+
+.container.question-answer p {
+        margin-bottom: 30px;
+}
