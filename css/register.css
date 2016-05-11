@@ -1,3 +1,8 @@
+        .navbar-brand img {
+            width: 30px;
+            height: 30px;
+            margin-top: -7px;
+        }
 
         input.form-control:focus, select.form-control:focus, textarea.form-control:focus {
             border-bottom: 3px solid red !important;
