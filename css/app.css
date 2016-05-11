@@ -1,9 +1,13 @@
-
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
 
         #col div.panel-body {
             min-height:220px;
         }
-
+        #col div.panel-body img{
+            width: 100%;
+        }
         .p-footer {
             padding:10px;
         }
