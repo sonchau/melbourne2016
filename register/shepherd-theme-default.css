@@ -1,4 +1,5 @@
 .shepherd-element, .shepherd-element:after, .shepherd-element:before, .shepherd-element *, .shepherd-element *:after, .shepherd-element *:before {
+.shepherd-element, .shepherd-element:after, .shepherd-element:before, .shepherd-element *, .shepherd-element *:after, .shepherd-element *:before {
   box-sizing: border-box; }
 
 .shepherd-element {

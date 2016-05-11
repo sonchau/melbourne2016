@@ -6,7 +6,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" id="A1" class="navbar-brand">Melbourne 2016</a>
+                 <a href="/" id="A1" class="navbar-brand"><span><img src="/img/ms-icon-70x70.png"> </span> Melbourne 2016</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

@@ -1,21 +1,22 @@
 ﻿
     <!-- FOOTER -->
     <div class="clearfix">&nbsp;</div>
-    <div class="container-fluid" style="background: #000; color:white;">
+    <div class="container-fluid1" style="color:white;">
+        
         <div class="container" style="padding: 40px 10px;">
+            <hr>
             <div class="row">
                 <div class="col-lg-4">
-                    <img src="/img/logo.png" style="opacity: 0.5" />
+                    <img src="/img/logo-gray.png" style="opacity: 0.5" />
                 </div>
-
                 <div class="col-lg-4">
                     <h4 style="border-bottom: 2px solid #4ebdc0; padding-bottom:10px;">Links</h4>
                     <ul style="list-style-type:none; padding:0px;">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Speakers</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Registration</a></li>
-                        <li><a href="#">View Registration</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="speakers.html">Speakers</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="register/">Registration</a></li>
+                        <li><a href="register/view">View Registration</a></li>
                     </ul>
                     <div>&nbsp;</div>
                 </div>
@@ -29,20 +30,8 @@
 
         </div>
     </div>
-    <div class="container-fluid" style="background: #333; color:white;">
+    <div class="container-fluid1" style="background: #333; color:white;">
         <div class="container" style="padding: 20px 10px;">
             <p style="text-align:center;">&copy; 2016 | Vietnamese Christians Fellowship Conference in Australia - Melbourne 2016</p>
-            <p class="hidden">
-                <select id="myCss" style="background-color: white; color: black">
-                    <option value="simplex.css">Simple</option>
-                    <option value="standstorm.css">White 1</option>
-                    <option value="space.css">White 2</option>
-                    <option value="cerulean.css">BlueSky</option>
-                    <option value="united.css">OrangeWhite</option>
-                    <option value="cosmo.css">White3</option>
-                </select>
-                <a href="#" onclick="$('#css').prop('href','/css/' + $('#myCss').val())">Change Colours</a>
-            </p>
         </div>
-
     </div>

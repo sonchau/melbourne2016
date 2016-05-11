@@ -3,18 +3,17 @@
             border-bottom: 3px solid red !important;
         }
 
-      /*
+      
         table.table td {font-size:small !important;}
 
         table.table thead {
             font-size: small !important;
         }
 
- 
         table.table caption {
             font-size: small !important;
         } 
-*/
+
 
         .input-group .input-group-addon {
             background:#333;

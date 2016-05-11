@@ -27,11 +27,11 @@
     </title>
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_scripts.php'); ?>
+    
     <script type="text/javascript" src="/js/charlimit.js"></script>
     <script type="text/javascript">
         $(function () {
             $('#tNotes').charlimit({ 'limit':500, 'color':1});
-
         });
     </script>
 
@@ -45,18 +45,18 @@
             background-color: #FBDDE2 !important;
         }
 
+        /*
         .panel-default {
             background-color: #f5f5f5;
         }
-
- 
         .panel-default .panel-heading {
             background-color: #4e5d6c;
             color:white;
         }
+        */
 
         .other-registrants {
-            background-color: #EFEFEF;
+            /*background-color: #EFEFEF;*/
             padding-bottom: 20px;
             padding-top: 20px;
             border-bottom: 1px solid #a5a5a5;
@@ -844,76 +844,13 @@
     <script src="/js/register.js?v=<?php echo rand() ?>"></script>
     <script src="/register/submission.js?v=2"></script>
 
-    <link href="shepherd-theme-arrows.css" rel="stylesheet" type="text/css" />
+    <!-- shepherd -->
+    <link href="shepherd-theme-arrows.css"  rel="stylesheet" type="text/css" />
+    <link href="shepherd-helper.css"        rel="stylesheet" type="text/css" />
     <script src="tether.min.js"></script>
     <script src="shepherd.min.js"></script>
 
-    <style type="text/css">
 
-    #rego-form.shepherd-active > * {
-      -webkit-transition: opacity 0.4s;
-       transition: opacity 0.4s; 
-       opacity: 0.5; 
-       pointer-events: none;
-
-    }
-
-    
-
-
-
-    #rego-form.shepherd-hilite > *,
-    #rego-form .shepherd-target.shepherd-enabled {
-        opacity: 1 !important;
-        pointer-events: auto !important; 
-        -webkit-box-shadow: 0 0 15px 15px #FF3030;
-        box-shadow: 0 0 15px 15px #FF3030;
-        border:1px solid red;
-        background-color: pink;
-    }
-
-
-        .shepherd-content header{
-            background-color:#222 !important;
-            color:#fff !important;
-        }
-
-
-
-        .shepherd-content header a.shepherd-cancel-link{
-            color:cyan !important;
-        }
-
-        .shepherd-content{
-            background-color:#444 !important;
-            color:#D2D1D1 !important;
-
-        }    
-
-    </style>
-
-
-
-
-
-
-<style type="text/css">
-       
-
-    @media (max-width: 640px) {
-        .shepherd-element {
-
-            width: 75% !important;
-
-            font-size: 0.85em !important;
-
-            left: 10%/100px !important;
-
-        }
-
-    }
-
-</style>
 
 </body>
 

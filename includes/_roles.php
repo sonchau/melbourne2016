@@ -1,6 +1,6 @@
                                         <option value="">-- ROLE --</option>
                                         <option>Pastor</option>
-                                        <option>Decon</option>
+                                        <option>Deacon</option>
                                         <option>Church member</option>
                                         <option>Guest</option>
                                         <option>Mục sư</option>
