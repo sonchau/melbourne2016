@@ -53,19 +53,44 @@ body {
 .container.question-answer h2 {
         color:  #E2EBF8;
         text-align: center;
+        text-transform: uppercase;
 }
 
 .container.question-answer h4 {
-        color:  #C76910;
+        color:  #F7F9FA;
         margin-bottom: 30px;
-        text-align: center;
+        font-weight: bold;
+        font-size: 22px;
 }
 
 .container.question-answer h5 {
-        color:  #d9534f;
+        color:  #C76910;
         margin-bottom: 20px;
+        font-size: 20px;
 }
 
 .container.question-answer p {
         margin-bottom: 30px;
+        font-size: 18px;
+}
+
+.container.speakers img {
+width: 100%;
+height: auto;
+margin-bottom: 20px;
+}
+.container.speakers  h3 {
+    text-align: center; 
+}
+
+.container.organiser h3 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.container.organiser img {
+    max-width: 800px;
+    display: block;
+    margin: 30px auto;
+
 }
