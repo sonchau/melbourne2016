@@ -8,6 +8,9 @@ body {
         #col div.panel-body img{
             width: 100%;
         }
+        #col div.panel-heading .panel-title {
+            color:  #B14409;
+        }
         .p-footer {
             padding:10px;
         }
@@ -26,7 +29,7 @@ body {
             padding-bottom: 10px;
         }
         .panel-body {
-            height: 1000px;
+            height: 1300px;
         }
 
 .container .jumbotron.banner, 
@@ -75,9 +78,9 @@ body {
 }
 
 .container.speakers img {
-width: 100%;
-height: auto;
-margin-bottom: 20px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
 }
 .container.speakers  h3 {
     text-align: center; 
