@@ -151,7 +151,8 @@
         family_discount2_amount: 100,
         airbed_discount_amount: 20,
         airport_fee: 25,
-        early_bird_discount_amount: 40,
+        early_bird_discount_amount_tier_1: 30,
+        early_bird_discount_amount_tier_2: 40,
 
         calculateFee: function (age) { //does fee calculate on age
             var fee = 0;
@@ -159,10 +160,10 @@
                 case (age <= 5):
                     fee = 50
                     break;
-                case (age > 5 && age <= 12):
+                case (age > 5 && age <= 11):
                     fee = 350
                     break;
-                case (age > 12 && age < 65):
+                case (age > 11 && age < 65):
                     fee = 440
                     break;
                 case (age >= 65):
@@ -173,7 +174,7 @@
             }
 
             
-            fee = this.calculateEarlyBirdDiscount(fee);
+            fee = this.calculateEarlyBirdDiscount(fee, age);
 
             return fee;
 
@@ -223,7 +224,7 @@
             return fee;
 
         },
-        calculateEarlyBirdDiscount: function (fee) { //does fee calculate on age
+        calculateEarlyBirdDiscount: function (fee, age) { //does fee calculate on age
             if (isNaN(fee)){
                 return fee;
             }
@@ -232,15 +233,31 @@
             var nowDate = new Date();
             var earlybirdDate = new Date(2016,09,30);
             if (nowDate < earlybirdDate){
-                fee = fee - REGO_CALCULATOR.early_bird_discount_amount;
+
+                //select the early bird by age
+                switch (true) {
+                    case (age <= 5):
+                        //no early bird
+                        break;
+                    case (age > 5 && age <= 11):
+                        fee = fee - REGO_CALCULATOR.early_bird_discount_amount_tier_1;
+                        break;
+                    case (age > 11 && age < 65):
+                        fee = fee - REGO_CALCULATOR.early_bird_discount_amount_tier_2;
+                        break;
+                    case (age >= 65):
+                        fee = fee - REGO_CALCULATOR.early_bird_discount_amount_tier_2;
+                        break;
+                    default:
+
+                }
+
+                
             }
 
             return fee;
 
         }
-
-
-
 
 
 

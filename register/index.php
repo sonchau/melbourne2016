@@ -3,24 +3,24 @@
 <head> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="img/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/img/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/img/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/img/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
     <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <link href="../img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     <title>
         Register | Vietnamese Christians Fellowship Conference in Australia – Melbourne 2016 
@@ -101,7 +101,8 @@
                                 <p>
 
                                     <span class="label label-warning">IMPORTANT</span>
-                                    Last Bus leaves Tullamarine Airport at 1pm on 27th Dec 2016. No pick up can be made from airport after this time.
+
+                                    Bus transfers from Tullamarine Airport are scheduled at 8am and 2pm on 27th Dec 2016. No pick up can be made from airport after this 2pm.
                                 </p>
                                 <div>&nbsp;</div>
 
@@ -171,7 +172,7 @@
                             <div class="alert alert-info" style="background-color: #1abc9c !important;">
                                 <i class="fa fa-heart fa-x2" aria-hidden="true" style="color:pink"> </i>
                                 <strong style="color:pink">Early Bird Love</strong> 
-                                <p style="font-weight: normal;">Complete your registration <u>before</u> Friday 30th September 2016, and receive a $40 discount off each person registered.</p>
+                                <p style="font-weight: normal;">Complete your registration along with <u>full payment before</u> Friday 30th September 2016, and receive up to $40 discount off each person registered. (except for kid 5 year old or under)</p>
                             </div>
                         </div>
                     </div>
@@ -189,26 +190,30 @@
                                         <tr>
                                             <th>Age</th>
                                             <th>Price</th>
+                                            <th>EarlyBird</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>5 and under (shared bed with parents)</td>
                                             <td>$50</td>
+                                            <td style="text-align: right;">$50</td>
                                         </tr>
                                         <tr>
-                                            <td>6 - 12</td>
+                                            <td>6 - 11</td>
                                             <td>$350</td>
+                                            <td style="text-align: right;">$320</td>
                                         </tr>
                                         <tr>
-                                            <td>13 - 64</td>
+                                            <td>12 - 64</td>
                                             <td>$440</td>
-
+                                            <td style="text-align: right;">$400</td>
                                         </tr>
                                         <tr>
 
                                             <td>65 and above or Pensioner</td>
                                             <td>$390</td>
+                                            <td style="text-align: right;">$350</td>
                                         </tr>
 
                                     </tbody>
@@ -242,12 +247,12 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>2nd child thereafter 5 years of age or under</td>
+                                            <td>2nd child thereafter 5 y.o or under</td>
                                             <td>Free</td>
                                         </tr>
                                         <tr>
 
-                                            <td>2nd child thereafter 6 years of age and above</td>
+                                            <td>2nd child thereafter 6 y.o and above</td>
                                             <td>$100</td>
                                         </tr>
 
@@ -286,7 +291,8 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                           <p>We unfortunately have only 350 beds avaliable, the balance of the conference will be provided with airbeds and will be eligilble for a $20 discount.</p>
+                                           <p>We unfortunately have only 350 beds avaliable, the balance of the conference will be provided with air beds. If you have been allocated with an air bed, you are eligible for a $20 refund and an air bed at the end of the conference. </p>
+
                                             <p>
                                             <span class="label label-warning">IMPORTANT</span>
                                             Each bedroom will have one single bed and one air bed in the room.</p>
@@ -349,7 +355,7 @@
 
                                     <div>&nbsp;</div>
 
-                                    <div class="text-warning"><span class="label label-warning">IMPORTANT</span> It is important the Name is entered correctly (especially Vietnamese punctuations) as this field will be used for your name tag.</div>
+                                    <div class="text-warning"><span class="label label-warning">IMPORTANT</span> It is important the Name is entered correctly (especially Vietnamese punctuations and accents) as this field will be used for your name tag.</div>
 
 
                                 </div>
@@ -840,9 +846,9 @@
     </div>    
 
 
-    <script src="/js/register_objects.js?v=2"></script>
-    <script src="/js/register.js?v=<?php echo rand() ?>"></script>
-    <script src="/register/submission.js?v=2"></script>
+    <script src="/js/register_objects.js?v=3"></script>
+    <script src="/js/register.js?v=3"></script>
+    <script src="/register/submission.js?v=3"></script>
 
     <!-- shepherd -->
     <link href="shepherd-theme-arrows.css"  rel="stylesheet" type="text/css" />

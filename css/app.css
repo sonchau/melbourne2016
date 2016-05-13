@@ -9,7 +9,8 @@ body {
             width: 100%;
         }
         #col div.panel-heading .panel-title {
-            color:  #B14409;
+            color: #FFFFFF;
+            font-weight: bold;
         }
         .p-footer {
             padding:10px;
@@ -52,6 +53,11 @@ body {
     height: 30px;
     margin-top: -7px;
 }
+
+.navbar-nav li a {
+    font-size: 1.2em !important;
+}
+
 
 .container.question-answer h2 {
         color:  #E2EBF8;
@@ -97,3 +103,34 @@ body {
     margin: 30px auto;
 
 }
+
+/* FAQ */
+#faq .faqHeader {  
+        font-size: 27px;
+        margin: 20px;
+    }
+
+ #faq    .panel-heading [data-toggle="collapse"]:after {
+        font-family: 'Glyphicons Halflings';
+        content: "\e072"; /* "play" icon */
+        float: right;
+        color: #F58723;
+        font-size: 18px;
+        line-height: 22px;
+        /* rotate "play" icon from > (right arrow) to down arrow */
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+
+ #faq    .panel-heading [data-toggle="collapse"].collapsed:after {
+        /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        color: #454444;
+    }  

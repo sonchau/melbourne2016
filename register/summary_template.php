@@ -283,7 +283,7 @@
 
                             <p>
 
-                                Last Bus leaves Tullamarine Airport at 1pm on 27th Dec 2016. No pick up can be made from airport after this time.
+                                Bus transfers from Tullamarine Airport are scheduled at 8am and 2pm on 27th Dec 2016. No pick up can be made from airport after this 2pm.
 
                             </p>
 
@@ -327,7 +327,7 @@
 
                         <span class="label label-warning">IMPORTANT</span>
 
-                        <p>We unfortunately have only 350 rooms available, with each bedroom having one single bed and one air bed in the room. Air beds will be eligilble for a $20 discount.</p>
+                        <p>We unfortunately have only 350 rooms available, with each bedroom having one single bed and one air bed in the room. If you have been allocated with an air bed, you are eligible for a $20 refund and an air bed at the end of the conference.</p>
 
                         <div>&nbsp;</div>
 

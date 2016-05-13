@@ -47,8 +47,8 @@
 
 				function validateFamilyDiscount(){
 
-					//if the selection is 2nd child 5yo and under, must be less than 6yo and must be son/daughter
-					if ($this->FamilyDiscount == '2nd child 5yo and under'){
+					//if the selection is 2nd child 5yo or under, must be less than 6yo and must be son/daughter
+					if ($this->FamilyDiscount == '2nd child 5yo or under'){
 						$num = (int)$this->Age;
 						if ($this->Relation == 'Son' || $this->Relation == 'Daughter'){
 							return ($num < 6);
@@ -171,7 +171,7 @@
 			// validates the entire fee structure
 			// this function used to check the integrity of the inputted fees against the fee structure.
 			*/
-			function validateFees(){
+			function validateFees(){ 
 
 				$fee = $this->calculateFee($this->Age, '-', $this->Airbed , $this->AirportTransfer );
 

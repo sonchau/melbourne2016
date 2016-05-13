@@ -14,6 +14,7 @@
                     <li><a href="/">Tiếng Việt</a></li>
                     <li><a href="/en/speakers.html">Speakers</a></li>
                     <li><a href="/en/faq.html">FAQ</a></li>
+                    <li><a href="/en/files.html">Files</a></li>
                     <!--<li><a href="#">FAQ</a></li>
                     <li><a href="#">Help</a></li>-->
 

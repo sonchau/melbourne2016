@@ -38,13 +38,31 @@
       <script src="js/respond.js"></script>
     <![endif]-->
 
-        <link id="css" href="css/bootstrap.css" rel="stylesheet" />
-        <link href="css/site.css" rel="stylesheet" />
-        <link href="css/app.css" rel="stylesheet" />
-        <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link id="css" href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="css/app.css?v1" rel="stylesheet" />
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
-    </head>
-    <body>
+    <style type="text/css">
+        .panel-body{
+            height: auto;
+            color: #F5F5F5;
+        }
+
+        .panel-default {
+            border-color: #dddddd;
+        }
+
+        .panel-default > .panel-heading {
+            color: #333333;
+            background-color: #C0C0C0;
+            border-color: #dddddd;
+        }
+    </style>
+
+
+</head>
+<body>
 
             <div class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container">
@@ -63,6 +81,7 @@
                             <li><a href="/speakers.html">Diễn Giả</a></li>
                             <li><a href="/organiser.html">Ban Tổ Chức</a></li>
                             <li><a href="/faq.html">Giải Đáp Thắc Mắc</a></li>
+                            <li><a href="/files.html">Tải về</a></li>
                            
                         </ul>
 
@@ -91,127 +110,598 @@
                 </div>
 
 
-                <div class="container question-answer">
+                <div class="container" id="faq">
+
+
+                <div class="panel-group" id="accordion">
+
+
+
 
                     <h2>Giải đáp thắc mắc</h2>
+
+
+                    <div class="faqHeader">VỀ ĐẠI HỘI</div>
                     
-                    <div class="row">
-                    <h4>VỀ ĐẠI HỘI</h4>
-                    <h5>Tôi muốn biết chi tiết ngày giờ tham dự Đại hội.</h5>       
-                    <p>Đại Hội bắt đầu chính thức nhận người vào lúc 9 giờ sáng ngày thứ ba 27/12/2016.  Buổi ăn chính thức đầu tiên là buổi ăn chiều cùng ngày trước giờ Khai mạc.  Buổi lễ́ Bế Mạc sẽ được tổ chức vào 9:30 sáng thứ bảy 31/12/2016, sau đó là buổi ăn trưa trước khi rời trại.
-                    </p>    
-
-					<h5>Tôi muốn biết chương trình chi tiết của các ngày trong Đại hội. </h5>
-					<p>Chúng tôi đang làm việc để có một chương trình thật tốt cho mọi người, mà không quá nặng cũng như nhấn mạnh việc thông công. Hiện nay chương trình vẫn còn đang được chuẩn bị</p>
-	                
-                    <h4>THAM DỰ ĐẠI HÔI</h4>
-                    <h5>Ai có thể tham dự Đại Hội?</h5>
-					<p>Đại Hội dành cho tất cả các tín hữu Cơ Đốc  của tất cả hệ phái.
-                    </p>
-					<h5>Mời thân hữu dự được không?</h5>
-					<p>Được, nhưng xin lưu ý, các chương trình Đại Hội được chuẩn bị cho tín hữu là chính.
-                    </p>
-					<h5>Dẫn con nhỏ theo được không?</h5>
-					<p>Được, tất cả các chương trình Đại Hội bao gồm tiếng Việt lẫn tiếng Anh suốt ba buổi trong ngày; Đại Hội có chương trình cho các trẻ em tuổi thiếu nhi (5t – 12t) sẽ có chương trình riêng; các thanh niên, người lớn không rành tiếng Việt sẽ có chương trình tiếng Anh riêng.
-                    </p>
-					<h5>Có chỗ cho người có nhu cầu đặc biệt (disables) không?</h5>
-					<p>Chúng tôi sẽ cố gắng đáp ứng tùy theo phương tiện và địa điểm cho phép, tuy nhiên cần phải ghi chú trong đơn ghi danh rõ nhu cầu thế nào.</p>
-					<h5>Khách ngoài tiểu bang đến bằng máy bay thì sao?</h5>
-					<p>Chúng tôi có phương tiện đón rước quý khách từ phi trường Tullamarine của Melbourne vào hai giờ nhất định trong ngày 27/12/2016 và đưa trở lại phi trường qua hai đợt trong ngày 31/12/2016.  Tuy nhiên quý vị cần ghi danh trước và đóng số tiền là $25 cho hai chuyến.   Xin xem phần chi tiết về đón rước.
-                    </p>
-					<h5>Người ở ngoài nước Úc tham dự được không? </h5>
-					<p>Được, quý khách từ ngoại quốc vẫn cần ghi danh theo thủ tục và cho biết lịch máy bay lẫn nhu cầu đón rước.  Xem phần Visa & Thư Mời để rõ thêm chi tiết
-                    </p>
-					<h5>Có phương tiện cho người ‘disable’ không?</h5>
-					<p>Trung tâm có một số phương tiện cho ‘disabilities’ nhưng giới hạn.  Nếu quý vị có nhu cầu xin vui lòng ghi rõ vào phần ghi chú lúc ghi danh.</p>
-					<h4>GHI DANH & ĐÓNG TIỀN</h4>
-                    <h5>Tôi có thể ghi danh bằng cách nào?</h5>
-					<p>Có hai cách chính để ghi danh: qua hệ thống ghi danh trên mạng hoặc qua đơn ghi danh (có thể tải về tại đây)
-                    </p>
-                    <h5>Giá tiền tham dự Đại hội là bao nhiêu?</h5>
-                    <p>Xin xem chi tiết trong phần ghi danh trên trang mạng www.melbourne2016.net.au</p>
-                    <h5>Đóng tiền sớm có được giảm giá không?</h5>
-                    <p>Nếu quý vị ghi danh và đóng đủ tiền trước ngày 30/9/2016 - việc này sẽ giúp cho ban tổ chức trong việc chuẩn bị rất nhiều - quý vị sẽ được giảm giá theo giải thích (Xem thêm trên trang ghi danh).</p>
-                    <h5>Tôi có đóng tiền cọc và trả số còn lại sau không?</h5>
-                    <p>Quý vị có thể ghi danh trước và đóng tiền cọc để bảo đảm có chỗ trong trại.  Tuy nhiên, tiền còn lại phải đóng trọn số trước ngày 30/9/2016, để được giảm giá đóng sớm.  
-                    </p>
-                    <h5>Ngày nào là ngày hết hạn ghi danh? </h5>
-                    <p>Ngày 30/11 là hết hạn ghi danh.  Tuy nhiên vì số chỗ ở trong tại Đại Hội có giới hạn, nên nếu đã đủ số thì chúng tôi sẽ ngưng ghi danh và thông báo việc này.  Xin quý vị ghi danh sớm.</p>
-                    <h5>Khi nào hết hạn đóng tiền?</h5>
-                    <p> Để được bảo đảm chỗ ở tại Đại Hội, và được đóng lệ phí theo giá giảm (đóng sớm), tiền phải đóng trước ngày 30/9. Tất cả lệ phí phải được giải quyết trước ngày 1/12. </p>
-                    <h5>Hoàn lại lệ phí?</h5>
-                    <p> Ban tổ chức chỉ có thể hoàn lại tiền lệ phí trong trường hợp visa của người từ ngoại quốc không ̣được chấp thuận và trước ngày 1/12/2016.  Vì việc chi phí tổ chức, ban tổ chức không thể hoàn tiền lại sau ngày 1/12/2016.</p>
-                    <h5>Đổi tên người tham dự được không? </h5>
-                    <p>Được.  Mọi chi tiết phải được gởi cho ban tổ chức và đươc̣ xác nhận qua email.</p>
-                    <h5>Gia đình tôi đông người, tôi có được giảm tiền Đại hội không?</h5>
-                    <p>Ban tổ chức cố gắng để giúp cho những gia đình đông con để có thể tham dự Đại Hội chung.  Có chương trình giảm giá cho gia đình đông người. Trong gia đình có 2 con trở lên, tính từ cháu thứ 2 trở đi, lệ phí sẽ được giảm giá. 
-                    </p>
-                    <h5>Tiền dự Đại hội được tính bằng cách nào?</h5>
-                    <p>Chi phí của ban tổ chức bao gồm tiền chỗ ngủ cho 4 đêm, tiền cơ sở nhóm lại và sinh hoạt, tiền thức ăn 3 buổi ăn chính cho năm ngày, tiền chi phí cho diễn giả, tiền tổ chức (chuyên chở dụng cụ, trang trí, tài liệu, giảm giá...v.v.).  Tất cả chi phi được chia ra cho số người dự trù sẽ tham dự để ra giá vé bình quân cho mọi người trong Đại Hội.</p>
-                    <h5>Tôi muốn dự các buổi lễ của Đại hội nhưng không ngủ lại thì sao?</h5>
-                    <p>Xin xem phần iii. bên trên về cách chúng tôi tính tiền, để giúp cho phần chi phí của Đại hội không bị thiếu hụt, chúng tôi kêu gọi quý vị dâng hiến cách tình nguyện cho công việc tổ chức Đại hội, chúng tôi sẽ không đòi hỏi những ai đến dự các buổi nhóm lại hay sinh hoạt phải đóng tiền. 
-                    </p>
-                    <h5>Tôi muốn dùng các buổi ăn tại Đại hội (và dự các chương trình) nhưng không ngủ lại thì sao?</h5>
-                    <p>Vì phần ăn uống chúng tôi phải chi theo số người ăn và cũng để nhà bếp chuẩn bị cho chu đáo, chúng tôi xin quý vị ghi danh sớm trong buổi ăn mình muốn tham gia, chúng tôi sẽ ghi danh và quý vị sẽ có một bản tên tương tự người tham dự để có thể chính thức vào phòng ăn.  Mỗi buổi ăn chúng tôi kêu gọi quý vị đóng $10, ăn trọn ngày (3 buổi) là $25.  Ăn suốt các ngày Đại Hội (12 buổi ăn sáng, trưa, chiều và trà bánh) nhưng không ngủ lại là $100.
-                    </p>
-                    <h5>Có thời hạn chót để ghi danh và đóng tiền không? </h5>
-                    <p>Địa điểm Đại Hội có giới hạn – tối đa là 700 chỗ, vì thế ai ghi danh trước (và xác nhận ghi danh bằng cách đóng tiền) thì sẽ được ưu tiên.  Chúng tôi không thể bảo đảm chỗ nếu đã ghi danh nhưng chưa đóng tiền.
-                    </p>
-                    <h5>Ngoài tiền Đại hội, người tham dự còn đóng tiền gì khác nữa không?</h5>
-                    <p>Những ai có nhu cầu đưa rước từ phi trường cần phải đóng thêm $25 cho hai chuyến đi về (xin lưu ý điều kiện trong phần lệ phí).</p>
-
-                    <h4>VISA & THƯ MỜI</h4>
-                    <h5>Đại Hội có viết thư mời để xin Visa không?</h5>
-                    <p>Đối với khách dự Đại Hội từ các quốc gia cần xin Visa đến Úc, chúng tôi sẽ có một thư mời chính thức tổng quát đến mọi Cơ Đốc Nhân, và quý vị có thể tải về để dùng (tại đây).  Chúng tôi không thể viết thư mời cá nhân (với tên và hộ chiếu trên thư mời) vì Đại hội không có tư cách pháp nhân để làm việc này.</p>
-                    <h5>Tôi cần thư mời cho cá nhân để tôi mới có thể xin Visa, thì làm sao?</h5>
-                    <p>Nếu đây là nhu cầu nhất thiết cần có để mới có thể xin Visa, đề nghị quý vị liên lạc những Hội thánh hay cá nhân nào mà quý vị quen biết quý vị cách cá nhân tại Úc để xin giúp đỡ việc này.</p>
-                    <h5>Ban Tổ Chức có thể giúp gì cho việc Visa cho khách ngoại quốc ngoài thư mời?</h5>
-                    <p>Sau khi quý vị ghi danh và đóng tiền đầy đủ, BTC có thể gởi một thư xác nhận là quý vị đã đóng tiền để dự Đại Hội.  Thư này có thể dùng cho việc Visa.
-                    </p>
-                    <h4>QUẢNG BÁ</h4>
-                    <h5>Ban tổ chức có chương trình quảng bá trước và tại Đại Hội không?</h5>
-                    <p>Có.  Năm nay chúng tôi tạo cơ hội để một số tổ chức hoặc cở sở thương mại có thể quảng bá trên mạng và trên tài liệu phổ biến tại Đại hội.
-                    </p>
-                    <h5>Có tiêu chuẩn cho việc quảng bá không?</h5>
-                    <p>Có.  Ban tổ chức có một số tiêu chuẩn căn bản cho những cơ quan, tổ chức muốn quảng bá.  Chi tiết xin liên lạc ban tổ chức.
-                    </p>
-                    <h5>Quảng bá bao gồm những việc nào?</h5>
-                    <p>Chương trình quảng bá bao gồm đăng thông tin trên trang mạng của Đại Hội, hoặc thông tin trên tài liệu gởi ra cho tất cả người dự Đại Hội, trên máy chiếu trước và sau giờ sinh hoạt, các giới thiệu tại trước phòng nhóm và phòng ăn.</p>
-                    <h5>Có tính tiền cho việc quảng bá không?</h5>
-                    <p>Có.  Mục đích của việc này là để đóng góp cho việc tổ chức Đại hội.</p>
-                    <h5>Tôi có thể đem sách, CD đến để bán trong Đại hội không?</h5>
-                    <p>Được, nhưng phải trình bày và được sự đồng ý của ban tổ chức trước và những thỏa thuận chi tiết qua email. 
-                    </p>
-                    <h5>Tôi có thể đem tờ rơi để đưa ra tại Đại hội không? </h5>
-                    <p> Được, tuy nhiên phải trình bày và được sự đồng ý của ban tổ chức trước.
-                    </p>
-                    <h4>ĐEM THEO GÌ KHI DỰ ĐẠI HỘI </h4>
-                    <h5>Tôi cần đem theo những gì khi tham dự Đại hội?</h5>
-                    <p>Ban tổ chức có một tờ liệt kê để quý vị có thể dùng khi chuẩn bị đi Đại hội, xin tải về tại đây.</p>
-                    <h5>Tôi có cần đem tui ngủ theo không?  </h5>
-                    <p>Không cần thiết nhưng tùy theo quý vị, phòng ngủ sẽ có giường nệm, giường hơi, tra, gối và mền.  Thời tiết tại Melbourne vào tháng 12 là mùa hè, tuy nhiên ban đêm cũng mát.</p>
-                    
-                    <h4>TÔN VINH, NGỢI KHEN, LÀM CHỨNG TẠI ĐẠI HỘI</h4>
-                    <h5>Việc tôn vinh ngợi khen tại Đại Hội được tổ chức như thế nào? </h5>
-                    <p>Tất cả các phần tôn vinh, ngợi khen sẽ được ban thờ phượng sắp xếp.  Mỗi hội thánh như được thông báo, có thể đăng ký để đóng góp từ 1-2 bài ngợi khen trươć khi đến Đại hội.  Ban thờ phượng sẽ sắp xếp các tiết muc̣ vào những buổi nhóm nào thích hợp nhất.</p>
-                    <h5>Cá nhân tôi muốn làm chứng hoặc ngợi khen tại Đại hội được không? </h5>
-                    <p>Vì thời gian có giới hạn, chúng tôi có thể nhận đăng ký của cá nhân trươć khi đến Đại hội, tuy nhiên sẽ không thể bảo đảm là sẽ có thể sắp xếp được hết mọi người.
-                    </p>
-                    <h5>Đại Hội có chương trình văn nghệ không?</h5>
-                    <p>Có.  Vào tối 30/12/2016, Đại Hội sẽ có một buổi văn nghệ tại một sân khấu ngoài trời.  Cá nhân hoặc hội đoàn có thể đăng ký cho chương trình này. 
-                    </p>
-                    <h4>ĐẾN TỪ NGOÀI TIỂU BANG VÀ CHUYÊN CHỞ PHI TRƯỜNG</h4>
-                    <h5>Ban tổ chức có xe giúp việc chuyên chở từ phi trường và trở lại không? </h5>
-                    <p>Có.  Tuy nhiên đây là xe lớn mướn và chỉ có thể đón rước giờ nhất định mà thôi, và sẽ tốn $25 cho cả hai chuyến.  Quý vị cần ghi danh và đóng tiền cho việc này riêng.</p>
-
-                    <h5>Đón từ phi trường vào giờ nào? </h5>
-                    <p>Có hai chuyến xe bus sẽ đón từ phi trường, lúc 8 giờ sáng và lúc 2 giờ chiều tại phi trường nội địa Melbourne ngày thứ ba 27/12.  Chi tiết hướng dẫn sẽ gởi cho những người đã ghi danh và đóng tiền.
-                    </p>
-                    <h5>Rước trở lại phi trường vào giờ nào? </h5>
-                    <p>Có hai chuyến xe bus sẽ đưa ra phi trường, lúc 11giờ sáng (đến phi trường lúc 1:30pm), và chuyến 5 giờ chiều (đến phi trường lúc 7:30pm)</p>
-                    
-
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f01">Tôi muốn biết chi tiết ngày giờ tham dự Đại hội.</a>
+                            </h4>
+                        </div>
+                        <div id="f01" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <p>Đại Hội bắt đầu chính thức nhận người vào lúc 9 giờ sáng ngày thứ ba 27/12/2016.  Buổi ăn chính thức đầu tiên là buổi ăn chiều cùng ngày trước giờ Khai mạc.  Buổi lễ́ Bế Mạc sẽ được tổ chức vào 9:30 sáng thứ bảy 31/12/2016, sau đó là buổi ăn trưa trước khi rời trại.
+                                </p>  
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f02">Tôi muốn biết chương trình chi tiết của các ngày trong Đại hội.</a>
+                            </h4>
+                        </div>
+                        <div id="f02" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>Chúng tôi đang làm việc để có một chương trình thật tốt cho mọi người, mà không quá nặng cũng như nhấn mạnh việc thông công. Hiện nay chương trình vẫn còn đang được chuẩn bị</p>
+                            </div>
+                        </div>
+                    </div>
+
+            
+
+                        <div class="faqHeader">THAM DỰ ĐẠI HÔI</div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f03">Ai có thể tham dự Đại Hội? </a>
+                                </h4>
+                            </div>
+                            <div id="f03" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Đại Hội dành cho tất cả các tín hữu Cơ Đốc  của tất cả hệ phái.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f04">Mời thân hữu dự được không?</a>
+                                </h4>
+                            </div>
+                            <div id="f04" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Được, nhưng xin lưu ý, các chương trình Đại Hội được chuẩn bị cho tín hữu là chính.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f05">Dẫn con nhỏ theo được không?</a>
+                                </h4>
+                            </div>
+                            <div id="f05" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                        <p>Được, tất cả các chương trình Đại Hội bao gồm tiếng Việt lẫn tiếng Anh suốt ba buổi trong ngày; Đại Hội có chương trình cho các trẻ em tuổi thiếu nhi (5t – 12t) sẽ có chương trình riêng; các thanh niên, người lớn không rành tiếng Việt sẽ có chương trình tiếng Anh riêng.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f06">Có chỗ cho người có nhu cầu đặc biệt (disables) không?</a>
+                                </h4>
+                            </div>
+                            <div id="f06" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Chúng tôi sẽ cố gắng đáp ứng tùy theo phương tiện và địa điểm cho phép, tuy nhiên cần phải ghi chú trong đơn ghi danh rõ nhu cầu thế nào.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f07">Khách ngoài tiểu bang đến bằng máy bay thì sao?</a>
+                                </h4>
+                            </div>
+                            <div id="f07" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                            <p>Chúng tôi có phương tiện đón rước quý khách từ phi trường Tullamarine của Melbourne vào hai giờ nhất định trong ngày 27/12/2016 và đưa trở lại phi trường qua hai đợt trong ngày 31/12/2016.  Tuy nhiên quý vị cần ghi danh trước và đóng số tiền là $25 cho hai chuyến.   Xin xem phần chi tiết về đón rước.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f08">Người ở ngoài nước Úc tham dự được không?</a>
+                                </h4>
+                            </div>
+                            <div id="f08" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                        <p>Được, quý khách từ ngoại quốc vẫn cần ghi danh theo thủ tục và cho biết lịch máy bay lẫn nhu cầu đón rước.  Xem phần Visa & Thư Mời để rõ thêm chi tiết
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f09">Có phương tiện cho người ‘disable’ không?</a>
+                                </h4>
+                            </div>
+                            <div id="f09" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Trung tâm có một số phương tiện cho ‘disabilities’ nhưng giới hạn.  Nếu quý vị có nhu cầu xin vui lòng ghi rõ vào phần ghi chú lúc ghi danh.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faqHeader">THAM DỰ ĐẠI HÔI</div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f10">Tôi có thể ghi danh bằng cách nào?</a>
+                                </h4>
+                            </div>
+                            <div id="f10" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Có hai cách chính để ghi danh: qua hệ thống ghi danh trên mạng hoặc qua đơn ghi danh (có thể tải về tại đây)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f11">Giá tiền tham dự Đại hội là bao nhiêu?</a>
+                                </h4>
+                            </div>
+                            <div id="f11" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Xin xem chi tiết trong phần ghi danh trên trang mạng www.melbourne2016.net.au</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f12">Đóng tiền sớm có được giảm giá không?</a>
+                                </h4>
+                            </div>
+                            <div id="f12" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Nếu quý vị ghi danh và đóng đủ tiền trước ngày 30/9/2016 - việc này sẽ giúp cho ban tổ chức trong việc chuẩn bị rất nhiều - quý vị sẽ được giảm giá theo giải thích (Xem thêm trên trang ghi danh).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f13">Tôi có đóng tiền cọc và trả số còn lại sau không?</a>
+                                </h4>
+                            </div>
+                            <div id="f13" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                     <p>Quý vị có thể ghi danh trước và đóng tiền cọc để bảo đảm có chỗ trong trại.  Tuy nhiên, tiền còn lại phải đóng trọn số trước ngày 30/9/2016, để được giảm giá đóng sớm.  
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f14">Ngày nào là ngày hết hạn ghi danh?</a>
+                                </h4>
+                            </div>
+                            <div id="f14" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Ngày 30/11 là hết hạn ghi danh.  Tuy nhiên vì số chỗ ở trong tại Đại Hội có giới hạn, nên nếu đã đủ số thì chúng tôi sẽ ngưng ghi danh và thông báo việc này.  Xin quý vị ghi danh sớm.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f15">Khi nào hết hạn đóng tiền?</a>
+                                </h4>
+                            </div>
+                            <div id="f15" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p> Để được bảo đảm chỗ ở tại Đại Hội, và được đóng lệ phí theo giá giảm (đóng sớm), tiền phải đóng trước ngày 30/9. Tất cả lệ phí phải được giải quyết trước ngày 1/12. </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f16">Hoàn lại lệ phí?</a>
+                                </h4>
+                            </div>
+                            <div id="f16" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p> Ban tổ chức chỉ có thể hoàn lại tiền lệ phí trong trường hợp visa của người từ ngoại quốc không ̣được chấp thuận và trước ngày 1/12/2016.  Vì việc chi phí tổ chức, ban tổ chức không thể hoàn tiền lại sau ngày 1/12/2016.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f17">Đổi tên người tham dự được không?</a>
+                                </h4>
+                            </div>
+                            <div id="f17" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Được.  Mọi chi tiết phải được gởi cho ban tổ chức và đươc̣ xác nhận qua email.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f18">Gia đình tôi đông người, tôi có được giảm tiền Đại hội không?</a>
+                                </h4>
+                            </div>
+                            <div id="f18" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Ban tổ chức cố gắng để giúp cho những gia đình đông con để có thể tham dự Đại Hội chung.  Có chương trình giảm giá cho gia đình đông người. Trong gia đình có 2 con trở lên, tính từ cháu thứ 2 trở đi, lệ phí sẽ được giảm giá. 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                  
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f19">Tiền dự Đại hội được tính bằng cách nào?</a>
+                                </h4>
+                            </div>
+                            <div id="f19" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Chi phí của ban tổ chức bao gồm tiền chỗ ngủ cho 4 đêm, tiền cơ sở nhóm lại và sinh hoạt, tiền thức ăn 3 buổi ăn chính cho năm ngày, tiền chi phí cho diễn giả, tiền tổ chức (chuyên chở dụng cụ, trang trí, tài liệu, giảm giá...v.v.).  Tất cả chi phi được chia ra cho số người dự trù sẽ tham dự để ra giá vé bình quân cho mọi người trong Đại Hội.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f20">Tôi muốn dự các buổi lễ của Đại hội nhưng không ngủ lại thì sao?</a>
+                                </h4>
+                            </div>
+                            <div id="f20" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Xin xem phần iii. bên trên về cách chúng tôi tính tiền, để giúp cho phần chi phí của Đại hội không bị thiếu hụt, chúng tôi kêu gọi quý vị dâng hiến cách tình nguyện cho công việc tổ chức Đại hội, chúng tôi sẽ không đòi hỏi những ai đến dự các buổi nhóm lại hay sinh hoạt phải đóng tiền. 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f21">Tôi muốn dùng các buổi ăn tại Đại hội (và dự các chương trình) nhưng không ngủ lại thì sao?</a>
+                                </h4>
+                            </div>
+                            <div id="f21" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Vì phần ăn uống chúng tôi phải chi theo số người ăn và cũng để nhà bếp chuẩn bị cho chu đáo, chúng tôi xin quý vị ghi danh sớm trong buổi ăn mình muốn tham gia, chúng tôi sẽ ghi danh và quý vị sẽ có một bản tên tương tự người tham dự để có thể chính thức vào phòng ăn.  Mỗi buổi ăn chúng tôi kêu gọi quý vị đóng $10, ăn trọn ngày (3 buổi) là $25.  Ăn suốt các ngày Đại Hội (12 buổi ăn sáng, trưa, chiều và trà bánh) nhưng không ngủ lại là $100.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                                    
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f22">Có thời hạn chót để ghi danh và đóng tiền không?</a>
+                                </h4>
+                            </div>
+                            <div id="f22" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Địa điểm Đại Hội có giới hạn – tối đa là 700 chỗ, vì thế ai ghi danh trước (và xác nhận ghi danh bằng cách đóng tiền) thì sẽ được ưu tiên.  Chúng tôi không thể bảo đảm chỗ nếu đã ghi danh nhưng chưa đóng tiền.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f23">Ngoài tiền Đại hội, người tham dự còn đóng tiền gì khác nữa không?</a>
+                                </h4>
+                            </div>
+                            <div id="f23" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                     <p>Những ai có nhu cầu đưa rước từ phi trường cần phải đóng thêm $25 cho hai chuyến đi về (xin lưu ý điều kiện trong phần lệ phí).</p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faqHeader">VISA & THƯ MỜI</div>
+                                    
+                         <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f24">Đại Hội có viết thư mời để xin Visa không?</a>
+                                </h4>
+                            </div>
+                            <div id="f24" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Đối với khách dự Đại Hội từ các quốc gia cần xin Visa đến Úc, chúng tôi sẽ có một thư mời chính thức tổng quát đến mọi Cơ Đốc Nhân, và quý vị có thể tải về để dùng (tại đây).  Chúng tôi không thể viết thư mời cá nhân (với tên và hộ chiếu trên thư mời) vì Đại hội không có tư cách pháp nhân để làm việc này.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f25">Tôi cần thư mời cho cá nhân để tôi mới có thể xin Visa, thì làm sao?</a>
+                                </h4>
+                            </div>
+                            <div id="f25" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Nếu đây là nhu cầu nhất thiết cần có để mới có thể xin Visa, đề nghị quý vị liên lạc những Hội thánh hay cá nhân nào mà quý vị quen biết quý vị cách cá nhân tại Úc để xin giúp đỡ việc này.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f26">Ban Tổ Chức có thể giúp gì cho việc Visa cho khách ngoại quốc ngoài thư mời?</a>
+                                </h4>
+                            </div>
+                            <div id="f26" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Sau khi quý vị ghi danh và đóng tiền đầy đủ, BTC có thể gởi một thư xác nhận là quý vị đã đóng tiền để dự Đại Hội.  Thư này có thể dùng cho việc Visa.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <div class="faqHeader">QUẢNG BÁ</div>       
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f27">Ban tổ chức có chương trình quảng bá trước và tại Đại Hội không?</a>
+                                </h4>
+                            </div>
+                            <div id="f27" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Có.  Năm nay chúng tôi tạo cơ hội để một số tổ chức hoặc cở sở thương mại có thể quảng bá trên mạng và trên tài liệu phổ biến tại Đại hội.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f28">Có tiêu chuẩn cho việc quảng bá không?</a>
+                                </h4>
+                            </div>
+                            <div id="f28" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Có.  Ban tổ chức có một số tiêu chuẩn căn bản cho những cơ quan, tổ chức muốn quảng bá.  Chi tiết xin liên lạc ban tổ chức.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f29">Quảng bá bao gồm những việc nào?</a>
+                                </h4>
+                            </div>
+                            <div id="f29" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Chương trình quảng bá bao gồm đăng thông tin trên trang mạng của Đại Hội, hoặc thông tin trên tài liệu gởi ra cho tất cả người dự Đại Hội, trên máy chiếu trước và sau giờ sinh hoạt, các giới thiệu tại trước phòng nhóm và phòng ăn.</p>
+                                </div>
+                            </div>
+                        </div>
+                                    
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f30">Có tính tiền cho việc quảng bá không?</a>
+                                </h4>
+                            </div>
+                            <div id="f30" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Có.  Mục đích của việc này là để đóng góp cho việc tổ chức Đại hội.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f31">Tôi có thể đem sách, CD đến để bán trong Đại hội không?</a>
+                                </h4>
+                            </div>
+                            <div id="f31" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                         <p>Được, nhưng phải trình bày và được sự đồng ý của ban tổ chức trước và những thỏa thuận chi tiết qua email. 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f32">Tôi có thể đem tờ rơi để đưa ra tại Đại hội không? </a>
+                                </h4>
+                            </div>
+                            <div id="f32" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p> Được, tuy nhiên phải trình bày và được sự đồng ý của ban tổ chức trước.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="faqHeader">ĐEM THEO GÌ KHI DỰ ĐẠI HỘI</div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f33">Tôi cần đem theo những gì khi tham dự Đại hội?</a>
+                                </h4>
+                            </div>
+                            <div id="f33" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Ban tổ chức có một tờ liệt kê để quý vị có thể dùng khi chuẩn bị đi Đại hội, xin tải về tại đây.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                            <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f34">Tôi có cần đem tui ngủ theo không?</a>
+                                </h4>
+                            </div>
+                            <div id="f34" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Không cần thiết nhưng tùy theo quý vị, phòng ngủ sẽ có giường nệm, giường hơi, tra, gối và mền.  Thời tiết tại Melbourne vào tháng 12 là mùa hè, tuy nhiên ban đêm cũng mát.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="faqHeader">TÔN VINH, NGỢI KHEN, LÀM CHỨNG TẠI ĐẠI HỘI</div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f35">Việc tôn vinh ngợi khen tại Đại Hội được tổ chức như thế nào? </a>
+                                </h4>
+                            </div>
+                            <div id="f35" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Tất cả các phần tôn vinh, ngợi khen sẽ được ban thờ phượng sắp xếp.  Mỗi hội thánh như được thông báo, có thể đăng ký để đóng góp từ 1-2 bài ngợi khen trươć khi đến Đại hội.  Ban thờ phượng sẽ sắp xếp các tiết muc̣ vào những buổi nhóm nào thích hợp nhất.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f36">Cá nhân tôi muốn làm chứng hoặc ngợi khen tại Đại hội được không?</a>
+                                </h4>
+                            </div>
+                            <div id="f36" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Vì thời gian có giới hạn, chúng tôi có thể nhận đăng ký của cá nhân trươć khi đến Đại hội, tuy nhiên sẽ không thể bảo đảm là sẽ có thể sắp xếp được hết mọi người.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                                  
+                                    
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f37">Đại Hội có chương trình văn nghệ không?</a>
+                                </h4>
+                            </div>
+                            <div id="f37" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Có.  Vào tối 30/12/2016, Đại Hội sẽ có một buổi văn nghệ tại một sân khấu ngoài trời.  Cá nhân hoặc hội đoàn có thể đăng ký cho chương trình này. 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <div class="faqHeader">ĐẾN TỪ NGOÀI TIỂU BANG VÀ CHUYÊN CHỞ PHI TRƯỜNG</div>        
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f38">Ban tổ chức có xe giúp việc chuyên chở từ phi trường và trở lại không?</a>
+                                </h4>
+                            </div>
+                            <div id="f38" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Có.  Tuy nhiên đây là xe lớn mướn và chỉ có thể đón rước giờ nhất định mà thôi, và sẽ tốn $25 cho cả hai chuyến.  Quý vị cần ghi danh và đóng tiền cho việc này riêng.</p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f39">Đón từ phi trường vào giờ nào?</a>
+                                </h4>
+                            </div>
+                            <div id="f39" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Có hai chuyến xe bus sẽ đón từ phi trường, lúc 8 giờ sáng và lúc 2 giờ chiều tại phi trường nội địa Melbourne ngày thứ ba 27/12.  Chi tiết hướng dẫn sẽ gởi cho những người đã ghi danh và đóng tiền.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#f40">Rước trở lại phi trường vào giờ nào?</a>
+                                </h4>
+                            </div>
+                            <div id="f40" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>Có hai chuyến xe bus sẽ đưa ra phi trường, lúc 11giờ sáng (đến phi trường lúc 1:30pm), và chuyến 5 giờ chiều (đến phi trường lúc 7:30pm)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                                    
+                   </div>
+
+                    
+                    
+
                 </div>                
                 <div class="clearfix">&nbsp;</div>
             </div>
@@ -233,6 +723,7 @@
                             <li><a href="/">Home</a></li>
                             <li><a href="speakers.html">Speakers</a></li>
                             <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="files.html">Files</a></li>
                             <li><a href="register/">Registration</a></li>
                             <li><a href="register/view">View Registration</a></li>
                         </ul>
@@ -242,7 +733,6 @@
                         <h4 style="border-bottom: 2px solid #4ebdc0; padding-bottom:10px;">Contact Us</h4>
                         <p>Vietnamese Christians Fellowship Conference in Australia</p>
                         <p><i class="glyphicon glyphicon-envelope" style="color:#C0C0C0"> </i> info@melbourne2016.net.au</p>
-                        <p><i class="glyphicon glyphicon-phone" style="color:#C0C0C0"> </i> +61 404 889 336 </p>
                     </div>
                 </div>
 
