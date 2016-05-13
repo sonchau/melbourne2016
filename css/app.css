@@ -32,7 +32,12 @@ body {
         .panel-body {
             height: 1300px;
         }
-
+a#A1 {
+    font-size: 20px;
+}        
+.nav.navbar-nav li a {
+    font-size: 16px;
+}
 .container .jumbotron.banner, 
 .container-fluid .jumbotron.banner {
     background-image: url("../img/banner.jpg"); 
