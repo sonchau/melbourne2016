@@ -21,6 +21,11 @@
             
         }         
 
+
+        #rego-summary {
+            background-color: #f5f5f5 !important;
+        }
+
 	}
 
     .no-print, .no-print *
@@ -44,3 +49,7 @@
             background-color: #f5f5f5 !important;
             
         } 
+
+    #rego-summary {
+        background-color: #f5f5f5 !important;
+    }

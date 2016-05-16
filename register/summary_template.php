@@ -157,11 +157,6 @@
     </div>
 
 
-
-
-
-
-
     <div class="clearfix">&nbsp;</div>
 
     <div class="clearfix">&nbsp;</div>
@@ -174,6 +169,17 @@
         <div class="panel panel-default">
 
             <div class="panel-body">
+
+
+                <div class="row earlybird-panel">
+                    <div class="col-md-12 col-lg-12 center-block text-center">
+                        <div class="alert alert-info" style="background-color: #8BC34A !important; border-radius: 10px">
+                            <i class="fa fa-heart fa-x2" aria-hidden="true" style="color:#C85E17"> </i>
+                            <strong style="color:#C85E17">Early Bird</strong> 
+                            <p style="font-weight: normal;">Complete your registration along with <span style="border-bottom:2px solid #000;">full payment before</span> Friday 30th September 2016, and receive up to $40 discount off each person registered. (except for kid 5 year old or under)</p>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row">
 

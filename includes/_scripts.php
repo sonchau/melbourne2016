@@ -5,7 +5,7 @@
     <link href="/css/checkbox.css" rel="stylesheet" type="text/css" />
     <link href="/css/intlTelInput.css" rel="stylesheet" />
     <link href="/css/register.css?v=<?php echo rand() ?>" rel="stylesheet" />
-    <link href="/css/print.css?v2 rel="stylesheet" media="print" />
+    <link href="/css/print.css?v=3" rel="stylesheet" media="print" />
     <link href="/css/panels.css" rel="stylesheet" media="print" />
 
     

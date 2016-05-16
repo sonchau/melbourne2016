@@ -1,7 +1,13 @@
+
+
         .navbar-brand img {
             width: 30px;
             height: 30px;
             margin-top: -7px;
+        }
+
+        .navbar-nav li a {
+            font-size: 1.2em !important;    
         }
 
         input.form-control:focus, select.form-control:focus, textarea.form-control:focus {
