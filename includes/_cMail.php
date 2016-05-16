@@ -11,13 +11,13 @@
 					}
 					//$subject = "My subject";
 					if (!$this->checkEmailValidity($to)){
-						$to = "kyle@instil.org.au";	
+						$to = "info@melbourne2016.net.au";	
 					}
 					
 					$headers 	= "MIME-Version: 1.0" . "\r\n";
 					$headers 	.= "Content-type:text/html;charset=UTF-8" . "\r\n"; 		
 					$headers 	.= "From: DaiHoi Melbourne2016 <registration@melbourne2016.net.au>" . "\r\n";
-					$headers 	.= "Bcc: kyle@instil.org.au; registration@melbourne2016.net.au" . "\r\n";
+					$headers 	.= "Bcc: info@melbourne2016.net.au" . "\r\n";
 					
 					$html = '<!DOCTYPE html>
 								<html lang="en">

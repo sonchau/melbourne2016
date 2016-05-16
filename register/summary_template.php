@@ -283,7 +283,7 @@
 
                             <p>
 
-                                Bus transfers from Tullamarine Airport are scheduled at 8am and 2pm on 27th Dec 2016. No pick up can be made from airport after this 2pm.
+                                Bus transfers from Tullamarine Airport are scheduled at 8am and 2pm on 27th Dec 2016. No pick up can be made from airport after 2pm.
 
                             </p>
 
