@@ -60,22 +60,19 @@
                 </tr>
 
                 <tr>
-                    <td colspan="2">
+                    <td>
                         Airport Transfer: {7}
                     </td>
-
-                </tr>
-                <tr>
-                    <td colspan="2">{8}</td>
-
+                    <td>Pensioner: {8}</td>
                 </tr>
 
                 <tr>
+                    <td colspan="2">{9}</td>
+                </tr>
 
+                <tr>
                     <td>Fee</td>
-
-                    <td>${9}</td>
-
+                    <td>${10}</td>
                 </tr>
 
             </tbody>
@@ -107,7 +104,7 @@
             <tbody>
                 <tr>
 
-                    <td>{10}</td>
+                    <td>{11}</td>
 
                 </tr>
             </tbody>
@@ -115,7 +112,7 @@
 
     </div>
 
-    <div class="col-lg-12 {11}">
+    <div class="col-lg-12 {12}">
         <div class="table-responsive">
             <table class="table table-responsive table-bordered table-striped table-last-col-right">
                 <caption>Additional Registrants</caption>
@@ -125,6 +122,7 @@
                         <th>Age</th>
                         <th>Gender</th>
                         <th>Relation</th>
+                        <th>Pensioner</th>
                         <th>Family<br>Discount</th>
                         <th>Airport<br>Transfer</th>
                         <th>Role</th>
@@ -134,7 +132,7 @@
 
                 <tbody>
 
-                    {12} 
+                    {13} 
 
                 </tbody>
 
@@ -142,9 +140,9 @@
 
                     <tr>
 
-                        <td colspan="7"></td>
+                        <td colspan="8"></td>
 
-                        <td style="background-color:#3fb618;">${13}</td>
+                        <td style="background-color:#3fb618;">${14}</td>
 
                     </tr>
 
@@ -173,7 +171,7 @@
 
                 <div class="row earlybird-panel">
                     <div class="col-md-12 col-lg-12 center-block text-center">
-                        <div class="alert alert-info" style="background-color: #8BC34A !important; border-radius: 10px">
+                        <div class="alert alert-info" style="background-color: #8BC34A !important; border-radius: 10px; padding:10px;">
                             <i class="fa fa-heart fa-x2" aria-hidden="true" style="color:#C85E17"> </i>
                             <strong style="color:#C85E17">Early Bird</strong> 
                             <p style="font-weight: normal;">Complete your registration along with <span style="border-bottom:2px solid #000;">full payment before</span> Friday 30th September 2016, and receive up to $40 discount off each person registered. (except for kid 5 year old or under)</p>
@@ -207,7 +205,7 @@
 
                                     <tbody>
 
-                                        {14}
+                                        {15}
 
                                     </tbody>
 
@@ -218,7 +216,7 @@
                                             <td colspan="3"></td>
                                             <td>
 
-                                                TOTAL PAYABLE: <span class="label label-success label-summary-total">${15}</span>
+                                                TOTAL PAYABLE: <span class="label label-success label-summary-total">${16}</span>
 
                                             </td>
 

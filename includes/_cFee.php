@@ -26,7 +26,8 @@
 		function calculateFee(	$Age = 0, 
 								$FamilyDiscount = '-', 
 								$Airbed = 0, 
-								$AirportTransfer = 0){
+								$AirportTransfer = 0,
+								$Pensioner = 0){
 
 
 
@@ -45,7 +46,8 @@
 	                case ($Age > 11 && $Age < 65):
 	                    $fee = 440;
 	                    break;
-	                case ($Age >= 65):
+	                case ($Age >= 65 ): 
+	                	
 	                    $fee = 390;
 	                    break;
                     default:
@@ -56,6 +58,8 @@
 
 	            }
 
+				//pensioner (can only be pensioner at 18)
+	            if ($Age > 17 && $Pensioner) { $fee = 390;}
 
 
 	            //any family discounts
@@ -93,7 +97,7 @@
 
 
 				//early bird special
-				$fee = $this->calculateEarlyBirdDiscount($fee, $Age);
+				$fee = $this->calculateEarlyBirdDiscount($fee, $Age, $Pensioner);
 
 
 
@@ -110,7 +114,7 @@
 
 
 
-			function calculateEarlyBirdDiscount($fee, $age){
+			private function calculateEarlyBirdDiscount($fee, $age, $pensioner){
 				if (is_numeric($fee)){
 
 					if (new DateTime() < new DateTime("2016-09-30 00:00:00")) {
@@ -138,8 +142,7 @@
 									break;
 
 				            }
-
-				    	
+			    	
 				    		return $fee;
 					}
 

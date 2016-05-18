@@ -15,7 +15,7 @@
         this.Reference       = '',
         this.Cancelled       = false,
         this.DiscountAmount  = 0,
-
+        this.Pensioner       = false,
 
         this.Name = function(){
             var n = this.Firstname + ' ' + this.Surname; 
@@ -131,7 +131,7 @@
         this.Fee             = 0,
         this.Cancelled       = false,
         this.DiscountAmount  = 0,
-
+        this.Pensioner       = false,
 
         this.Name = function(){
             var n = this.Firstname + ' ' + this.Surname; 
@@ -154,38 +154,40 @@
         early_bird_discount_amount_tier_1: 30,
         early_bird_discount_amount_tier_2: 40,
 
-        calculateFee: function (age) { //does fee calculate on age
+        calculateFee: function (age, pensioner) { //does fee calculate on age
             var fee = 0;
             switch (true) {
                 case (age <= 5):
-                    fee = 50
+                    fee = 50;
                     break;
                 case (age > 5 && age <= 11):
-                    fee = 350
+                    fee = 350;
                     break;
                 case (age > 11 && age < 65):
-                    fee = 440
+                    fee = 440;
                     break;
                 case (age >= 65):
-                    fee = 390
+                    
+                    fee = 390;
                     break;
                 default:
 
             }
+            //pensioner (can only be pensioner at 18)
+            if (age > 17 && pensioner) { fee = 390; }
 
-            
-            fee = this.calculateEarlyBirdDiscount(fee, age);
+            fee = this.calculateEarlyBirdDiscount(fee, age, pensioner);
 
             return fee;
 
         },
-        calculateFee2: function (age,airbed,airport,family_discount){ //does fee calculation on all aspects
+        calculateFee2: function (age,airbed,airport,family_discount, pensioner){ //does fee calculation on all aspects
 
             var fee = 0;
 
 
             if (isNaN(age) == false) {
-                fee = this.calculateFee(age);
+                fee = this.calculateFee(age, pensioner);
             }
 
 
@@ -195,11 +197,11 @@
                     switch (family_discount) {
                         case 1:
                             if (age < 6){
-                                fee = fee - this.family_discount1_amount
+                                fee = fee - this.family_discount1_amount;
                             }
                             break;
                         case 2:
-                            fee = fee - this.family_discount2_amount
+                            fee = fee - this.family_discount2_amount;
                             break;
                         default:
                     }
@@ -208,7 +210,7 @@
 
 
             if (fee > 0 && airbed){
-                fee = fee - this.airbed_discount_amount
+                fee = fee - this.airbed_discount_amount;
             }
 
             if (fee > 0 && airport){
@@ -224,7 +226,7 @@
             return fee;
 
         },
-        calculateEarlyBirdDiscount: function (fee, age) { //does fee calculate on age
+        calculateEarlyBirdDiscount: function (fee, age, pensioner) { //does fee calculate on age
             if (isNaN(fee)){
                 return fee;
             }

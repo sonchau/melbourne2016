@@ -30,7 +30,7 @@
 
 			var $Cancelled		 = false;
 
-
+			var $Pensioner		 = false;
 
 
 			//new
@@ -118,7 +118,7 @@
 
 			var $Cancelled		 = false;
 
-
+			var $Pensioner		 = false;
 
 
 			const SQL_DB_NAME 		= 'melbou99_mysql';
@@ -173,7 +173,7 @@
 			*/
 			function validateFees(){ 
 
-				$fee = $this->calculateFee($this->Age, '-', $this->Airbed , $this->AirportTransfer );
+				$fee = $this->calculateFee($this->Age, '-', $this->Airbed , $this->AirportTransfer, $this->Pensioner );
 
 				if ($fee !== $this->Fee){
 
@@ -189,7 +189,7 @@
 
 							if ($member->isValid()) { //validates name, age and numeric age
 
-								$fee = $this->calculateFee($member->Age, $member->FamilyDiscount, $member->Airbed , $member->AirportTransfer );
+								$fee = $this->calculateFee($member->Age, $member->FamilyDiscount, $member->Airbed , $member->AirportTransfer, $member->Pensioner );
 
 								if ($fee !== $member->Fee){ //validates fee
 
@@ -290,14 +290,15 @@
 			function calculateFee(	$Age = 0, 
 									$FamilyDiscount = '-', 
 									$Airbed = 0, 
-									$AirportTransfer = 0){
+									$AirportTransfer = 0,
+									$Pensioner = 0){
 
 
 				//create a calculator objcet
 				$calculator = new FeeCalculator();
 
 				//use object to calculate fee
-            	return $calculator->calculateFee($Age, $FamilyDiscount, $Airbed, $AirportTransfer);
+            	return $calculator->calculateFee($Age, $FamilyDiscount, $Airbed, $AirportTransfer, $Pensioner);
 
 			}
 
@@ -343,6 +344,8 @@
 					
 					$this->Role            = $rego['Role'];
 
+					$this->Pensioner       = $rego['Pensioner'];
+
 
 
 
@@ -375,6 +378,7 @@
 
 						$newPerson->Role            = $member['Role'];
 
+						$newPerson->Pensioner       = $member['Pensioner'];
 
 
 						if ($newPerson->isValid()) {
@@ -606,7 +610,7 @@
 
 				/* Prepared statement, stage 1: prepare */
 
-				if (!($stmt = $mysqli->prepare("INSERT INTO MainContact (FullName, Age, Church, Email, Phone, DateTimeEntered, AirportTransfer, Airbed, Comments, Fee, Reference, Role, Gender, Firstname, Surname) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"))) {
+				if (!($stmt = $mysqli->prepare("INSERT INTO MainContact (FullName, Age, Church, Email, Phone, DateTimeEntered, AirportTransfer, Airbed, Comments, Fee, Reference, Role, Gender, Firstname, Surname, Pensioner) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"))) {
 
 				    $this->logError("Prepare failed MainContact: (" . $mysqli->errno . ") " . $mysqli->error);
 
@@ -645,10 +649,10 @@
 				
 				$Gender          = $this->Gender;
 
+				$Pensioner       = $this->Pensioner;
 
 
-
-				if (!$stmt->bind_param("sssssssssssssss", $FullName, 
+				if (!$stmt->bind_param("ssssssssssssssss", $FullName, 
 															$Age, 
 															$Church, 
 															$Email, 
@@ -662,7 +666,8 @@
 															$Role,
 															$Gender,
 															$Firstname,
-															$Surname)) {												
+															$Surname, 
+															$Pensioner)) {												
 
 				    $this->logError( "Binding parameters failed MainContact: (" . $stmt->errno . ")<br />  " . $stmt->error);
 
@@ -711,7 +716,7 @@
 
 					//insert any members in group
  					/* Prepared statement, stage 1: prepare */
-					if (!($stmt = $mysqli->prepare("INSERT INTO Registrant (MainContactId, FullName, Age, Relation, FamilyDiscount, Airbed, AirportTransfer,Fee, Role, Gender, Firstname, Surname) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+					if (!($stmt = $mysqli->prepare("INSERT INTO Registrant (MainContactId, FullName, Age, Relation, FamilyDiscount, Airbed, AirportTransfer,Fee, Role, Gender, Firstname, Surname, Pensioner) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 					    $this->logError("Prepare failed members: (" . $mysqli->errno . ") " . $mysqli->error);
 					    $membersUpdateError =1;
@@ -719,7 +724,7 @@
 
 
 
-					if (!$stmt->bind_param("ssssssssssss", $newMainContactId, 
+					if (!$stmt->bind_param("sssssssssssss", $newMainContactId, 
 														$FullName, 
 														$Age, 
 														$Relation,
@@ -730,7 +735,8 @@
 														$Role, 
 														$Gender,
 														$Firstname,
-														$Surname)) {
+														$Surname,
+														$Pensioner )) {
 
 
 
@@ -760,6 +766,7 @@
 									$Fee             = $member->Fee; 
 									$Role            = $member->Role; 
 									$Gender          = $member->Gender; 
+									$Pensioner       = $member->Pensioner; 
 
 
 									if (!$stmt->execute()) {
@@ -896,7 +903,7 @@
 
 					// selects
 
-					if ($res = $mysqli->query("SELECT C.*, R.Firstname RFirstname, R.Surname RSurname, R.Age RAge, R.Relation RRelation, R.FamilyDiscount RFamilyDiscount, R.Airbed RAirBed, R.AirportTransfer RAirportTransfer, R.Fee RFee, R.Gender RGender, R.Role RRole, R.Cancelled RCancelled, IFNULL((SELECT SUM(P.PaidAmount) FROM Payment P WHERE P.MainContactId = C.MainContactId),0) TotalPaid FROM MainContact C LEFT OUTER JOIN Registrant R ON R.MainContactId=C.MainContactId WHERE C.Reference = '" . $ref . "';")){
+					if ($res = $mysqli->query("SELECT C.*, R.Firstname RFirstname, R.Surname RSurname, R.Age RAge, R.Relation RRelation, R.FamilyDiscount RFamilyDiscount, R.Airbed RAirBed, R.AirportTransfer RAirportTransfer, R.Fee RFee, R.Gender RGender, R.Role RRole, R.Cancelled RCancelled, IFNULL((SELECT SUM(P.PaidAmount) FROM Payment P WHERE P.MainContactId = C.MainContactId),0) TotalPaid, R.Pensioner RPensioner FROM MainContact C LEFT OUTER JOIN Registrant R ON R.MainContactId=C.MainContactId WHERE C.Reference = '" . $ref . "';")){
 
 
 
@@ -906,12 +913,12 @@
 
 									//the row templates
 
-				        			$row1 = "<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>$%d</td></tr>";
+				        			$row1 = "<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>$%d</td></tr>";
 
 				        			$row2 = '<tr><td>%s.</td><td>%s</td><td>%s</td><td>$%s</td></tr>';
 
 
-									$rowCancelled1  = '<tr class="strikeout"><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>$%d</td></tr>';
+									$rowCancelled1  = '<tr class="strikeout"><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>$%d</td></tr>';
 									$rowCancelled2  = '<tr class="strikeout"><td>%s.</td><td>%s</td><td>%s</td><td>$%s</td></tr>';
 
 
@@ -972,7 +979,7 @@
 
 												$this->Cancelled	   = $row['Cancelled'];
 
-
+												$this->Pensioner	   = $row['Pensioner'];
 
 
 												//add to payment summary row
@@ -1020,6 +1027,8 @@
 
 											$newPerson->Cancelled       = $row['RCancelled'];
 
+											$newPerson->Pensioner	    = $row['RPensioner'];
+
 
 											//totals the members (not main contact)
 											if ($newPerson->Cancelled == false){
@@ -1041,6 +1050,8 @@
 																			$newPerson->Gender, 
 
 																			$newPerson->Relation, 
+
+																			$this->ToYesNo($newPerson->Pensioner), 
 
 																			$newPerson->FamilyDiscount, 
 
@@ -1084,7 +1095,7 @@
 									$html = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/register/summary_template.php");
 
 
-									for ($i=0; $i < 17 ;  $i++) { 
+									for ($i=0; $i < 18 ;  $i++) { 
 
 										$html = str_replace( "{" . $i . "}", "%s", $html);
 
@@ -1160,6 +1171,8 @@
 										$this->Gender,	//$this->ToYesNo($this->Airbed), 
 
 										$this->ToYesNo($this->AirportTransfer),
+
+										$this->ToYesNo($this->Pensioner),
 
 										$this->Church, 
 
@@ -1421,7 +1434,9 @@
 
 		function processRegoSubmission(){
 
-
+				// $out = new OUTPUTj(0,"","Registration currently not available");
+				// echo $out->toJSON();
+				// return false;
 
 				$json = $_POST["json"];
 

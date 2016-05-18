@@ -567,7 +567,10 @@
                                             <input type="checkbox" class="discount-airbed styled" value="1" id="airbed00" name="airbed00">
                                             <label for="airbed00">Airbed Discount</label>
                                         </div>                          
-
+                                        <div class="checkbox checkbox-info form-control1">
+                                            <input type="checkbox" class="pensioner styled" value="1" id="pensioner00" name="pensioner00">
+                                            <label for="pensioner00">Pensioner</label>
+                                        </div> 
                                     </div>
 
                                 </div>
@@ -655,7 +658,12 @@
                                         </div>
 
 
-
+                                        <div class="form-group">
+                                            <div class="checkbox checkbox-info form-control">
+                                                <input type="checkbox" class="pensioner styled" value="1" id="pensioner-{0}" name="pensioner-{0}">
+                                                <label for="pensioner-{0}">Pensioner</label>
+                                            </div>
+                                        </div>
 
                                         <div class="form-group">
                                             <label class="sr-only">Discount:</label>
@@ -835,9 +843,9 @@
     </div>    
 
 
-    <script src="/js/register_objects.js?v=3"></script>
-    <script src="/js/register.js?v=3"></script>
-    <script src="/register/submission.js?v=3"></script>
+    <script src="/js/register_objects.js?v=<?php echo rand() ?>"></script>
+    <script src="/js/register.js?v=<?php echo rand() ?>"></script>
+    <script src="/register/submission.js?v=4"></script>
 
     <!-- shepherd -->
     <link href="shepherd-theme-arrows.css"  rel="stylesheet" type="text/css" />

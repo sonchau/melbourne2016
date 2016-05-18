@@ -52,11 +52,12 @@
     function getMainContactInfo() {
         var el = document.getElementById("tAge");
         var age = el.options[el.selectedIndex].text;
+        var pensioner = document.getElementById("pensioner00").checked;
 
         //fee calculation for main contact
-        var fee     = REGO_CALCULATOR.calculateFee(age);
-        var airbed  = document.getElementById("airbed00").checked;
-        var airport = document.getElementById("airport00").checked;
+        var fee       = REGO_CALCULATOR.calculateFee(age, pensioner);
+        var airbed    = document.getElementById("airbed00").checked;
+        var airport   = document.getElementById("airport00").checked;
 
 
         //removed airbed option, therefore airbed will always be false
@@ -94,7 +95,8 @@
             phone       : htmlEncode($.trim(phone)),
             notes       : htmlEncode($.trim(notes)),
             role        : role,
-            gender      : gender
+            gender      : gender,
+            pensioner   : pensioner
         }
 
 
@@ -120,7 +122,8 @@
         groupRego.Comments        = info.notes;
         groupRego.Reference       = "MELBOURNE2016";    //groupRego.generateReference(10);
         groupRego.Role            = info.role;
-        groupRego.Gender          = info.gender
+        groupRego.Gender          = info.gender;
+        groupRego.Pensioner       = info.pensioner;
 
         var total = 0;
         var person;
@@ -154,14 +157,19 @@
 
         var groups = new REGISTRANT();
         
-        var age      = "";
-        var name     = "";
-        var surname  = "";
-        var fee      = 0;
-        var role     = "";
-        var gender   = "";
+        var age       = "";
+        var name      = "";
+        var surname   = "";
+        var fee       = 0;
+        var role      = "";
+        var gender    = "";
 
         var div = $(el).parents("div.row:first");
+
+        //find the pensioner
+        $(div).find("input[type=checkbox].pensioner:checked").each(function (index, el) {
+            groups.Pensioner = el.checked;
+        });
             
         $(div).find("input[type=text].name").each(function () {
             name = htmlEncode($.trim($(this).val()));
@@ -182,7 +190,7 @@
         });
 
         if (name !== "" && surname !== "" && isNaN(age) == false) {
-            fee = REGO_CALCULATOR.calculateFee(age);
+            fee = REGO_CALCULATOR.calculateFee(age, groups.Pensioner);
         }
             
         if (fee > 0) {
@@ -258,7 +266,7 @@
         var registrants = "";
         var paymentSummary = "";
 
-        var html = "<tr><td>{NAME}</td><td>{AGE}</td><td>{GENDER}</td><td>{RELATION}</td><td>{FAMILY}</td><td>{AIRPORT}</td><td>{ROLE}</td><td>${FEE}</td></tr>"; //<td>{AIRBED}</td>
+        var html = "<tr><td>{NAME}</td><td>{AGE}</td><td>{GENDER}</td><td>{RELATION}</td><td>{PENSIONER}</td><td>{FAMILY}</td><td>{AIRPORT}</td><td>{ROLE}</td><td>${FEE}</td></tr>"; //<td>{AIRBED}</td>
         var htmlShort = "<tr><td>{COUNTER}.</td><td>{NAME}</td><td>{AGE}</td><td>${FEE}</td></tr>";
 
         //add the main contact to the payment summary
@@ -280,11 +288,12 @@
                 registrants += html.replace("{NAME}",       person.Name())
                                     .replace("{AGE}",       person.Age)
                                     .replace("{RELATION}",  person.Relation)
+                                    .replace("{PENSIONER}", toYesNo(person.Pensioner))
                                     .replace("{FAMILY}",    person.DiscountFamily)
                                     .replace("{AIRBED}",    toYesNo(person.Airbed))
                                     .replace("{AIRPORT}",   toYesNo(person.AirportTransfer))
                                     .replace("{GENDER}",    person.Gender)
-                                    .replace("{ROLE}",      person.Role)
+                                    .replace("{ROLE}",      person.Role)                                   
                                     .replace("{FEE}",       person.Fee);
                                     
 
@@ -316,6 +325,7 @@
                 regoInfo.Gender,
                 //toYesNo(regoInfo.Airbed),
                 toYesNo(regoInfo.AirportTransfer),
+                toYesNo(regoInfo.Pensioner),
                 regoInfo.Church,
                 regoInfo.Fee,
                 regoInfo.Comments,
