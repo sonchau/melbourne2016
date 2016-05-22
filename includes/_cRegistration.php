@@ -863,7 +863,7 @@
 					          <div class="panel-heading">
 					            <h3 class="panel-title">PAYMENT COMPLETED</h3>
 					          </div>
-					          <div class="panel-body" style="color:#000;">
+					          <div class="panel-body" style="color:#000; background-color:white;">
 
 					                <i class="fa fa-check fa-5x pull-left text-success"> </i> Good news! We are happy to inform you that the registration payment of <span class="text-success">$X</span> has been received and confirmed. We thank you for your support and look forward to seeing you at the conference.    
 
@@ -885,7 +885,7 @@
                               <div class="panel-heading">
                                 <h3 class="panel-title">PAYMENT PROGRESS</h3>
                               </div>
-                              <div class="panel-body" style="color:#000;">
+                              <div class="panel-body" style="color:#000; background-color:white;">
 
                                     <i class="fa fa-star-half-o fa-5x pull-left text-info"> </i> Thank you for the registration payment of <span class="text-success">$X</span>, it has been received and confirmed. However, there is the balance of <span class="text-warning">$Y</span> still outstanding. Please ensure the amount is paid in full as soon as possible. 
 
@@ -1495,8 +1495,9 @@
 
 							        if($sms->access_token){
 							            $messageId =  $sms->send($rego->Phone, 
-
-							            	'Hi ' . $rego->FullName() . ', your ref is ' . $ref  .'. View your info at http://goo.gl/asxolc.\n\nDaiHoi Melbourne2016 Team.'); 
+							            	//http://tinyurl.com/h4glqrk?ref=1
+							            	//http://goo.gl/asxolc
+							            	'Hi ' . $rego->Firstname . ', your ref: ' . $ref  .'. View your rego @ http://tinyurl.com/h4glqrk?ref=' . $ref . '\n\nDaiHoi Melbourne2016 Team.'); 
 
 							            if($messageId){
 
