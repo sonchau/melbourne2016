@@ -855,7 +855,6 @@
 
 					$output = "";
 
-
 					$paymentMsgSuccess = '
 
 					    <div class="col-lg-12"> 
@@ -870,8 +869,6 @@
 					          </div> 
 					        </div>
 					    </div>
-
-
 
 					';
 
@@ -892,11 +889,8 @@
                                     We are happy to discuss any payment arrangements, you can contact us via the links above.
 
                               </div>
-
                             </div>
-
                         </div>
-
 					';
 
 
@@ -905,7 +899,9 @@
 
 					if ($res = $mysqli->query("SELECT C.*, R.Firstname RFirstname, R.Surname RSurname, R.Age RAge, R.Relation RRelation, R.FamilyDiscount RFamilyDiscount, R.Airbed RAirBed, R.AirportTransfer RAirportTransfer, R.Fee RFee, R.Gender RGender, R.Role RRole, R.Cancelled RCancelled, IFNULL((SELECT SUM(P.PaidAmount) FROM Payment P WHERE P.MainContactId = C.MainContactId),0) TotalPaid, R.Pensioner RPensioner FROM MainContact C LEFT OUTER JOIN Registrant R ON R.MainContactId=C.MainContactId WHERE C.Reference = '" . $ref . "';")){
 
-
+							//holds value for all rego cancelled
+							$cancellationCounter = 0;
+							$regoCounter = 0;
 
 							if ($res->num_rows > 0) {
 
@@ -941,8 +937,8 @@
 									while ($row = $res->fetch_assoc()) {
 
 
-											$counter = $counter + 1;
-
+											$counter += 1;
+											$regoCounter += 1;
 
 											if($counter == 1){
 
@@ -994,6 +990,13 @@
 
 												//get the total paid
 												$PaidAmountTotal = $row['TotalPaid'];
+
+
+												//running cancelled logic
+
+												 if ($this->Cancelled) {
+												 	$cancellationCounter += 1;
+												 }
 
 											}
 
@@ -1076,6 +1079,14 @@
 												//add to array
 												array_push($this->PersonStack, $newPerson);													
 
+												//add to total rego counter
+												$regoCounter += 1;
+
+												//running cancelled logic
+												 if ($newPerson->Cancelled) {
+												 	$cancellationCounter += 1;
+												 }
+
 
 											}
 
@@ -1122,16 +1133,21 @@
 										$totalPayableAmount = $totalPayableAmount + $this->Fee;
 									}
 
+									//echo "DEV: " . $PaidAmountTotal . " : " . $totalPayableAmount;
 
 									//if paid in full
-									if ($PaidAmountTotal == $totalPayableAmount){
+									if ($PaidAmountTotal >= $totalPayableAmount ){
 
-										setlocale(LC_MONETARY, 'en_AU'); 
+										//we dont want to show when all the regos cancelled is equal to all the regos counted,
+										//that means the entire rego has been cancelled.
+										if ($cancellationCounter <> $regoCounter) { 
 
-										$paymentMsgSuccess = str_replace('$X', money_format('%#0n', $PaidAmountTotal), $paymentMsgSuccess);
+											setlocale(LC_MONETARY, 'en_AU'); 
 
-										$html              = str_replace("<!--PAYMENT-PROGRESS-->", $paymentMsgSuccess, $html);
+											$paymentMsgSuccess = str_replace('$X', money_format('%#0n', $PaidAmountTotal), $paymentMsgSuccess);
 
+											$html              = str_replace("<!--PAYMENT-PROGRESS-->", $paymentMsgSuccess, $html);
+										}
 
 
 									}elseif ($PaidAmountTotal > 0 && $PaidAmountTotal < $totalPayableAmount){

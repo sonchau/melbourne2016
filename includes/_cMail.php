@@ -17,7 +17,7 @@
 					$headers 	= "MIME-Version: 1.0" . "\r\n";
 					$headers 	.= "Content-type:text/html;charset=UTF-8" . "\r\n"; 		
 					$headers 	.= "From: DaiHoi Melbourne2016 <registration@melbourne2016.net.au>" . "\r\n";
-					$headers 	.= "Bcc: info@melbourne2016.net.au" . "\r\n";
+					$headers 	.= "Bcc: info@melbourne2016.net.au, ngoctram787@gmail.com" . "\r\n";
 					
 					$html = '<!DOCTYPE html>
 								<html lang="en">
