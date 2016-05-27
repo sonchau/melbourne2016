@@ -45,6 +45,18 @@
     background-color: #414192;
 }
 
+
+.jumbotron.banner2 {
+    background-image: url('/img/banner2.jpg');    
+    background-repeat: no-repeat;    
+    background-size: cover;    
+    overflow: hidden;    
+    background-position: center center;    
+    background-color: #414192; 
+    margin-top:-10px;
+    margin-bottom: 50px;
+}
+
 .jumbotron h1, .jumbotron .h1,
 .jumbotron p, .jumbotron .p,
 .jumbotron cite {
@@ -106,6 +118,48 @@
     margin: 30px auto;
 
 }
+
+
+    .speakers div p {
+        text-align: justify;
+    }
+
+    .speakers .pull-right {
+        display: block;
+        padding: 7px 11px;
+        text-align: justify;
+        margin-left: 5px;
+        width: 250px;
+        float: right;
+        margin-right: 10px;
+        color: #F07C4E;
+        font-size: 1.1em;
+        margin: 10px 10px;
+        font-style: italic;
+    }
+
+    .speakers .pull-left {
+        display: block;
+        padding: 7px 11px;
+        text-align: justify;
+        margin-left: 5px;
+        width: 250px;
+        float: left;
+        margin-right: 10px;
+        color: #F07C4E;
+        font-size: 1.1em;
+        margin: 10px 10px;
+        font-style: italic;
+    }      
+
+    .speakers blockquote i.fa-quote-left {
+        padding-right: 5px;
+    }      
+
+    .speakers blockquote i.fa-quote-right {
+        padding-left: 5px;
+    }   
+
 
 /* FAQ */
 #faq .faqHeader {  
