@@ -191,3 +191,108 @@
         transform: rotate(90deg);
         color: #454444;
     }  
+
+
+
+
+/* NEW BANNER */
+
+  #header-image {
+      position: relative; box-sizing: 
+      border-box; margin: 0 !important; top:-10px; 
+      background-color: #1A4F9B;
+    }
+
+    #memory-verse {
+          font-family: 'Open Sans',  sans-serif;
+          line-height: 1.42857143;
+          font-size: 1.3em; 
+          color: #ffffff;
+          font-weight: 300;
+          font-style: italic;
+    }
+
+
+    .banner-logo {
+        position: absolute;
+        top: 15.5%;  
+        left: 5%;
+        width: 25%;
+        max-width: 350px;
+
+        min-width:  85px;
+        min-height: 85px;
+        
+        display: none;
+    }
+
+    .memory-verse-wrapper{
+        background-color: rgba(48, 109, 159, 0.28);
+        margin-top: -10px; 
+        margin-bottom:30px;
+    }
+
+
+    .main-title {
+        position: absolute;
+        left: 32%;
+        top: 30%;
+        width: 42%;
+        max-width: 660px;
+        min-height: 60px;
+        animation-duration: 1.75s;
+        animation-delay: 0.1s;
+    }
+
+    .main-title.en {
+        left: 28.5%;
+        width: 60%;
+        max-width: 800px;
+    }
+
+
+    @media (min-width: 100px) {
+        .banner-image { min-height: 200px ;     }
+    }
+
+    @media (min-width: 320px) {
+        .banner-logo {  top: 25%;   }
+        #memory-verse {
+            font-size: 1em;
+       }
+    }
+    @media (min-width: 480px) {
+        .banner-logo {  top: 16%;   }
+    }
+
+    @media (min-width: 640px) {
+       #memory-verse {font-size: 1.1em;}
+    }   
+    @media (min-width: 768px) {
+        .banner-image { min-height: 250px ;   }
+         #memory-verse {font-size: 1.3em;}
+    }
+    @media (min-width: 992px) {
+        .banner-image { min-height: 275px ;     }
+    }
+    @media (min-width: 1200px) {
+      /*  .banner-image { max-height: 400px ;     }*/
+    }
+
+    @media (min-width: 1600px) {
+        .memory-verse-wrapper{
+            background-color: rgba(48, 109, 159, 0.6);
+            position: relative;
+            top: -115px;   
+            margin-bottom:-30px;         
+        }
+
+        .main-title{
+            top: 27%;
+        }
+    }
+
+
+
+
+/* END NEW BANNER */
