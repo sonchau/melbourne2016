@@ -30,7 +30,8 @@
     <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="js/bootstrap.js" type="text/javascript"></script>
     <script src="js/modernizr-2.6.2.js"></script>
-    <script src="/js/banner.js"></script>
+    <script src="/js/jquery.imageloader.js" type="text/javascript"></script>
+    <script src="/js/banner.js?v3"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -40,7 +41,7 @@
 
     <link href="css/bootstrap.css?v=1"  rel="stylesheet" id="css" />
     <link href="css/site.css"           rel="stylesheet" />
-    <link href="css/app.css?v=11"        rel="stylesheet" />
+    <link href="css/app.css?v=22"        rel="stylesheet" />
     <link href="css/animate.css?v=1"    rel="stylesheet" />
     <link href="favicon.ico"            rel="shortcut icon" type="image/x-icon" />
 
@@ -75,10 +76,11 @@
                 </div>
             </div>
             <div id="header-image">
-                <img src="/img/banner/bg.jpg"           class="center-block img-responsive banner-image">
-                <img src="/img/banner/title1.png"       class="bounceInDown animated center-block img-responsive main-title" >
-                <img src="/img/banner/circle350.jpg"    class="img-responsive img-circle banner-logo" style="opacity: 0.5;">
-                <img src="/img/banner/logo350.png"      class="img-responsive img-circle banner-logo">
+                <img id="preloader" src="/img/0.png"    class="center-block img-responsive banner-image">
+                <img src="/img/banner/bg.jpg"           class="center-block img-responsive banner-image fadeIn no-display">
+                <img src="/img/0.png" data-src="/img/banner/title1.png"       class="img-responsive center-block main-title lazy-img no-display">
+                <img src="/img/0.png" data-src="/img/banner/circle350.jpg"    class="img-responsive img-circle banner-logo fadeIn lazy-img no-display" style="opacity: 0.5;">
+                <img src="/img/0.png" data-src="/img/banner/logo350.png"      class="img-responsive img-circle banner-logo fadeIn lazy-img no-display" >
             </div>
             <div class="memory-verse-wrapper">
                 <div class="container text-center" style="padding: 10px;">

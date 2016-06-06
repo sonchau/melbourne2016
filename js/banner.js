@@ -11,13 +11,15 @@
     var isAndroid = /android/i.test(navigator.userAgent.toLowerCase());
 
 
-    $(function(){                       
+    $(function(){           
+          lazyLoadImages();
+
           if (jQuery.browser.mobile || isAndroid || isiDevice) {
               //will change to arial when its mobile
               $("#memory-verse").css("font-family","Arial");
           }
 
-          setTimeout("showBannerLogo()",1250);
+          //setTimeout("showBannerLogo()",1250);
           
     });
 
@@ -26,4 +28,37 @@
               $(this).fadeIn();
           });               
     }
+
+
+
+    function lazyLoadImages() {
+
+        var w = $('#header-image').width();
+        var h = w / 3.261519302615193;
+        $('#preloader').height(h);
+
+
+        $('#header-image').imageloader({
+            selector: '.lazy-img',
+            timeout: 20000,
+            each: function (elm) {
+              //
+            },        
+            callback: function (elm){
+                
+                $("#header-image").find("img").each(function(index, el) {
+                    var x = $(el);
+                    if(x.hasClass('fadeIn')){
+                        x.fadeIn();
+                    }
+                });
+
+                $('#preloader').hide();
+                $("#header-image").find("img.main-title").addClass('bounceInDown animated').show();
+                
+            }
+
+        });
+    }
+        
 
