@@ -218,6 +218,7 @@
         position: relative;
         top:0px;
         left: 0px;
+        background: url(/img/ajax.gif) no-repeat center center;
     }
 
     .banner-logo {
