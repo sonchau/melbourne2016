@@ -1,7 +1,7 @@
 ﻿
     <!-- FOOTER -->
     <div class="clearfix">&nbsp;</div>
-    <div class="container-fluid1" style="color:white;">
+    <div class="container-fluid1 no-print" style="color:white;">
         
         <div class="container" style="padding: 40px 10px;">
             <hr>
@@ -31,7 +31,7 @@
 
         </div>
     </div>
-    <div class="container-fluid1" style="background: #333; color:white;">
+    <div class="container-fluid1 no-print" style="background: #333; color:white;">
         <div class="container" style="padding: 20px 10px;">
             <p style="text-align:center;">&copy; 2016 | Vietnamese Christians Fellowship Conference in Australia - Melbourne 2016</p>
         </div>
