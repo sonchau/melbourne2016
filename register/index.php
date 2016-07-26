@@ -843,8 +843,8 @@
     </div>    
 
 
-    <script src="/js/register_objects.js?v=<?php echo rand() ?>"></script>
-    <script src="/js/register.js?v=<?php echo rand() ?>"></script>
+    <script src="/js/register_objects.js?v=12.<?php echo rand() ?>"></script>
+    <script src="/js/register.js?v=12.<?php echo rand() ?>"></script>
     <script src="/register/submission.js?v=4"></script>
 
     <!-- shepherd -->

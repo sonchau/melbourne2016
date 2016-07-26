@@ -56,7 +56,16 @@
 							return false;
 						}		
 					}
-					
+					//if the selection is nd child over 5yo, must be less than 22yo and must be son/daughter
+					if ($this->FamilyDiscount == '2nd child over 5yo'){
+						$num = (int)$this->Age;
+						if ($this->Relation == 'Son' || $this->Relation == 'Daughter'){
+							return ($num < 22);
+						}else{
+							return false;
+						}		
+					}					
+
 					return true;
 
 				}
@@ -248,7 +257,8 @@
 						//validates any family discount
 						if ($member->validateFamilyDiscount() ==  false){
 
-							$this->logError('Member ('. $member->FullName() . ') FamilyDiscount (' . $member->FamilyDiscount . ') must be 5yo or under and Relation must be Son or Daughter.'  );
+							$ageMessage = ($member->FamilyDiscount == "2nd child over 5yo" ? "21yo"  : "5yo" );
+							$this->logError('Member ('. $member->FullName() . ') FamilyDiscount (' . $member->FamilyDiscount . ') must be ' . $ageMessage . ' or under and Relation must be Son or Daughter');
 
 							return false;
 
@@ -1487,6 +1497,11 @@
 							return false;
 						}						
 
+
+
+						//$out = new OUTPUTj(0,"","Registration is temporarily unavailable"); 
+						//echo $out->toJSON();
+						//return false;
 
 
 

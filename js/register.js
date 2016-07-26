@@ -192,8 +192,8 @@
         if (name !== "" && surname !== "" && isNaN(age) == false) {
             fee = REGO_CALCULATOR.calculateFee(age, groups.Pensioner);
         }
-            
-        if (fee > 0) {
+        console.log(fee);
+        if (fee >= 0) {
             // only calculate discount if age fee calculation is > 0
 
             //we see if any selection of the family discount
@@ -225,6 +225,7 @@
 
             //find the airport transfer
             $(div).find("input[type=checkbox].airport-transfer:checked").each(function (index, el) {
+                console.log(fee);
                 fee = fee + REGO_CALCULATOR.airport_fee;
                 groups.AirportTransfer = el.checked;
             });

@@ -1,0 +1,182 @@
+
+        input.form-control:focus, select.form-control:focus, textarea.form-control:focus {
+            border-bottom: 3px solid red !important;
+        }
+
+      
+        table.table td {font-size:small !important;}
+
+        table.table thead {
+            font-size: small !important;
+        }
+
+        table.table caption {
+            font-size: small !important;
+        } 
+
+
+        .input-group .input-group-addon {
+            background:#333;
+            color:white;
+        }
+
+    
+        
+        .form-inline .form-group {
+            padding-top: 8px !important;
+        }
+
+        .line-total {
+            min-width: 90px;
+            /*background: #275b11 !important;*/
+        }
+
+        .checkbox label {
+            font-size:small;
+        }
+
+        /* VALIDATION ERRORS */
+        input.validate-error {
+            background: rgb(251, 221, 226);
+            
+        }
+        label.validate-error {
+            color: #FF8B8B;
+            font-weight: normal !important;
+        }
+   
+        ul.country-list li.country{
+            color:#333 !important;
+            font-size:90%;
+
+        }
+
+        .force-show {
+            display: inline-block !important;
+        }
+
+
+        
+        .well-offset-color {
+            border: 1px solid #86A6C5 !important;
+            /*background-color: #2b3e50 !important;*/
+            min-height: 350px !important;
+            border-radius: 15px;
+
+        }
+            .well-offset-color table {
+                border-color: #637A90;
+            }
+
+            .well-offset-color table td {
+                font-size: 120% !important;
+            }
+
+                .well-offset-color table caption {
+                    font-size: 150% !important;
+                    color: #637A90;
+                }
+
+
+        #rego-summary {
+            display:none;
+        } 
+        #rego-summary div.well { 
+            background-color: #213244;
+            color:white;
+        }
+
+        #rego-summary .white {
+            background-color: #fff !important;
+            color: inherit !important;
+            border: none !important;
+        }        
+        
+
+            #rego-summary table caption {
+                font-size: 150% !important;
+            }
+
+            table.table-last-col-right td:last-child, 
+            table.table-last-col-right th:last-child{
+                text-align:right;
+            } 
+
+        #rego-summary .label-summary-total {
+            font-size:100%;    
+        } 
+            
+
+        #rego-summary table td, #rego-summary table th {
+            border:none !important;
+        }
+
+
+        #payment-summary .panel-default {
+            background-color: #213244 !important;
+            color:white;
+            
+        }
+
+        #payment-summary .panel{
+            border-radius: 10px !important;
+
+        }
+
+        
+
+
+        #payment-summary table {
+            /*border-color:#637A90;*/
+        }
+        
+        #payment-summary table caption {
+            color:#637A90;
+        }
+
+        #payment-summary .bank-info {
+            /*color:#213244;*/
+            color:white; 
+        }
+
+        #payment-summary .panel-footer {
+            background-color: transparent !important;
+            background-color: rgba(0,0,0,0) !important; 
+        }
+            
+
+        
+
+        div#summary-content table, 
+        div#summary-content .panel-body table {
+            border-top: 1px solid #DF691A !important;
+            border-collapse: initial;
+            border-spacing: 2px;
+            border: none;
+        }
+
+        div#summary-content table caption {
+            color: #CAAB71;
+        }
+
+        div#summary-content table tbody tr {
+            background-color: #3C4C5A;
+        }
+
+        div#summary-content .panel-body table tbody tr {
+            background-color: #3C4C5A;
+        }
+
+
+        /* strike strikeout  */
+        tr.strikeout td { position: relative; font-style: italic; opacity: 0.5;}
+
+        tr.strikeout td:before {
+          content: " ";
+          position: absolute;
+          top: 50%;
+          left: 0;
+          border-bottom: 2px solid maroon;
+          width: 100%;
+        }
+
