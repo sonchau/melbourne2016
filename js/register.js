@@ -445,7 +445,7 @@
             // nationalMode: false,
             // numberType: "MOBILE",
             // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-            preferredCountries: ['au', 'nz', 'us', 'ca'],
+            preferredCountries: ['au', 'vn', 'nz', 'us', 'ca'],
             // separateDialCode: true,
             utilsScript: "/js/utils.js"
         });

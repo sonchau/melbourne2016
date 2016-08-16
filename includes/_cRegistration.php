@@ -1457,6 +1457,15 @@
 		}
 
 
+		function endsWith($haystack, $needle) {
+		    // search forward starting from end minus needle length characters
+		    return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
+		}
+
+		function startsWith($haystack, $needle) {
+		    // search backwards starting from haystack length characters from the end
+		    return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
+		}
 
 		function processRegoSubmission(){
 
@@ -1558,9 +1567,15 @@
 								//we try this as we dont want to show error if email fails
 								//we still want to show the registration information
 
+								$show_viet_section = 0;
+								if (startsWith($rego->Phone,"+84") || startsWith($rego->Phone,"84") || endsWith($rego->Church,"Vietnam"))
+								{
+									$show_viet_section = 1;
+								}
+
 								$message = $rego->getRego($ref);
 								$email = new Mailer();
-								$email->sendMail($rego->Email, 'DaiHoi 2016 Registration [' . $ref . '] for: ' . $rego->FullName() , $message);
+								$email->sendMail($rego->Email, 'DaiHoi 2016 Registration [' . $ref . '] for: ' . $rego->FullName() , $message, $show_viet_section);
 
 
 

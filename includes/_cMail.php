@@ -5,7 +5,7 @@
 				function Mailer(){ }
 
 
-				function sendMail($to,  $subject,  $message ){
+				function sendMail($to,  $subject,  $message, $include_viet_section ){
 					if (trim($to) == "" ){
 						$to = "kyle@instil.org.au";
 					}
@@ -159,12 +159,13 @@
 								    </style>
 								</head>
 								<body>
-
+											
 								            <div>&nbsp;</div>
 								            <div class="row" id="rego-summary" style="display: block !important;">
 								                <div class="well">
 								                    <div id="summary-content">
 								                            <!--CONTENT-->
+								                            ' . $this->getVietSection($include_viet_section)  . '
 								                    </div>
 								                    <div class="clearfix">&nbsp;</div>
 								                </div>
@@ -190,6 +191,12 @@
 				}
 
 
+				function getVietSection($include_viet_section){
+					if ($include_viet_section == 1){
+                		return file_get_contents(($_SERVER['DOCUMENT_ROOT'] . '/includes/_viet.php'),false);
+                	}
+                	return "";
+				}
 
 				function checkEmailValidity($email){
 
@@ -215,11 +222,16 @@
 		} //end class
 
 
-
-
-		//$x = new Mailer();
-		//$x->sendMail("","","");
+		/*
+		if ($_GET["test"] == "1"){
+			$x = new Mailer();
+			$x->sendMail("","test","test",1);
+			echo "sent";
+		}
+		*/
 
 
 
 	?>
+
+
