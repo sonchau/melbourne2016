@@ -32,6 +32,8 @@
 
 			var $Pensioner		 = false;
 
+			var $EarlyBirdSpecial= false;
+
 
 			//new
 			function Person() { }
@@ -129,6 +131,8 @@
 
 			var $Pensioner		 = false;
 
+			var $EarlyBirdSpecial= false;
+
 
 			const SQL_DB_NAME 		= 'melbou99_mysql';
 
@@ -182,7 +186,7 @@
 			*/
 			function validateFees(){ 
 
-				$fee = $this->calculateFee($this->Age, '-', $this->Airbed , $this->AirportTransfer, $this->Pensioner );
+				$fee = $this->calculateFee($this->Age, '-', $this->Airbed , $this->AirportTransfer, $this->Pensioner, $this->EarlyBirdSpecial );
 
 				if ($fee !== $this->Fee){
 
@@ -198,7 +202,7 @@
 
 							if ($member->isValid()) { //validates name, age and numeric age
 
-								$fee = $this->calculateFee($member->Age, $member->FamilyDiscount, $member->Airbed , $member->AirportTransfer, $member->Pensioner );
+								$fee = $this->calculateFee($member->Age, $member->FamilyDiscount, $member->Airbed , $member->AirportTransfer, $member->Pensioner, $member->EarlyBirdSpecial );
 
 								if ($fee !== $member->Fee){ //validates fee
 
@@ -301,14 +305,15 @@
 									$FamilyDiscount = '-', 
 									$Airbed = 0, 
 									$AirportTransfer = 0,
-									$Pensioner = 0){
+									$Pensioner = 0,
+									$EarlyBirdSpecial = 0){
 
 
 				//create a calculator objcet
 				$calculator = new FeeCalculator();
 
 				//use object to calculate fee
-            	return $calculator->calculateFee($Age, $FamilyDiscount, $Airbed, $AirportTransfer, $Pensioner);
+            	return $calculator->calculateFee($Age, $FamilyDiscount, $Airbed, $AirportTransfer, $Pensioner, $EarlyBirdSpecial);
 
 			}
 
@@ -1508,7 +1513,7 @@
 
 
 
-						//$out = new OUTPUTj(0,"","Registration is temporarily unavailable"); 
+						//$out = new OUTPUTj(0,"","Registration is temporarily unavailable!"); 
 						//echo $out->toJSON();
 						//return false;
 

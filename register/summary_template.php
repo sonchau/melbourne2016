@@ -168,7 +168,7 @@
 
             <div class="panel-body">
 
-
+                <!-- 
                 <div class="row earlybird-panel">
                     <div class="col-md-12 col-lg-12 center-block text-center">
                         <div class="alert alert-info" style="background-color: rgba(139, 195, 74,0.80) !important; border-radius: 10px; padding:10px;">
@@ -178,6 +178,7 @@
                         </div>
                     </div>
                 </div>
+                -->
 
                 <div class="row">
 

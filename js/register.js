@@ -222,15 +222,18 @@
             });
             */
 
-
-            //find the airport transfer
-            $(div).find("input[type=checkbox].airport-transfer:checked").each(function (index, el) {
-                console.log(fee);
-                fee = fee + REGO_CALCULATOR.airport_fee;
-                groups.AirportTransfer = el.checked;
-            });
-
         }
+
+        //adjustment of fee as the airbed and transfer fee are additional on top (not part of any discounts)
+        if (fee < 0) { fee = 0 }
+
+        //find the airport transfer
+        $(div).find("input[type=checkbox].airport-transfer:checked").each(function (index, el) {
+            console.log(fee);
+            fee = fee + REGO_CALCULATOR.airport_fee;
+            groups.AirportTransfer = el.checked;
+        });
+
 
 
         if (fee < 0) { fee = 0 }

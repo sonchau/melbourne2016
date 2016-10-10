@@ -27,7 +27,8 @@
 								$FamilyDiscount = '-', 
 								$Airbed = 0, 
 								$AirportTransfer = 0,
-								$Pensioner = 0){
+								$Pensioner = 0,
+								$EarlyBirdSpecial = 0){
 
 
 
@@ -82,9 +83,19 @@
 
 				} 
 
+				//adjustment of fee as the airbed and transfer fee are additional on top (not part of any discounts)
+        		if ($fee < 0) { 
+        			$fee = 0 ;
+        		}
 
 
-				if ($Airbed) { //airbed discount
+				//early bird special
+				if ($EarlyBirdSpecial){
+					$fee = $this->calculateEarlyBirdDiscount($fee, $Age, $Pensioner); //removal of discount as it has elapsed
+				}
+
+
+				if ($fee >= self::AIRBED_DISCOUNT_AMOUNT && $Airbed) { //airbed discount
 					$fee = $fee - self::AIRBED_DISCOUNT_AMOUNT;
 				}
 
@@ -94,12 +105,6 @@
 					$fee = $fee + self::AIRPORT_FEE;
 
 				}
-
-
-				//early bird special
-				$fee = $this->calculateEarlyBirdDiscount($fee, $Age, $Pensioner);
-
-
 
 				//adjustment of fee
         		if ($fee < 0) { 
@@ -115,9 +120,10 @@
 
 
 			private function calculateEarlyBirdDiscount($fee, $age, $pensioner){
+
 				if (is_numeric($fee)){
 
-					if (new DateTime() < new DateTime("2016-09-30 00:00:00")) {
+					//if (new DateTime() < new DateTime("2016-09-30 00:00:00")) {
 
 
 				            switch (true) {
@@ -144,7 +150,7 @@
 				            }
 			    	
 				    		return $fee;
-					}
+					//}
 
 				}else{
 					return $fee;

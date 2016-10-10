@@ -166,17 +166,6 @@
 
                     <p>All prices are in AUD unless otherwise specified.</p>
 
-                    <div class="row earlybird-panel">
-                        <div class="col-md-12 col-lg-12 center-block text-center">
-                            <div class="alert alert-info" style="background-color: rgba(139, 195, 74,0.80)  !important; border-radius:10px;">
-                                <i class="fa fa-heart fa-x2" aria-hidden="true" style="color:#C85E17"> </i>
-                                <strong style="color:#C85E17">Early Bird Love</strong> 
-                                <p style="font-weight: normal;">Complete your registration along with <span style="border-bottom:2px solid #000;">full payment before</span> Friday 30th September 2016, and receive up to $40 discount off each person registered. (except for kid 5 year old or under)</p>
-                            </div>
-                        </div>
-                    </div>
-
-
 
                     <div class="row">
 
@@ -189,30 +178,26 @@
                                         <tr>
                                             <th>Age</th>
                                             <th>Price</th>
-                                            <th>EarlyBird</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>5 and under (shared bed with parents)</td>
                                             <td>$50</td>
-                                            <td style="text-align: right;">$50</td>
                                         </tr>
                                         <tr>
                                             <td>6 - 11</td>
                                             <td>$350</td>
-                                            <td style="text-align: right;">$320</td>
                                         </tr>
                                         <tr>
                                             <td>12 - 64</td>
                                             <td>$440</td>
-                                            <td style="text-align: right;">$400</td>
                                         </tr>
                                         <tr>
 
                                             <td>65 and above or Pensioner</td>
                                             <td>$390</td>
-                                            <td style="text-align: right;">$350</td>
+
                                         </tr>
 
                                     </tbody>
@@ -843,9 +828,9 @@
     </div>    
 
 
-    <script src="/js/register_objects.js?v=12.<?php echo rand() ?>"></script>
-    <script src="/js/register.js?v=12.<?php echo rand() ?>"></script>
-    <script src="/register/submission.js?v=4"></script>
+    <script src="/js/register_objects.js?v=13.<?php echo rand() ?>"></script>
+    <script src="/js/register.js?v=13.<?php echo rand() ?>"></script>
+    <script src="/register/submission.js?v=5"></script>
 
     <!-- shepherd -->
     <link href="shepherd-theme-arrows.css"  rel="stylesheet" type="text/css" />

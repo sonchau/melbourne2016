@@ -46,6 +46,7 @@
     <link href="/css/app.css?v=22"       rel="stylesheet" />
     <link href="/css/animate.css?v=1"    rel="stylesheet" />
     <link href="/favicon.ico"            rel="shortcut icon" type="image/x-icon" />
+    <link href="/css/countdown.css?v=2"     rel="stylesheet" type="text/css" media="screen" />
 
 </head>
 <body>
@@ -239,6 +240,32 @@
                 </div>
                 <div class="clearfix">&nbsp;</div>
 
+                    <div class="panel panel-info">
+                        <div class="panel-heading text-center">Conference In</div>
+                      <div class="panel-body" style="height:initial; padding-bottom: 10px;">
+
+                            <div>
+                                  <form class="countdown" name="countDown">
+                                    <input size="4" name="daysLeft" />
+                                    <hr class="soft">
+                                    <h3>Days</h3>
+                                    <hr class="soft">
+                                    <span class="bottom_time"><input size="3"  name="hrLeft" /></span>
+                                    <span class="bottom_time"><input size="3"  name="minLeft" /></span>
+                                    <span class="bottom_time"><input size="3"  name="secLeft" /></span>
+                                    <ul>
+                                      <li>Hrs</li>
+                                      <li>Min</li>
+                                      <li>Sec</li>
+                                    </ul>
+                                  </form>
+
+                            </div>
+                      </div>
+                    </div>
+
+
+
             </div>
 
 
@@ -280,6 +307,8 @@
         </div>     
         <!-- END FOOTER -->       
 
+
+        <script type="text/javascript" src="/js/countdown.js?v=1"></script>
 
     </body>
     </html>

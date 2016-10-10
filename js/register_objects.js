@@ -16,6 +16,7 @@
         this.Cancelled       = false,
         this.DiscountAmount  = 0,
         this.Pensioner       = false,
+        this.EarlyBirdSpecial= false,
 
         this.Name = function(){
             var n = this.Firstname + ' ' + this.Surname; 
@@ -132,6 +133,7 @@
         this.Cancelled       = false,
         this.DiscountAmount  = 0,
         this.Pensioner       = false,
+        this.EarlyBirdSpecial= false,
 
         this.Name = function(){
             var n = this.Firstname + ' ' + this.Surname; 
@@ -176,12 +178,13 @@
             //pensioner (can only be pensioner at 18)
             if (age > 17 && pensioner) { fee = 390; }
 
-            fee = this.calculateEarlyBirdDiscount(fee, age, pensioner);
+            //fee = this.calculateEarlyBirdDiscount(fee, age, pensioner); //removed as discount has passed
 
             return fee;
 
         },
-        calculateFee2: function (age,airbed,airport,family_discount, pensioner){ //does fee calculation on all aspects
+        calculateFee2: function (age,airbed,airport,family_discount, pensioner, earlybird){ //does fee calculation on all aspects
+            if (typeof earlybird === "undefined") { earlybird = false }
 
             var fee = 0;
 
@@ -208,17 +211,21 @@
 
             }
 
+            //adjustment of fee as the airbed and transfer fee are additional on top (not part of any discounts)
+            if (fee < 0) { fee = 0 }
 
-            if (fee > 0 && airbed){
+            if (earlybird){
+                fee = this.calculateEarlyBirdDiscount(fee, age, pensioner);
+            }
+
+            if (fee >= this.airbed_discount_amount && airbed){
                 fee = fee - this.airbed_discount_amount;
             }
 
-            if (fee > 0 && airport){
+            if (airport){
                 fee = fee + this.airport_fee;
             }            
-            
-            //no need to recalculate early bird fee as its already called in: this.calculateFee(age);
-            //fee = this.calculateEarlyBirdDiscount(fee);
+
 
             if (fee < 0) { fee = 0 }
 
@@ -227,6 +234,9 @@
 
         },
         calculateEarlyBirdDiscount: function (fee, age, pensioner) { //does fee calculate on age
+
+            //return fee; //no more specials
+
             if (isNaN(fee)){
                 return fee;
             }
@@ -234,7 +244,7 @@
 
             var nowDate = new Date();
             var earlybirdDate = new Date(2016,09,30);
-            if (nowDate < earlybirdDate){
+            //if (nowDate < earlybirdDate){
 
                 //select the early bird by age
                 switch (true) {
@@ -255,7 +265,7 @@
                 }
 
                 
-            }
+            //}
 
             return fee;
 
