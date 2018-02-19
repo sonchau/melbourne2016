@@ -1,11 +1,9 @@
 <?php
-
-
-
+// Report all errors except E_NOTICE
+error_reporting(E_ALL & ~E_NOTICE);
 
 
 date_default_timezone_set('Australia/Sydney');
-
 
 
 if (PHP_SAPI == 'cli')
@@ -17,24 +15,16 @@ if (PHP_SAPI == 'cli')
 
 require_once dirname(__FILE__) . '/PHPExcel.php';
 
-
 	require '_db.php';
-
-
-
-
 
 	$database = createDb();
 
 
 	// Create new PHPExcel object
-
 	$objPHPExcel = new PHPExcel();
 
 
-
 	// Set document properties
-
 	$objPHPExcel->getProperties()->setCreator("Kyle Huynh")
 								 ->setLastModifiedBy("Kyle Huynh")
 								 ->setTitle("Office 2007 XLSX")

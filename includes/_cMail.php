@@ -1,23 +1,29 @@
-	<?php
-
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/_cApp.php' ?>
+<?php
+		// Report all errors except E_DEPRECATED
+		error_reporting(E_ALL ^ E_DEPRECATED);
 		class Mailer{
 
 				function Mailer(){ }
 
 
 				function sendMail($to,  $subject,  $message, $include_viet_section ){
+					//TODO: REMOVE FOR PROD
+					//return true;
+					
+					
 					if (trim($to) == "" ){
 						$to = "kyle@instil.org.au";
 					}
 					//$subject = "My subject";
 					if (!$this->checkEmailValidity($to)){
-						$to = "info@melbourne2016.net.au";	
+						$to = AppConfig::$DEFAULT_EMAIL_ADDRESS;
 					}
 					
 					$headers 	= "MIME-Version: 1.0" . "\r\n";
 					$headers 	.= "Content-type:text/html;charset=UTF-8" . "\r\n"; 		
-					$headers 	.= "From: DaiHoi Melbourne2016 <registration@melbourne2016.net.au>" . "\r\n";
-					$headers 	.= "Bcc: registration@melbourne2016.net.au, ngoctram787@gmail.com" . "\r\n";
+					$headers 	.= "From: " . AppConfig::$APP_NAME ." <" . AppConfig::$DEFAULT_EMAIL_ADDRESS .">" . "\r\n";
+					$headers 	.= "Bcc: " . AppConfig::$DEFAULT_EMAIL_ADDRESS . "\r\n";
 					
 					$html = '<!DOCTYPE html>
 								<html lang="en">
@@ -180,7 +186,7 @@
 					$html = str_replace('<!--CONTENT-->', $message, $html);
 
 					try {
-						mail($to, '✝ ' . $subject,$html,$headers);
+						mail($to, $subject,$html,$headers,"-f " . AppConfig::$DEFAULT_EMAIL_ADDRESS);
 						return true;
 					} catch (Exception $e) {
 						echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -203,8 +209,10 @@
 					// check the email fields for validity
 					if ($email) {
 					   $email = trim($email);
+					   $string_exp = '^[_\.0-9a-z-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$';
 					   
-					   if (!eregi("^[_\.0-9a-z-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$", $email)){
+						//if (!eregi($string_exp, $email)){
+					   if(!preg_match('/'.$string_exp.'/i',$email)){
 					   	return false;
 					   }else{
 					   	return true;
@@ -222,13 +230,13 @@
 		} //end class
 
 
-		/*
+		
 		if ($_GET["test"] == "1"){
 			$x = new Mailer();
 			$x->sendMail("","test","test",1);
 			echo "sent";
 		}
-		*/
+		
 
 
 

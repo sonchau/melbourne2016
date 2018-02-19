@@ -9,6 +9,7 @@
 
 
 	<?php 
+		/*
 		//restict site usage by ip
 		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 		    $my_ip = $_SERVER['HTTP_CLIENT_IP'];
@@ -22,6 +23,7 @@
 			exit;
 		}
 		//end restict site usage by ip
+		*/
 	 ?>
 
 		

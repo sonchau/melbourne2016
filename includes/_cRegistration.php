@@ -1,7 +1,7 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/_cApp.php' ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_cMail.php');?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_cSms.php');?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_cFee.php');?>
-
 
 
 	<?php
@@ -36,7 +36,11 @@
 
 
 			//new
-			function Person() { }
+			function Person() {
+
+				$this->EarlyBirdSpecial = AppConfig::isEarlyBird();
+
+			}
 
 
 				function isValid(){
@@ -99,7 +103,7 @@
 
 			var $Church          = "";
 
-			var $Email           = ""       ;
+			var $Email           = "";
 
 			var $Phone           = "" ;
 
@@ -134,11 +138,10 @@
 			var $EarlyBirdSpecial= false;
 
 
-			const SQL_DB_NAME 		= 'melbou99_mysql';
-
-			const SQL_DB_USERNAME 	= 'melbou99_mysql';
-
-			const SQL_DB_PASSWORD 	= 'daihoi2016!';
+			// db details
+			var $SQL_DB_NAME 		= '';
+			var $SQL_DB_USERNAME 	= '';
+			var $SQL_DB_PASSWORD 	= '';
 
 
 
@@ -147,6 +150,12 @@
 			// constructor
 			*/
 			function Registration($json) {
+				$this->EarlyBirdSpecial = AppConfig::isEarlyBird();
+
+				$this->SQL_DB_NAME 		= AppConfig::$DB_NAME;
+				$this->SQL_DB_USERNAME 	= AppConfig::$DB_USERNAME;
+				$this->SQL_DB_PASSWORD 	= AppConfig::$DB_PASSWORD;
+					
 
 				$this->JSON = $json;
 
@@ -347,9 +356,9 @@
 					
 					$this->Phone           = trim($rego['Phone']);
 					
-					$this->Airbed          = false; //$rego['Airbed'];
+					$this->Airbed          = ($rego['Airbed'] == '' ? 0 : $rego['Airbed']);
 					
-					$this->AirportTransfer = $rego['AirportTransfer'];
+					$this->AirportTransfer = ($rego['AirportTransfer'] == '' ? 0 : $rego['AirportTransfer']);
 					
 					$this->Fee             = $rego['Fee'];
 					
@@ -359,9 +368,7 @@
 					
 					$this->Role            = $rego['Role'];
 
-					$this->Pensioner       = $rego['Pensioner'];
-
-
+					$this->Pensioner       = ($rego['Pensioner'] == '' ? 0 : $rego['Pensioner']);
 
 
 					foreach ($rego['Registrants'] as $member) {
@@ -383,9 +390,9 @@
 
 						$newPerson->FamilyDiscount  = $member['DiscountFamily'];
 
-						$newPerson->Airbed          = false; //$member['Airbed'];
+						$newPerson->Airbed          = ($member['Airbed'] == '' ? 0 : $member['Airbed']);
 
-						$newPerson->AirportTransfer = $member['AirportTransfer'];
+						$newPerson->AirportTransfer = ($member['AirportTransfer'] == '' ? 0 : $member['AirportTransfer']);
 
 						$newPerson->Fee             = $member['Fee'];
 
@@ -393,7 +400,7 @@
 
 						$newPerson->Role            = $member['Role'];
 
-						$newPerson->Pensioner       = $member['Pensioner'];
+						$newPerson->Pensioner       = ($member['Pensioner'] == '' ? 0 : $member['Pensioner']);
 
 
 						if ($newPerson->isValid()) {
@@ -484,8 +491,6 @@
 
 			function generateRandomString($includeGUI = false)	{
 
-
-
 			    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 			    $charactersLength = strlen($characters);
@@ -494,14 +499,11 @@
 
 				$length = ($includeGUI) ? 5 : 10 ;
 
-
 			    for ($i = 0; $i < $length; $i++) {
 
 			        $randomString .= $characters[rand(0, $charactersLength - 1)];
 
 			    }
-
-
 
 			    if ($includeGUI){
 
@@ -518,9 +520,35 @@
 
 			    return $randomString;
 
+			}
+
+
+			function generateReference()	{
+
+			    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+			    $charactersLength = strlen($characters);
+
+			    $randomString = '';
+
+				//$length = ($includeGUI) ? 5 : 10 ;
+				$length = 6;
+
+			    for ($i = 0; $i < $length; $i++) {
+
+			        $randomString .= $characters[rand(0, $charactersLength - 1)];
+
+			    }
+
+			    //we try to ensure the reference is unique
+
+			    //require '../db-admin/_db.php';
+
+				//$database = createDb();
+
+			    return $randomString;
+
 			}			
-
-
 
 
 
@@ -543,7 +571,7 @@
 
 
 
-				$mysqli = new mysqli("localhost", self::SQL_DB_USERNAME, self::SQL_DB_PASSWORD, self::SQL_DB_NAME);
+				$mysqli = new mysqli("localhost", $this->SQL_DB_USERNAME, $this->SQL_DB_PASSWORD, $this->SQL_DB_NAME);
 
 				if ($mysqli->connect_errno) {
 
@@ -594,11 +622,8 @@
 
 
 
-
-
-
-
-				$this->Reference = $this->generateRandomString(true);
+				//creates the referernce
+				$this->Reference = strtoupper(trim(substr($this->Surname,0,6))) . '-' . $this->generateReference();
 
 				$Reference = $this->Reference;
 
@@ -625,7 +650,7 @@
 
 				/* Prepared statement, stage 1: prepare */
 
-				if (!($stmt = $mysqli->prepare("INSERT INTO MainContact (FullName, Age, Church, Email, Phone, DateTimeEntered, AirportTransfer, Airbed, Comments, Fee, Reference, Role, Gender, Firstname, Surname, Pensioner) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"))) {
+				if (!($stmt = $mysqli->prepare("INSERT INTO MainContact (FullName, Age, Church, Email, Phone, DateTimeEntered, AirportTransfer, Airbed, Comments, Fee, Reference, Role, Gender, Firstname, Surname, Pensioner, EarlyBirdSpecial) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"))) {
 
 				    $this->logError("Prepare failed MainContact: (" . $mysqli->errno . ") " . $mysqli->error);
 
@@ -666,8 +691,9 @@
 
 				$Pensioner       = $this->Pensioner;
 
+				$EarlyBirdSpecial=$this->EarlyBirdSpecial;
 
-				if (!$stmt->bind_param("ssssssssssssssss", $FullName, 
+				if (!$stmt->bind_param("sssssssssssssssss", $FullName, 
 															$Age, 
 															$Church, 
 															$Email, 
@@ -682,9 +708,10 @@
 															$Gender,
 															$Firstname,
 															$Surname, 
-															$Pensioner)) {												
+															$Pensioner,
+															$EarlyBirdSpecial)) {												
 
-				    $this->logError( "Binding parameters failed MainContact: (" . $stmt->errno . ")<br />  " . $stmt->error);
+				    $this->logError( "Binding parameters failed MainContact: (" . $stmt->errno . ")<br />  " . $stmt->error );
 
 					return false;
 
@@ -731,7 +758,7 @@
 
 					//insert any members in group
  					/* Prepared statement, stage 1: prepare */
-					if (!($stmt = $mysqli->prepare("INSERT INTO Registrant (MainContactId, FullName, Age, Relation, FamilyDiscount, Airbed, AirportTransfer,Fee, Role, Gender, Firstname, Surname, Pensioner) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+					if (!($stmt = $mysqli->prepare("INSERT INTO Registrant (MainContactId, FullName, Age, Relation, FamilyDiscount, Airbed, AirportTransfer,Fee, Role, Gender, Firstname, Surname, Pensioner, EarlyBirdSpecial) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 					    $this->logError("Prepare failed members: (" . $mysqli->errno . ") " . $mysqli->error);
 					    $membersUpdateError =1;
@@ -739,7 +766,7 @@
 
 
 
-					if (!$stmt->bind_param("sssssssssssss", $newMainContactId, 
+					if (!$stmt->bind_param("ssssssssssssss", $newMainContactId, 
 														$FullName, 
 														$Age, 
 														$Relation,
@@ -751,7 +778,8 @@
 														$Gender,
 														$Firstname,
 														$Surname,
-														$Pensioner )) {
+														$Pensioner,
+														$EarlyBirdSpecial )) {
 
 
 
@@ -782,7 +810,7 @@
 									$Role            = $member->Role; 
 									$Gender          = $member->Gender; 
 									$Pensioner       = $member->Pensioner; 
-
+									$EarlyBirdSpecial= $member->EarlyBirdSpecial; 
 
 									if (!$stmt->execute()) {
 									    $this->logError("Execute failed members: (" . $stmt->errno . ")<br /> " . $stmt->error);
@@ -843,7 +871,7 @@
 			*/
 			function getRego($ref){
 
-					$mysqli = new mysqli("localhost", self::SQL_DB_USERNAME, self::SQL_DB_PASSWORD, self::SQL_DB_NAME);
+					$mysqli = new mysqli("localhost", $this->SQL_DB_USERNAME, $this->SQL_DB_PASSWORD, $this->SQL_DB_NAME);
 
 					if ($mysqli->connect_errno) {
 
@@ -1262,7 +1290,7 @@
 
 			function updateSMSMessageId($ref, $messageId){
 
-					$mysqli = new mysqli("localhost", self::SQL_DB_USERNAME, self::SQL_DB_PASSWORD, self::SQL_DB_NAME);
+					$mysqli = new mysqli("localhost", $this->SQL_DB_USERNAME, $this->SQL_DB_PASSWORD, $this->SQL_DB_NAME);
 
 					if ($mysqli->connect_errno) {
 
@@ -1331,7 +1359,7 @@
 					$return = false;
 
 
-					$mysqli = new mysqli("localhost", self::SQL_DB_USERNAME, self::SQL_DB_PASSWORD, self::SQL_DB_NAME);
+					$mysqli = new mysqli("localhost", $this->SQL_DB_USERNAME, $this->SQL_DB_PASSWORD, $this->SQL_DB_NAME);
 
 					if ($mysqli->connect_errno) {			
 
@@ -1473,10 +1501,11 @@
 		}
 
 		function processRegoSubmission(){
-
-				// $out = new OUTPUTj(0,"","Registration currently not available");
-				// echo $out->toJSON();
-				// return false;
+				/*
+				$out = new OUTPUTj(0,"","Registration currently not available");
+				echo $out->toJSON();
+				return false;
+				*/
 
 				$json = $_POST["json"];
 
@@ -1517,8 +1546,6 @@
 						//echo $out->toJSON();
 						//return false;
 
-
-
 						//$rego->toString();
 
 						if ($rego->commitDB()){
@@ -1542,7 +1569,7 @@
 							            $messageId =  $sms->send($rego->Phone, 
 							            	//http://tinyurl.com/h4glqrk?ref=1
 							            	//http://goo.gl/asxolc
-							            	'Hi ' . $rego->Firstname . ', your ref: ' . $ref  .'. View your rego @ http://tinyurl.com/h4glqrk?ref=' . $ref . '\n\nDaiHoi Melbourne2016 Team.'); 
+							            	'Hi ' . $rego->Firstname . ', your ref: ' . $ref  .'. View your rego @ ' . AppConfig::$TINYURL_VIEW .'?ref=' . $ref . '\n\nDaiHoi Melbourne' . AppConfig::$CONFERENCE_YEAR . ' Team.'); 
 
 							            if($messageId){
 
@@ -1580,7 +1607,7 @@
 
 								$message = $rego->getRego($ref);
 								$email = new Mailer();
-								$email->sendMail($rego->Email, 'DaiHoi 2016 Registration [' . $ref . '] for: ' . $rego->FullName() , $message, $show_viet_section);
+								$email->sendMail($rego->Email, 'DaiHoi ' . AppConfig::$CONFERENCE_YEAR . ' Registration [' . $ref . '] for: ' . $rego->FullName() , $message, $show_viet_section);
 
 
 

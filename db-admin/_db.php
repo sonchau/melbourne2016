@@ -1,8 +1,7 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/_cApp.php' ?>
 <?php 
 
-  const SQL_DB_NAME       = 'melbou99_mysql';
-  const SQL_DB_USERNAME   = 'melbou99_mysql';
-  const SQL_DB_PASSWORD   = 'YOUR_PASSWORD';
+  require '_money_format.php';
 
   /* Include class file */
   //include ("medoo.php");
@@ -14,10 +13,10 @@
     $database = new medoo([
       // required
       'database_type' => 'mysql',
-      'database_name' => SQL_DB_NAME,
+      'database_name' => AppConfig::$DB_NAME,
       'server' => 'localhost',
-      'username' => SQL_DB_USERNAME,
-      'password' => SQL_DB_PASSWORD,
+      'username' => AppConfig::$DB_USERNAME,
+      'password' => AppConfig::$DB_PASSWORD,
       'charset' => 'utf8'
      
       // [optional]
@@ -47,5 +46,6 @@
     return 'No';
   }
   
-
+  
+  
 ?>

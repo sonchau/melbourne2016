@@ -8,13 +8,13 @@
 
 	    const FAMILY_DISCOUNT2_AMOUNT = 100;
 
-	    const AIRBED_DISCOUNT_AMOUNT = 20;
+	    const AIRBED_DISCOUNT_AMOUNT = 0;
 
 	    const AIRPORT_FEE = 25;
 
 	    const EARLY_BIRD_DISCOUNT_AMOUNT1 = 30;
 
-	    const EARLY_BIRD_DISCOUNT_AMOUNT2 = 40;
+	    const EARLY_BIRD_DISCOUNT_AMOUNT2 = 50;
 
 
 		function FeeCalculator(){
@@ -31,7 +31,6 @@
 								$EarlyBirdSpecial = 0){
 
 
-
 		        $fee = 0;
 
 		        //normal pricing
@@ -40,17 +39,18 @@
 	                    $fee = 50;
 	                    break;
 
-	                case ($Age > 5 && $Age <= 11):
+	                case ($Age > 5 && $Age <= 12):
 	                    $fee = 350;
 	                    break;
 
-	                case ($Age > 11 && $Age < 65):
-	                    $fee = 440;
-	                    break;
-	                case ($Age >= 65 ): 
-	                	
-	                    $fee = 390;
-	                    break;
+	                case ($Age > 12 && $Age < 65):
+	                    $fee = 450;
+						break;
+						
+	                case ($Age >= 65 ):                 	
+	                    $fee = 400;
+						break;
+						
                     default:
 
 						# code...
@@ -60,7 +60,7 @@
 	            }
 
 				//pensioner (can only be pensioner at 18)
-	            if ($Age > 17 && $Pensioner) { $fee = 390;}
+	            if ($Age > 17 && $Pensioner) { $fee = 400;}
 
 
 	            //any family discounts
@@ -92,6 +92,7 @@
 				//early bird special
 				if ($EarlyBirdSpecial){
 					$fee = $this->calculateEarlyBirdDiscount($fee, $Age, $Pensioner); //removal of discount as it has elapsed
+
 				}
 
 
@@ -121,7 +122,9 @@
 
 			private function calculateEarlyBirdDiscount($fee, $age, $pensioner){
 
-				if (is_numeric($fee)){
+
+
+				if (is_numeric($fee)){	
 
 					//if (new DateTime() < new DateTime("2016-09-30 00:00:00")) {
 
@@ -131,16 +134,17 @@
 				                    //no eary bird discount
 				                    break;
 
-				                case ($age > 5 && $age <= 11):
+				                case ($age > 5 && $age <= 12):
 				                    $fee = $fee - self::EARLY_BIRD_DISCOUNT_AMOUNT1;
 				                    break;
 
-				                case ($age > 11 && $age < 65):
+				                case ($age > 12 && $age < 65):
 				                    $fee = $fee - self::EARLY_BIRD_DISCOUNT_AMOUNT2;
 				                    break;
 
 				                case ($age >= 65):
 				                    $fee = $fee - self::EARLY_BIRD_DISCOUNT_AMOUNT2;
+
 				                    break;
 
 			                    default:
@@ -148,7 +152,7 @@
 									break;
 
 				            }
-			    	
+			    			
 				    		return $fee;
 					//}
 

@@ -1,3 +1,6 @@
+    
+    const EARLY_BIRD_DISCOUNT = true; //normal registration 
+    
     var REGO = function () {
         this.Firstname       = '',
         this.Surname         = '',
@@ -16,7 +19,7 @@
         this.Cancelled       = false,
         this.DiscountAmount  = 0,
         this.Pensioner       = false,
-        this.EarlyBirdSpecial= false,
+        this.EarlyBirdSpecial= EARLY_BIRD_DISCOUNT,
 
         this.Name = function(){
             var n = this.Firstname + ' ' + this.Surname; 
@@ -133,7 +136,7 @@
         this.Cancelled       = false,
         this.DiscountAmount  = 0,
         this.Pensioner       = false,
-        this.EarlyBirdSpecial= false,
+        this.EarlyBirdSpecial= EARLY_BIRD_DISCOUNT,
 
         this.Name = function(){
             var n = this.Firstname + ' ' + this.Surname; 
@@ -151,46 +154,51 @@
         type: "calculation",
         family_discount1_amount: 50,
         family_discount2_amount: 100,
-        airbed_discount_amount: 20,
+        airbed_discount_amount: 0,
         airport_fee: 25,
         early_bird_discount_amount_tier_1: 30,
-        early_bird_discount_amount_tier_2: 40,
+        early_bird_discount_amount_tier_2: 50,
 
-        calculateFee: function (age, pensioner) { //does fee calculate on age
+        calculateFee: function (age, pensioner, earlybird) { //does fee calculate on age
+
+            if (typeof earlybird === 'undefined') {earlybird = EARLY_BIRD_DISCOUNT;}
+
             var fee = 0;
             switch (true) {
                 case (age <= 5):
                     fee = 50;
                     break;
-                case (age > 5 && age <= 11):
+                case (age > 5 && age <= 12):
                     fee = 350;
                     break;
-                case (age > 11 && age < 65):
-                    fee = 440;
+                case (age > 12 && age < 65):
+                    fee = 450;
                     break;
                 case (age >= 65):
-                    
-                    fee = 390;
+                    fee = 400;
                     break;
                 default:
 
             }
             //pensioner (can only be pensioner at 18)
-            if (age > 17 && pensioner) { fee = 390; }
+            if (age > 17 && pensioner) { fee = 400; }
 
-            //fee = this.calculateEarlyBirdDiscount(fee, age, pensioner); //removed as discount has passed
+            //early bird discount (remove when early bird has been reached)
+            if (earlybird) {
+                fee = this.calculateEarlyBirdDiscount(fee, age, pensioner); //removed as discount has passed
+            }
 
             return fee;
 
         },
-        calculateFee2: function (age,airbed,airport,family_discount, pensioner, earlybird){ //does fee calculation on all aspects
+        calculateFee2: function (age,airbed,airport,family_discount, pensioner, earlybird){ //does fee calculation on all aspects (admin use)
             if (typeof earlybird === "undefined") { earlybird = false }
 
             var fee = 0;
 
 
             if (isNaN(age) == false) {
-                fee = this.calculateFee(age, pensioner);
+                fee = this.calculateFee(age, pensioner, false);
             }
 
 
@@ -242,8 +250,8 @@
             }
 
 
-            var nowDate = new Date();
-            var earlybirdDate = new Date(2016,09,30);
+            //var nowDate = new Date();
+            //var earlybirdDate = new Date(2016,09,30);
             //if (nowDate < earlybirdDate){
 
                 //select the early bird by age
@@ -251,10 +259,10 @@
                     case (age <= 5):
                         //no early bird
                         break;
-                    case (age > 5 && age <= 11):
+                    case (age > 5 && age <= 12):
                         fee = fee - REGO_CALCULATOR.early_bird_discount_amount_tier_1;
                         break;
-                    case (age > 11 && age < 65):
+                    case (age > 12 && age < 65):
                         fee = fee - REGO_CALCULATOR.early_bird_discount_amount_tier_2;
                         break;
                     case (age >= 65):

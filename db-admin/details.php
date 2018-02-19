@@ -1,3 +1,7 @@
+<?php	
+// Report all errors except E_NOTICE
+error_reporting(E_ALL & ~E_NOTICE);
+?>
 <!doctype html>
 
 <html class="no-js" lang="en">

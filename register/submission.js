@@ -24,7 +24,7 @@ var SUBMISSION =  {
                         }, 100);
                     }else{
                         //alert("registration error: \n" + obj.message);
-                        $("#myModal").modal("show").find("div.modal-body").text(obj.message + ', please try again or contact the registration team.')
+                        $("#myModal").modal("show").find("div.modal-body").text(obj.message + ', please try again or contact the registration team!')
                     }
                 }else {
                     $("#myModal").modal("show").find("div.modal-body").text("Error: registration error, no data returned, please try again or contact the registration team.");

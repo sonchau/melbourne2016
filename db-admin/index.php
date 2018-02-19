@@ -1,3 +1,9 @@
+<?php	
+// Report all errors except E_NOTICE
+error_reporting(E_ALL & ~E_NOTICE);
+?>
+
+
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
@@ -114,19 +120,22 @@
 	$html1 = "";
 	$database = createDb();
 	$datas = $database->select("MainContact", [
-		"FullName",
-		"Email",
-		"Church",
-		"Phone",
-		"DateTimeEntered",
-		"MainContactId"
+			"FullName",
+			"Email",
+			"Church",
+			"Phone",
+			"DateTimeEntered",
+			"MainContactId"
 		] , [
-		"MainContactId[>]" => 0,
-		"ORDER" => "MainContactId DESC"
-	]);
+			"MainContactId[>]" => 0,
+			"ORDER" => ["MainContactId" => "DESC"]
+		]
+	);
+	//$datas = $database->select("MainContact", "*");
 
 
 	$records = count($datas);
+	
 	if ($records > 0) {
 		$html1 = sprintf('<h5><a href="details.php?id=%d">%s</a></h5>
 				<p>%s, %s<br />%s<p>%s',
@@ -140,6 +149,7 @@
 
 		//gets the next 20 records
 		$counter = 0;
+		$html3 = "";
 		foreach ($datas as $row) {
 			$counter += 1;
 			if ($counter > 1){

@@ -14,11 +14,13 @@
             return false;
         }
         var div = $(el).parents("div.row:first");
-        div.next("div").empty();
-        div.empty();
+        //div.next("div").empty();
+        div.fadeOut(400,function(){
+            $(this).remove();
+        });
+        
         ROW_COUNTER = ROW_COUNTER - 1;
         collectRegistrantInfo();
-
     }
 
 
@@ -31,7 +33,7 @@
 
         for (var x = 1; x < 4; x++) {
             var html = $(".form-inline div.row:first").html();
-            html = '<div class="row other-registrants">' + html + "</div><div>&nbsp;</div>";
+            html = '<div class="row other-registrants">' + html + "</div>"; //<div>&nbsp;</div>
             var template = jQuery.validator.format(html);
             $(template(ROW_COUNTER++, "force-show")).insertBefore("#add-more-button-row");
 
@@ -120,7 +122,7 @@
         groupRego.Phone           = info.phone;
         groupRego.Email           = info.email;
         groupRego.Comments        = info.notes;
-        groupRego.Reference       = "MELBOURNE2016";    //groupRego.generateReference(10);
+        groupRego.Reference       = "MELBOURNE2018";    //groupRego.generateReference(10);
         groupRego.Role            = info.role;
         groupRego.Gender          = info.gender;
         groupRego.Pensioner       = info.pensioner;

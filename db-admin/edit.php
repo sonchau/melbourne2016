@@ -1,3 +1,7 @@
+<?php	
+// Report all errors except E_NOTICE
+error_reporting(E_ALL & ~E_NOTICE);
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
@@ -466,6 +470,9 @@
 
 
 	    function updateFee(){
+
+          console.log("update fee");
+
 	        var Age             = $("#tAge").val();
 	        var AirportTransfer = document.getElementById("cbAirport").checked;
 	        var Airbed          = document.getElementById("cbAirbed").checked;
@@ -527,6 +534,7 @@
 	        
 
 	        $("#json").html(JSON.stringify(r)).show();
+          //toTable(r);
 
 	        sendData(JSON.stringify(r), <?php echo ($MainContactId == "") ? 0 : $MainContactId ; ?>, "update-maincontact");
 
@@ -566,6 +574,21 @@
 
 	    }
 
+
+      function toTable(jsonObj){
+        var myObj, txt = "";
+            myObj = jsonObj;//JSON.parse(json);
+            txt += "<table border='1'>"
+            for (x in myObj) {
+              txt += "<tr>" 
+              txt += "<td>" + x + "</td>";
+              txt += "<td>" + myObj[x].toString() + "</td>";
+              txt += "</tr>"  
+            }
+            txt += "</table>"        
+            document.getElementById("json").innerHTML = txt;
+
+      }
 
 	</script>
 

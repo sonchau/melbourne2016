@@ -1,8 +1,8 @@
 ﻿<ul id="bankdetails">
-    <li>Melbourne 2016 Conference</li>
-    <li>Bank: National Australia Bank Limited</li>
-    <li>BSB: 083-004</li>
-    <li>Account: 879230084</li>
+    <li>Vietnamese Evangelical Church Melbourne</li>
+    <li>Bank: ANZ</li>
+    <li>BSB: 013 365</li>
+    <li>Account: 401542337</li>
 </ul> 
 
 

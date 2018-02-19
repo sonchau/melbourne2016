@@ -1,5 +1,10 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/_cApp.php' ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_cFee.php');?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_cSms.php');?>
+<?php	
+// Report all errors except E_NOTICE
+error_reporting(E_ALL & ~E_NOTICE);
+?>
 <?php require '_db.php';
 
 
@@ -705,7 +710,7 @@
 					        if($sms->access_token){
 
 					        	//send the SMS
-					            $messageId = $sms->send($phone, 'Your rego has been updated @ http://tinyurl.com/h4glqrk?ref=' . $ref . '\n\nDaiHoi Melbourne2016 Team.'); 
+					            $messageId = $sms->send($phone, 'Your rego has been updated @ ' . AppConfig::$TINYURL_VIEW .'?ref=' . $ref . '\n\nDaiHoi Melbourne' .  AppConfig::$CONFERENCE_YEAR . ' Team.'); 
 
 					            if($messageId){
 					            	//$rego->updateSMSMessageId($rego->Reference, $messageId);

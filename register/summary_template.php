@@ -13,7 +13,7 @@
 
                 <p>
 
-                    You can view your registration at anytime using the following link <a href="http://melbourne2016.net.au/register/view/?ref={REFERENCE}">http://melbourne2016.net.au/</a>, along with your reference: <b>{REFERENCE}</b>
+                    You can view your registration at anytime using the following link <a href="http://christianconference.org.au/register/view/?ref={REFERENCE}">http://christianconference.org.au/</a>, along with your reference: <b>{REFERENCE}</b>
 
                     <p> For those more technology adept, you can use the QR Code on the left.</p>
 
@@ -249,7 +249,7 @@
 
                         </table>
 
-                            <div class="alert alert-info bank-info">
+                            <div class="alert bank-info">
 
                                 <p>Please include your Main Contact Name and Reference number in the payment.</p>
 
@@ -261,100 +261,60 @@
 
                 </div>
 
-
+                <!-- PRINT ONLY / VIEW ONLY -->
                 <div class="print-only hidden row view-only">
 
                     <div class="col-md-6 col-lg-6">
-
                         <table class="table table-responsive table-bordered table-striped" style="margin-bottom:10px">
-
                             <caption>Airport</caption>
-
                             <thead>
-
                                 <tr>
-
                                     <th>&nbsp;</th>
-
                                 </tr>
-
                             </thead>
-
                         </table>
+                        <p>Airport transfers from and to airport on the 27th and the 31st can be arranged if required – booking before December required and separate fees applied.</p>
 
-                        <div>
+                        <!-- <div>
 
                             <span class="label label-warning">IMPORTANT</span>
-
                             <p>
-
                                 Bus transfers from Tullamarine Airport are scheduled at 8am and 2pm on 27th Dec 2016. No pick up can be made from airport after 2pm.
-
                             </p>
-
-
-
                             <p>
-
                                 Airport transfers from and to airport on the 27th and the 31st can be arranged if required – booking before December required and separate fees applied.
-
                             </p>
 
-                        </div>
+                        </div> -->
 
                         <div>&nbsp;</div>
-
                     </div>                    
 
 
 
                     <div class="col-md-6 col-lg-6">
-
                         <table class="table table-responsive table-bordered table-striped" style="margin-bottom:10px">
-
-
-
                             <caption>Accomodation</caption>
-
                             <thead>
-
                                 <tr>
-
                                     <th>&nbsp;</th>
-
                                 </tr>
 
                             </thead>
-
                         </table>
 
-
-
-                        <span class="label label-warning">IMPORTANT</span>
-
-                        <p>We unfortunately have only 350 rooms available, with each bedroom having one single bed and one air bed in the room. If you have been allocated with an air bed, you are eligible for a $20 refund and an air bed at the end of the conference.</p>
-
-                        <div>&nbsp;</div>
-
                     </div>
-
-
 
                 </div>
 
 
-
                 <div class="clearfix">&nbsp;</div>
-
-
 
             </div>
 
 
 
             <div class="panel-footer text-center">
-
-
 
                 <button type="button" class="btn btn-primary no-print" onclick="SUBMISSION.submitRegistration(this)" 
 
