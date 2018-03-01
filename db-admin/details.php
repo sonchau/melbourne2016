@@ -1281,7 +1281,20 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 
 
+	<style type="text/css">
+		
+		/* fixes the large first column checkboxes(paddles) when it goes into responsive mode */
+		@media only screen and (max-width: 767px) {
 
+			table.responsive {position: relative; left:-85px;}
+			table.responsive th:first-child, 
+			table.responsive td:first-child, 
+			table.responsive td:first-child, 
+			table.responsive.pinned td {visibility: hidden !important; display: inline-block !important; overflow: auto;}
+			
+		}
+
+	</style>
 
 </body>
 
