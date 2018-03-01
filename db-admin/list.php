@@ -43,12 +43,11 @@
 			<thead>
 			<tr>
 				<th>Name</th>
-				<th>Refernce</th>
+				<th>Reference</th>
 				<th>Age</th>
 				<th>Email</th>
 				<th>Phone</th>
 				<th>Church</th>
-				<th>Airbed</th>
 				<th>Airport</th>
 				<th>Fee</th>
 				<th>Registered</th>
@@ -67,7 +66,6 @@
 										<td>%s</td>
 										<td>%s</td>
 										<td>%s</td>
-										<td>%s</td>
 										<td>%01.2f</td>
 										<td>%s</td>
 										<td>%d</td>
@@ -79,7 +77,6 @@
 								, $row["Email"]
 								, $row["Phone"]
 								, $row["Church"]
-								, ToYesNo($row["Airbed"])
 								, ToYesNo($row["AirportTransfer"])
 								, $row["Fee"]
 								, $row["DateTimeEntered"]

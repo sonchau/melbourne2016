@@ -231,11 +231,11 @@
 
 
 		
-		if ($_GET["test"] == "1"){
-			$x = new Mailer();
-			$x->sendMail("","test","test",1);
-			echo "sent";
-		}
+		// if ($_GET["test"] == "1"){
+		// 	$x = new Mailer();
+		// 	$x->sendMail("","test","test",1);
+		// 	echo "sent";
+		// }
 		
 
 

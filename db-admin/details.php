@@ -670,7 +670,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 				<td class="row-actions" data-type="%s" data-id="%d">
 
 					 <div class="switch">
-			            <input class="switch-input" type="checkbox" id="ci_%d" %s />
+			            <input class="switch-input" onclick="paddleSwitchForClonedResponsiveTable(this)" type="checkbox" id="ci_%d" %s />
 			             <label class="switch-paddle" for="ci_%d">
 			              <span class="show-for-sr">Check In</span>
 			              <span class="switch-active" aria-hidden="true">Yes</span>
@@ -682,8 +682,6 @@ error_reporting(E_ALL & ~E_NOTICE);
 				</td>
 
 				<td>%d) <a href="edit.php?%s=%d">%s</a></td>
-
-				<td>%s</td>
 
 				<td>%s</td>
 
@@ -743,7 +741,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 											<div class="medium-4 columns">
 
 												<ul class="details-list">
-													<li title="Airbed"><i class="fa fa-bed"></i> %s</li>
+													<!--<li title="Airbed"><i class="fa fa-bed"></i> %s</li>-->
 
 													<li title="Airport Transfer"><i class="fa fa-plane"></i> %s</li>
 
@@ -835,11 +833,9 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 											<th>Relation</th>
 
-											<th>FamilyDiscount</th>
+											<th>Family Discount</th>
 
 											<th>Pensioner</th>
-
-											<th>Airbed</th>
 
 											<th>Airport</th>
 
@@ -887,8 +883,6 @@ error_reporting(E_ALL & ~E_NOTICE);
 								, ""
 
 								, ToYesNo($row["Pensioner"])
-
-								, ToYesNo($row["Airbed"])
 
 								, ToYesNo($row["AirportTransfer"])
 
@@ -940,8 +934,6 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 									, ToYesNo($row["RPensioner"])
 
-									, ToYesNo($row["RAirBed"])
-
 									, ToYesNo($row["RAirportTransfer"])
 
 									, ToYesNo($row["RCancelled"])
@@ -961,7 +953,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 				echo sprintf('<tfoot><tr>
 
-									<td colspan="9">&nbsp;</td>
+									<td colspan="8">&nbsp;</td>
 
 									<td class="currency">$%01.2f</td></tr></tfoot>', $groupFees);
 
@@ -1204,8 +1196,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 	<?php require '_scripts_startup.php' ?> 
 
-	<script src="js/responsive-tables.js"></script>
-
+	<script src="js/responsive-tables.js?v=20180301"></script>
 
 
 	<script type="text/javascript">
@@ -1240,8 +1231,6 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 					$(el).change(function(){
 
-
-
 						var max = parseInt($(this).prop("max"));
 
 						var val = parseInt($(this).val());
@@ -1263,18 +1252,30 @@ error_reporting(E_ALL & ~E_NOTICE);
 						}
 
 
-
 					}).trigger('change');
 
-
-
 			});
-
-
 
 		});
 
 
+		// Helps when cloned/pinned checkbox have the same visual functionality.
+		function paddleSwitchForClonedResponsiveTable(el){
+			
+			// The responsive-tables.js will clone a version of the table for responsive purposes,
+			// and the checkbox gets cloned with same id, and thus will not work when interacting with cloned version.
+			// The below will find the cloned version (div.pinned) and simulate the checkbox action.
+			// The target checkbox needs to be decorated with onclick='paddleSwitchForClonedResponsiveTable(this)
+
+
+			var $el = $(el);
+			var $pinned = $('div.pinned').find('#' + el.id);
+			
+			if ($pinned.length > 0) {
+				$pinned.prop("checked", !$pinned.prop("checked"));
+			}
+			
+		}
 
 	</script>
 
