@@ -150,14 +150,14 @@
 			// constructor
 			*/
 			function Registration($json) {
-				$this->EarlyBirdSpecial = AppConfig::isEarlyBird();
-
+				
 				$this->SQL_DB_NAME 		= AppConfig::$DB_NAME;
 				$this->SQL_DB_USERNAME 	= AppConfig::$DB_USERNAME;
 				$this->SQL_DB_PASSWORD 	= AppConfig::$DB_PASSWORD;
-					
-
+				
 				$this->JSON = $json;
+
+				$this->EarlyBirdSpecial = AppConfig::isEarlyBird();
 
 				date_default_timezone_set('Australia/Melbourne');
 
@@ -211,7 +211,7 @@
 
 							if ($member->isValid()) { //validates name, age and numeric age
 
-								$fee = $this->calculateFee($member->Age, $member->FamilyDiscount, $member->Airbed , $member->AirportTransfer, $member->Pensioner, $member->EarlyBirdSpecial );
+								$fee = $this->calculateFee($member->Age, $member->FamilyDiscount, $member->Airbed , $member->AirportTransfer, $member->Pensioner, $this->EarlyBirdSpecial );
 
 								if ($fee !== $member->Fee){ //validates fee
 
@@ -623,7 +623,8 @@
 
 
 				//creates the referernce
-				$this->Reference = strtoupper(trim(substr($this->Surname,0,6))) . '-' . $this->generateReference();
+				//cant use names as they contain viet characters which doesnt play nicely with DB
+				$this->Reference = $this->generateReference(); //strtoupper(trim(substr($this->Surname,0,6))) . '-' .
 
 				$Reference = $this->Reference;
 
@@ -810,7 +811,7 @@
 									$Role            = $member->Role; 
 									$Gender          = $member->Gender; 
 									$Pensioner       = $member->Pensioner; 
-									$EarlyBirdSpecial= $member->EarlyBirdSpecial; 
+									$EarlyBirdSpecial= $this->EarlyBirdSpecial; 
 
 									if (!$stmt->execute()) {
 									    $this->logError("Execute failed members: (" . $stmt->errno . ")<br /> " . $stmt->error);

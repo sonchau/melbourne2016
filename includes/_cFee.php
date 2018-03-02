@@ -88,13 +88,12 @@
 				//early bird special
 				if ($EarlyBirdSpecial){
 					$fee = $this->calculateEarlyBirdDiscount($fee, $Age, $Pensioner); //removal of discount as it has elapsed
-
 				}
 
 
-				if ($fee >= self::AIRBED_DISCOUNT_AMOUNT && $Airbed) { //airbed discount
-					$fee = $fee - self::AIRBED_DISCOUNT_AMOUNT;
-				}
+				//if ($fee >= self::AIRBED_DISCOUNT_AMOUNT && $Airbed) { //airbed discount
+				//	$fee = $fee - self::AIRBED_DISCOUNT_AMOUNT;
+				//}
 
 
 				//airport transfer fee
@@ -127,9 +126,8 @@
 
 				            switch (true) {
 				                case ($age <= 5):
-				                    //no eary bird discount
+				                    $fee = $fee - self::EARLY_BIRD_DISCOUNT_AMOUNT1;
 				                    break;
-
 				                case ($age > 5 && $age <= 12):
 				                    $fee = $fee - self::EARLY_BIRD_DISCOUNT_AMOUNT1;
 				                    break;
