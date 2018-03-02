@@ -172,8 +172,8 @@ error_reporting(E_ALL & ~E_NOTICE);
 
             </fieldset>
         </div>
-
-        <div class="medium-3 columns">
+	
+        <div class="medium-3 column" style='display:none;'>
            <fieldset class="fieldset" style="padding-bottom: 5px;">
             <p style="margin-bottom: 2px;">Airbed</p>
               <div class="switch large">
@@ -187,7 +187,7 @@ error_reporting(E_ALL & ~E_NOTICE);
             </fieldset>
         </div>
 
-        <div class="medium-2 columns">
+        <div class="medium-3 columns">
            <fieldset class="fieldset" style="padding-bottom: 5px;">
             <p style="margin-bottom: 2px;">Pensioner</p>
               <div class="switch large">
@@ -201,7 +201,7 @@ error_reporting(E_ALL & ~E_NOTICE);
             </fieldset>
         </div>
 
-        <div class="medium-2 columns">
+        <div class="medium-3 columns">
            <fieldset class="fieldset" style="padding-bottom: 5px;">
             <p style="margin-bottom: 2px;">Rego Cancelled</p>
               <div class="switch large">
@@ -215,7 +215,7 @@ error_reporting(E_ALL & ~E_NOTICE);
             </fieldset>
         </div>
 
-        <div class="medium-2 columns">
+        <div class="medium-3 columns">
            <fieldset class="fieldset" style="padding-bottom: 5px;">
             <p style="margin-bottom: 2px;">EarlyBird</p>
               <div class="switch large">
@@ -479,7 +479,7 @@ error_reporting(E_ALL & ~E_NOTICE);
           var Pensioner       = document.getElementById("cbPensioner").checked;
 	        var EarlyBird       = document.getElementById("cbEarlyBird").checked;
 
-	        var fee = REGO_CALCULATOR.calculateFee2(Age, Airbed,AirportTransfer,
+	        var fee = REGO_CALCULATOR.calculateFeeAdmin(Airbed, Age, AirportTransfer,
 	          document.getElementById("ddlFamilyDiscount").selectedIndex, Pensioner, EarlyBird);
 
 	        document.getElementById('tFee').value = fee;

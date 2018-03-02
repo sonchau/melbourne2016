@@ -156,12 +156,13 @@
         family_discount2_amount: 100,
         airbed_discount_amount: 0,
         airport_fee: 25,
-        early_bird_discount_amount_tier_1: 30,
-        early_bird_discount_amount_tier_2: 50,
+        early_bird_discount_amount_tier_1: 20,
+        early_bird_discount_amount_tier_2: 20,
 
-        calculateFee: function (age, pensioner, earlybird) { //does fee calculate on age
+        calculateFee: function (age, pensioner, airport, family_discount, earlybird) { //calculation when registering
 
             if (typeof earlybird === 'undefined') {earlybird = EARLY_BIRD_DISCOUNT;}
+            if (typeof family_discount === 'undefined') {family_discount = 0;}
 
             var fee = 0;
             switch (true) {
@@ -183,24 +184,6 @@
             //pensioner (can only be pensioner at 18)
             if (age > 17 && pensioner) { fee = 400; }
 
-            //early bird discount (remove when early bird has been reached)
-            if (earlybird) {
-                fee = this.calculateEarlyBirdDiscount(fee, age, pensioner); //removed as discount has passed
-            }
-
-            return fee;
-
-        },
-        calculateFee2: function (age,airbed,airport,family_discount, pensioner, earlybird){ //does fee calculation on all aspects (admin use)
-            if (typeof earlybird === "undefined") { earlybird = false }
-
-            var fee = 0;
-
-
-            if (isNaN(age) == false) {
-                fee = this.calculateFee(age, pensioner, false);
-            }
-
 
             // only calculate discount if age fee calculation is > 0
             if (fee > 0) {
@@ -212,29 +195,40 @@
                             }
                             break;
                         case 2:
-                            fee = fee - this.family_discount2_amount;
+                            if (age > 5){
+                                fee = fee - this.family_discount2_amount;
+                            }                        
                             break;
                         default:
                     }
 
             }
 
+            if (fee < 0) fee = 0;
+
+            //early bird discount (remove when early bird has been reached)
+            if (earlybird) fee = this.calculateEarlyBirdDiscount(fee, age, pensioner); //removed as discount has passed
+            
+             //adjustment of fee as the airbed and transfer fee are additional on top (not part of any discounts)
+            if (fee < 0) fee = 0;
+            
+            //airport
+            if (airport) fee = fee + this.airport_fee;
+
+            return fee;
+
+        },
+        calculateFeeAdmin: function (airbed, age,airport,family_discount, pensioner, earlybird){ //does fee calculation on all aspects (admin use)
+            if (typeof earlybird === "undefined") { earlybird = false }
+
+            var fee = 0;
+
+
+            if (isNaN(age) == false) {
+                fee = this.calculateFee(age, pensioner, airport, family_discount,earlybird);
+            }
+
             //adjustment of fee as the airbed and transfer fee are additional on top (not part of any discounts)
-            if (fee < 0) { fee = 0 }
-
-            if (earlybird){
-                fee = this.calculateEarlyBirdDiscount(fee, age, pensioner);
-            }
-
-            if (fee >= this.airbed_discount_amount && airbed){
-                fee = fee - this.airbed_discount_amount;
-            }
-
-            if (airport){
-                fee = fee + this.airport_fee;
-            }            
-
-
             if (fee < 0) { fee = 0 }
 
 
@@ -257,7 +251,7 @@
                 //select the early bird by age
                 switch (true) {
                     case (age <= 5):
-                        //no early bird
+                        fee = fee - REGO_CALCULATOR.early_bird_discount_amount_tier_1;
                         break;
                     case (age > 5 && age <= 12):
                         fee = fee - REGO_CALCULATOR.early_bird_discount_amount_tier_1;

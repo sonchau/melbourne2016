@@ -1,3 +1,4 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/_cApp.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head> 
@@ -23,7 +24,7 @@
     <link href="/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     <title>
-        Register | Vietnamese Christians Fellowship Conference in Australia – Melbourne 2016 
+        Register | Vietnamese Christians Fellowship Conference in Australia – Melbourne <?php echo AppConfig::$CONFERENCE_YEAR;?>
     </title>
 
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_scripts.php'); ?>
@@ -45,25 +46,6 @@
             background-color: #FBDDE2 !important;
         }
 
-        /*
-        .panel-default {
-            background-color: #f5f5f5;
-        }
-        .panel-default .panel-heading {
-            background-color: #4e5d6c;
-            color:white;
-        }
-        */
-
-        .other-registrants {
-            /*background-color: #EFEFEF;*/
-            padding-bottom: 20px;
-            padding-top: 20px;
-            border-bottom: 1px solid #a5a5a5;
-        }
-
-
-
     </style>
 
 </head>
@@ -76,13 +58,10 @@
 
             <h1>Registration</h1>
 
-            <p>Please take some time to carefully read each of the section the below. If you have any questions, feedback or just want to drop in and say hi, the Conference Team can be contacted at 
-
-            <a href="mailto:info@melbourne2016.net.au.">info@melbourne2016.net.au.</a></p>
 
             <div>&nbsp;</div>
 
-            <div class="panel panel-default">
+            <div class="panel panel-info border-none">
                 <div class="panel-heading">Important Information</div>
 
                 <div class="panel-body">
@@ -91,28 +70,23 @@
 
                         <div class="row">
 
-                            <div class="col-md-6 col-lg-6">
+                            <div class="col-md-6 ">
 
                                 <h4><i class="fa fa-plane text-info"> </i> Airport transfers </h4>
                                 <p>
                                     Airport transfers from and to airport on the 27th and the 31st can be arranged if required – booking
                                     before December required and separate fees applied.
                                 </p>
-                                <p>
-
-                                    <span class="label label-warning">IMPORTANT</span>
-
-                                    Bus transfers from Tullamarine Airport are scheduled at 8am and 2pm on 27th Dec 2016. No pick up can be made from airport after 2pm.
-                                </p>
                                 <div>&nbsp;</div>
 
                             </div>
 
-                            <div class="col-md-6 col-lg-6">
+                            <div class="col-md-6">
                                 <h4><i class="fa fa-wheelchair text-info"> </i> Disabilities </h4>
                                 <p>
                                     People with special needs will need to ensure that your requirements are known at the time of registration.
                                 </p>
+                                <div>&nbsp;</div>
                             </div>
                         </div>
 
@@ -120,10 +94,10 @@
 
                         <div class="clearfix">&nbsp;</div>
                         <div class="row">
-                            <div class="col-md-6 col-lg-6">
+                            <div class="col-md-6">
                                 <h4><i class="fa fa-cutlery text-info"> </i> Food </h4>
                                 <p>
-                                    Vietnamese cuisine will be the main dishes provided at the Melbourne 2016 conference.
+                                    Vietnamese cuisine will be the main dishes provided at the Melbourne 2018 conference.
                                     Special dietary requirements must be made known at the time of registration – we cannot guarantee all different dietary needs can be met.
                                 </p>
                                 <div>&nbsp;</div>
@@ -131,13 +105,25 @@
                             </div>
 
 
-                            <div class="col-md-6 col-lg-6">
+                            <div class="col-md-6">
                                 <h4><i class="fa fa-bank  text-info"> </i> Payment </h4>
                                 <p>
                                     Payment is to be made to the below account.
                                     <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_bankdetails.php');?>
                                 </p>
+                                <div>&nbsp;</div>
                             </div>
+
+                            <div class="col-sm-6">
+                                <h4><i class="fa fa-envelope text-info"> </i> Correspondence address: </h4>
+                                <p>
+                                    45 Pickett Street, Footscray VIC 3011, Australia.<br>
+                                    <b>website:</b> christianconference.org.au<br>
+                                    <b>email:</b> info@christianconference.org.au
+                                    
+                                </p>
+                                <div>&nbsp;</div>
+                            </div>                            
 
 
                         </div>
@@ -158,7 +144,7 @@
             <div>&nbsp;</div>
 
 
-            <div class="panel panel-default">
+            <div class="panel panel-info border-none">
 
                 <div class="panel-heading">Fee Structure</div>
 
@@ -171,35 +157,37 @@
 
                         <div class="col-md-4 col-lg-4">
 
-                            <div class="well well-offset-color">
-                                <table class="table table-striped">
+                            <div class="well well-offset-color white-bg">
+                                <table class="table">
                                     <caption>Standard Fee</caption>
                                     <thead>
                                         <tr>
                                             <th>Age</th>
-                                            <th>Price</th>
+                                            <th class="standard-price">Price</th>
+                                            <th class="text-right early-bird">Early Bird<br><span style="font-size:1rem">payment made before 15/09/2018</span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>5 and under (shared bed with parents)</td>
-                                            <td>$50</td>
+                                            <td class="standard-price">$50</td>
+                                            <td class="text-right early-bird">$30</td>
                                         </tr>
                                         <tr>
-                                            <td>6 - 11</td>
-                                            <td>$350</td>
+                                            <td>6 - 12</td>
+                                            <td class="standard-price">$350</td>
+                                            <td class="text-right early-bird">$330</td>
                                         </tr>
                                         <tr>
-                                            <td>12 - 64</td>
-                                            <td>$440</td>
+                                            <td>13 - 64</td>
+                                            <td class="standard-price">$450</td>
+                                            <td class="text-right early-bird">$430</td>
                                         </tr>
                                         <tr>
-
                                             <td>65 and above or Pensioner</td>
-                                            <td>$390</td>
-
+                                            <td class="standard-price">$400</td>
+                                            <td class="text-right early-bird">$380</td>
                                         </tr>
-
                                     </tbody>
 
                                 </table>
@@ -211,33 +199,31 @@
 
                         <div class="col-md-4 col-lg-4">
 
-                            <div class="well well-offset-color">
+                            <div class="well well-offset-color white-bg">
 
-                                <table class="table table-striped ">
+                                <table class="table  ">
 
                                     <caption>Family Discount</caption>
-                                    <thead>
-                                        <tr>
-
-                                            <th>Eligibility</th>
-                                            <th>Discount</th>
-                                       </tr>
-                                    </thead>
                                     <tbody>
+
                                         <tr>
-                                            <td colspan="2" class="text-info">
+                                            <td colspan="2">
                                                 Family with 2 parents & 2 or more children gets family discount.
                                                 First oldest child full fee according to standard fee
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td class="text-bold text-right">Eligibility</td>
+                                            <td class="standard-price text-bold text-right">Discount</td>
+                                        </tr>                                        
+                                        <tr>
                                             <td>2nd child thereafter 5 y.o or under</td>
-                                            <td>Free</td>
+                                            <td class="standard-price text-right">Free</td>
                                         </tr>
                                         <tr>
 
                                             <td>2nd child thereafter 6 y.o and above</td>
-                                            <td>$100</td>
+                                            <td class="standard-price text-right">$100</td>
                                         </tr>
 
                                     </tbody>
@@ -253,23 +239,16 @@
 
                         <div class="col-md-4 col-lg-4">
 
-                            <div class="well well-offset-color">
+                            <div class="well well-offset-color white-bg">
 
                                 <table class="table">
-                                    <caption>Airbed Discount</caption>
-                                    <thead>
-                                        <tr>
-                                            <th>Discount</th>
-                                        </tr>
-                                    </thead>
+                                    <caption>Transport</caption>
                                     <tbody>
                                         <tr>
                                             <td>
-                                           <p>We unfortunately have only 350 beds avaliable, the balance of the conference will be provided with air beds. If you have been allocated with an air bed, you are eligible for a $20 refund and an air bed at the end of the conference. </p>
-
-                                            <p>
-                                            <span class="label label-warning">IMPORTANT</span>
-                                            Each bedroom will have one single bed and one air bed in the room.</p>
+                                                <p>
+                                                Airport transfers from and to airport on the 27th and the 31st can be arranged if required – booking before 1st December is essential and a $25 fee applies per person (both ways).                                                 
+                                                </p>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -305,7 +284,7 @@
     
             <form id="rego-form" onsubmit="return false;">
 
-                <div class="panel panel-default">
+                <div class="panel panel-info  border-none">
 
                     <div class="panel-heading">Registration Form</div>
                     <div class="panel-body" style="padding:24px">
@@ -313,13 +292,13 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h3 style="float: left;">Main Contact</h3>
-                                    <button onclick="javascript:tour.start();" class="btn btn-info" style="border-radius: 10px; border-color:transparent;  background-color: steelblue;    color: white; float: right; margin-top: 15px; padding-right: 10px; padding-left: 10px;"> <i class="fa fa-question-circle" aria-hidden="true"></i> Help</button>
+                                    <!-- <button onclick="javascript:tour.start();" class="btn btn-info" style="border-radius: 10px; border-color:transparent;  background-color: steelblue;    color: white; float: right; margin-top: 15px; padding-right: 10px; padding-left: 10px;"> <i class="fa fa-question-circle" aria-hidden="true"></i> Help</button> -->
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
 
 
-                            <div class="form-horizontal">
+                            <div class="form-horizontal form-bg bordered padding"  >
 
                                 <div class="bs-callout bs-callout-info col-lg-11 col-lg-push-1">
 
@@ -513,7 +492,7 @@
 
                                 <div class="form-group">
 
-                                    <label class="col-md-2 control-label">Contact Number</label>
+                                    <label class="col-md-2 control-label">Phone</label>
 
                                     <div class="col-md-10">
 
@@ -575,19 +554,17 @@
 
                             </div>
 
-
+                            <!--END MAIN CONTACT -->
+                            
 
 
                             <div class="clearfix">&nbsp;</div>
 
-                            <hr />
-
-                            <div class="">&nbsp;</div>
-
 
                             <h3>Other Registrants</h3>
 
-                            <div class="bs-callout bs-callout-info col-lg-11 col-lg-push-1">
+                        <div class="bordered padding">
+                            <div class="bs-callout bs-callout-info col-lg-12">
 
                                 <h4><i class="fa fa-users text-info"> </i> Members </h4>
                                 <p>Please supply the correct details of all other persons you would like to register under this registration.</p>
@@ -598,9 +575,10 @@
 
 
 
-                            <div class="clearfix">&nbsp;</div><div class="clearfix">&nbsp;</div>
+                            <div class="clearfix">&nbsp;</div>
+                            <div class="clearfix">&nbsp;</div>
 
-                            <div class="col-md-11 col-md-offset-1">
+                            <div class="col-md-12">
                                 <div class="form-inline custom">
 
                                     <div class="row other-registrants">
@@ -659,7 +637,7 @@
 
 
 
-                                        <div class="form-group">
+                                        <div class="form-group hidden">
                                            <div class="checkbox checkbox-info form-control hidden">
                                                 <input type="checkbox" class="discount-airbed styled" value="1" id="airbed-{0}" name="airbed-{0}">
                                                 <label for="airbed-{0}">Airbed Discount</label>
@@ -697,10 +675,10 @@
 
 
 
-                                        <div class="form-group {1}" style="display:none;">
+                                        <div class="form-group btn-remove-row {1}" style="display:none;">
                                             <label class="sr-only">Action:</label>
-                                            <div class="input-group">
-                                                <button class="btn btn-warning btn-sm pull-right" onclick="removeRow(this); return false;"> X </button>
+                                            <div class="input-group btn-remove-row">
+                                                <button class="btn btn-warning btn-sm pull-right" onclick="removeRow(this); return false;"> <span>x</span> </button>
                                             </div>
                                         </div>
 
@@ -708,17 +686,11 @@
                                     </div>
 
 
-
-                                    <div>&nbsp;</div>
-
-
                                     <div class="row" id="add-more-button-row">
                                         <div class="col-md-12">
+                                            <div>&nbsp;</div>
                                             <button class="btn btn-info btn-sm pull-right" onclick="addMoreRegistrants(); return false;"> <i class="fa fa-plus" aria-hidden="true"></i> MORE ROWS</button>
                                         </div>
-
-
-
                                     </div>
 
                                     <div>&nbsp;</div>
@@ -729,7 +701,7 @@
                                             <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
                                             <div class="input-group pull-right">
                                                 <div class="input-group-addon">$</div>
-                                                <input type="number" class="form-control disabled text-right" disabled placeholder="Total Amount" id="TotalAmount">
+                                                <input type="number" class="form-control disabled text-right" disabled placeholder="Total Amount" id="TotalAmount" style="border-top:1px solid #eaeaea !important">
                                                 <div class="input-group-addon">.00</div>
                                             </div>
                                         </div>
@@ -741,21 +713,22 @@
                             </div>
 
                             <div class="clearfix">&nbsp;</div>
- 
-                            <hr />
+                        </div>
+
+                        <!--END REGISTRANTS -->
 
 
-                            <div>&nbsp;</div>
+                        <div>&nbsp;</div>
+                        <div>&nbsp;</div>
 
-                            <h3>Additional Information</h3>
+                        <div class="row">
+                            <div class="col-md-4">
 
-
-                            <div class="col-md-11 col-md-offset-1">
-
-
-                                <div class="row">
-
-                                    <div class="bs-callout bs-callout-info">
+                                <div class="panel panel-info  border-none">
+                                    <div class="panel-heading">
+                                        Additional Information
+                                    </div>
+                                    <div class="panel-body">
                                         <p>Please enter:</p>
                                         <ul>
 
@@ -765,31 +738,41 @@
                                             <li>special needs</li>
                                             <li>disability requirements</li>
 
-                                        </ul>
-
+                                        </ul>                                        
                                     </div>
 
-
-                                    <span class="help-block"></span>
-                                    <textarea class="form-control" rows="4" id="tNotes" name="tNotes"></textarea>
                                 </div>
 
+                         
 
+                            </div>
+                            <div class="col-md-8">
+                                    <!-- <span class="help-block"></span> -->
+                                    <textarea class="form-control" rows="8" id="tNotes" name="tNotes"></textarea>
 
+                            </div>
+
+                        </div>
+
+                        <!--END ADDITIONAL -->
+
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
                                 <div class="clearfix">&nbsp;</div>
-                                <div class="row">
-                                    <input type="submit" class="btn btn-info" style="min-width:250px;" value=" NEXT >> " />
- 
-                                </div>
+                                <div class="clearfix">&nbsp;</div>
+                                <hr>
+                                <input type="submit" class="btn btn-primary" style="max-width:450px; width:100%" value=" NEXT >> " />
+                            </div>
+                        </div>  
 
-                            <div class="clearfix">&nbsp;</div>
+                        
 
                         </div>
 
                     </div>
 
                </div>
-
+                <!-- // end rego form -->
             </form>
 
         </div>

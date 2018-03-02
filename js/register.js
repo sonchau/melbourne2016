@@ -57,15 +57,11 @@
         var pensioner = document.getElementById("pensioner00").checked;
 
         //fee calculation for main contact
-        var fee       = REGO_CALCULATOR.calculateFee(age, pensioner);
-        var airbed    = document.getElementById("airbed00").checked;
+        
+        var airbed    = false; //document.getElementById("airbed00").checked;
         var airport   = document.getElementById("airport00").checked;
 
-
-        //removed airbed option, therefore airbed will always be false
-        airbed = false;
-        //if (airbed) { fee = fee - REGO_CALCULATOR.airbed_discount_amount }
-        if (airport) { fee = fee + REGO_CALCULATOR.airport_fee }
+        var fee       = REGO_CALCULATOR.calculateFee(age, pensioner, airport);
 
         //update the display
         $(".form-horizontal .form-group .line-total").html("$ " + fee.toFixed(2));
@@ -159,18 +155,21 @@
 
         var groups = new REGISTRANT();
         
-        var age       = "";
-        var name      = "";
-        var surname   = "";
-        var fee       = 0;
-        var role      = "";
-        var gender    = "";
+        var age             = "";
+        var name            = "";
+        var surname         = "";
+        var fee             = 0;
+        var role            = "";
+        var gender          = "";
+        var familyDiscount  = 0;
+        var airport         = false;
+        var pensioner       = false;
 
         var div = $(el).parents("div.row:first");
 
         //find the pensioner
         $(div).find("input[type=checkbox].pensioner:checked").each(function (index, el) {
-            groups.Pensioner = el.checked;
+            pensioner = el.checked
         });
             
         $(div).find("input[type=text].name").each(function () {
@@ -191,72 +190,49 @@
             gender = $(this).val();
         });
 
-        if (name !== "" && surname !== "" && isNaN(age) == false) {
-            fee = REGO_CALCULATOR.calculateFee(age, groups.Pensioner);
-        }
-        console.log(fee);
-        if (fee >= 0) {
-            // only calculate discount if age fee calculation is > 0
 
-            //we see if any selection of the family discount
-            $(div).find("select.family-discount").each(function (index, e) {
-                switch (e.selectedIndex) {
-                    case 1:
-                        //if this is 5 or under, then apply then discount
-                        if (age < 6){
-                            fee = fee - REGO_CALCULATOR.family_discount1_amount
-                        }
-                        break;
-                    case 2:
-                        fee = fee - REGO_CALCULATOR.family_discount2_amount
-                        break;
-                    default:
-                }
-                groups.DiscountFamily = $(e).val()
-            });
+        $(div).find("select.family-discount").each(function (index, e) {
+            familyDiscount = e.selectedIndex;
+            groups.DiscountFamily = $(e).val();
 
-
-            //find the airbed discount (removed)
-            /*
-            $(div).find("input[type=checkbox].discount-airbed:checked").each(function (index, el) {
-                fee = fee - REGO_CALCULATOR.airbed_discount_amount
-                groups.Airbed = el.checked;
-            });
-            */
-
-        }
-
-        //adjustment of fee as the airbed and transfer fee are additional on top (not part of any discounts)
-        if (fee < 0) { fee = 0 }
-
-        //find the airport transfer
-        $(div).find("input[type=checkbox].airport-transfer:checked").each(function (index, el) {
-            console.log(fee);
-            fee = fee + REGO_CALCULATOR.airport_fee;
-            groups.AirportTransfer = el.checked;
         });
 
 
+        //find the airbed discount (removed)
+        /*
+        $(div).find("input[type=checkbox].discount-airbed:checked").each(function (index, el) {
+            fee = fee - REGO_CALCULATOR.airbed_discount_amount
+            groups.Airbed = el.checked;
+        });
+        */
 
-        if (fee < 0) { fee = 0 }
+        //find the airport transfer
+        $(div).find("input[type=checkbox].airport-transfer:checked").each(function (index, el) {
+            airport = el.checked;
+        });
+
+        if (name !== "" && surname !== "" && isNaN(age) == false) {
+            fee = REGO_CALCULATOR.calculateFee(age, pensioner, airport, familyDiscount);
+
+        }
 
 
         //display the fee
         $(div).find(".line-total").each(function () {
-            $(this).html("$ " + fee.toFixed(2))//.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-                
+            $(this).html("$ " + fee.toFixed(2))//.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);               
         });
 
 
         
-        groups.Age       = age;
-        groups.Firstname = $(div).find("input[type=text].name").val();
-        groups.Surname   = $(div).find("input[type=text].surname").val();
-        groups.Fee       = fee;
-        groups.Relation  = $(div).find("select.relation:first").val();
-        groups.Role      = role;
-        groups.Gender    = gender;
-
+        groups.Age              = age;
+        groups.Firstname        = $(div).find("input[type=text].name").val();
+        groups.Surname          = $(div).find("input[type=text].surname").val();
+        groups.Fee              = fee;
+        groups.Relation         = $(div).find("select.relation:first").val();
+        groups.Role             = role;
+        groups.Gender           = gender;
+        groups.Pensioner        = pensioner;
+        groups.AirportTransfer  = airport;
 
         return groups;
 
@@ -376,8 +352,8 @@
             errorClass: "validate-error",
             submitHandler: function (form) {
 
-                var groupRego = collectRegistrantInfo();
-                var result = groupRego.validate(); //does the main contact validation 
+                var groupRego   = collectRegistrantInfo();
+                var result      = groupRego.validate(); //does the main contact validation 
                 
                 if (!result.isValid) {
                     alert(result.errMsg)

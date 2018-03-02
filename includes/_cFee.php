@@ -12,9 +12,9 @@
 
 	    const AIRPORT_FEE = 25;
 
-	    const EARLY_BIRD_DISCOUNT_AMOUNT1 = 30;
+	    const EARLY_BIRD_DISCOUNT_AMOUNT1 = 20;
 
-	    const EARLY_BIRD_DISCOUNT_AMOUNT2 = 50;
+	    const EARLY_BIRD_DISCOUNT_AMOUNT2 = 20;
 
 
 		function FeeCalculator(){
@@ -38,23 +38,17 @@
 	                case ($Age <= 5):
 	                    $fee = 50;
 	                    break;
-
 	                case ($Age > 5 && $Age <= 12):
 	                    $fee = 350;
 	                    break;
-
 	                case ($Age > 12 && $Age < 65):
 	                    $fee = 450;
 						break;
-						
 	                case ($Age >= 65 ):                 	
 	                    $fee = 400;
 						break;
-						
                     default:
-
 						# code...
-
 						break;
 
 	            }
@@ -74,7 +68,9 @@
 						break;
 
 					case '2nd child over 5yo':
-						$fee = $fee - self::FAMILY_DISCOUNT2_AMOUNT;
+						if ($Age > 5){
+							$fee = $fee - self::FAMILY_DISCOUNT2_AMOUNT;
+						}
 						break;
 
 					default:
