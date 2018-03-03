@@ -525,14 +525,14 @@
 
 			function generateReference()	{
 
-			    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			    $characters = AppConfig::$REFERENCE_RANDOM_CHARACTERS;
 
 			    $charactersLength = strlen($characters);
 
 			    $randomString = '';
 
 				//$length = ($includeGUI) ? 5 : 10 ;
-				$length = 6;
+				$length = AppConfig::$REFERENCE_RANDOM_LENGTH;
 
 			    for ($i = 0; $i < $length; $i++) {
 
@@ -729,8 +729,31 @@
 
 
 
+				//get the generated id 
+				$newMainContactId 		= mysqli_insert_id($mysqli);
+				$this->MainContactId 	= $newMainContactId;
 
-				$newMainContactId = mysqli_insert_id($mysqli);
+
+				if (AppConfig::$REFERENCE_APPENDED_WITH_ID) { //alter the reference number
+
+					$this->Reference 		= combineReferenceNumber($this->Reference, $this->MainContactId);
+
+					//update the record with the new reference number 
+					if (!($stmt = $mysqli->prepare("UPDATE MainContact SET  Reference = ? WHERE MainContactId = ?"))) {
+					    $this->logError("Prepare failed for Reference Update: (" . $mysqli->errno . ") " . $mysqli->error);
+					}				
+
+					if (!$stmt->bind_param("ss", $this->Reference , $this->MainContactId)) {
+					    $this->logError("Binding parameters failed for Reference Update: (" . $stmt->errno . ")<br />  " . $stmt->error);
+					}
+
+					if (!$stmt->execute()) {
+					    $this->logError("Execute failed Reference Update: (" . $stmt->errno . ")<br /> " . $stmt->error);
+					}
+					//-- end reference number update
+
+				}
+
 				//update the status
 				$status = 1;
 
@@ -871,7 +894,7 @@
 			// fetches registration from database
 			*/
 			function getRego($ref){
-
+					
 					$mysqli = new mysqli("localhost", $this->SQL_DB_USERNAME, $this->SQL_DB_PASSWORD, $this->SQL_DB_NAME);
 
 					if ($mysqli->connect_errno) {
@@ -1460,8 +1483,12 @@
 			if ($_GET["ref"] ){
 
 				$rego = new Registration("");
+				if ($ref !== ""){
 
-				echo $rego->getRego(trim(html_entity_decode($_GET["ref"])));
+					$rego = new Registration("");
+					echo $rego->getRego($ref);
+				}
+
 
 			}else{
 
@@ -1501,6 +1528,18 @@
 		    return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
 		}
 
+
+	    function combineReferenceNumber($ref, $contactId)
+	    {
+	    	if (AppConfig::$REFERENCE_APPENDED_WITH_ID) {
+	    		return $ref . '-DX' . str_pad($contactId, 5, '0', STR_PAD_LEFT);	
+	    	}else{
+	    		return $ref;
+	    	}
+	        
+	    }
+
+
 		function processRegoSubmission(){
 				/*
 				$out = new OUTPUTj(0,"","Registration currently not available");
@@ -1520,14 +1559,11 @@
 
 
 						//check if json data exists
-
 						if ($rego->exists()) {
 							$out = new OUTPUTj(0,"","This registration information already exists!");
 							echo $out->toJSON();
 							return false;
 						}
-
-
 
 
 						//json to objects

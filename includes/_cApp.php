@@ -20,6 +20,12 @@ class AppConfig
     public static $APP_NAME = 'Dai Hoi 2018';
 
 
+    //reference generation
+    public static $REFERENCE_RANDOM_CHARACTERS  = 'ABCDEFGH1JKLMN2PQRSTUVWXYZ';
+    public static $REFERENCE_RANDOM_LENGTH      = 6;
+    public static $REFERENCE_APPENDED_WITH_ID   = true;
+
+
     public static function isEarlyBird() {
         return self::$EARLY_BIRD;
     }

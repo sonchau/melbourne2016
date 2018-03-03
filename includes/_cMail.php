@@ -9,7 +9,7 @@
 
 				function sendMail($to,  $subject,  $message, $include_viet_section ){
 					//TODO: REMOVE FOR PROD
-					//return true;
+					return true;
 					
 					
 					if (trim($to) == "" ){
@@ -186,7 +186,9 @@
 					$html = str_replace('<!--CONTENT-->', $message, $html);
 
 					try {
-						mail($to, $subject,$html,$headers,"-f " . AppConfig::$DEFAULT_EMAIL_ADDRESS);
+						//https://www.telemessage.com/developer/faq/how-do-i-encode-non-ascii-characters-in-an-email-subject-line/
+						//https://ncona.com/2011/06/using-utf-8-characters-on-an-e-mail-subject/
+						mail($to, '=?utf-8?B?'.base64_encode($subject).'?=',$html,$headers,"-f " . AppConfig::$DEFAULT_EMAIL_ADDRESS);
 						return true;
 					} catch (Exception $e) {
 						echo 'Caught exception: ',  $e->getMessage(), "\n";

@@ -1,10 +1,11 @@
-﻿<!DOCTYPE html>
+﻿<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/_cApp.php' ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-        Vietnamese Christians Fellowship Conference in Australia – Melbourne 2016
+        Vietnamese Christians Fellowship Conference in Australia – Melbourne <?php echo AppConfig::$CONFERENCE_YEAR ?>
     </title>
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_scripts.php');?>
 </head>
