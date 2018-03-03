@@ -1482,16 +1482,13 @@
 
 			if ($_GET["ref"] ){
 
-				$rego = new Registration("");
+				$ref = trim(html_entity_decode($_GET["ref"]));
 				if ($ref !== ""){
-
 					$rego = new Registration("");
 					echo $rego->getRego($ref);
 				}
 
-
 			}else{
-
 
 
 					echo '
