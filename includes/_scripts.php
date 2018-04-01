@@ -17,5 +17,5 @@
       <script src="js/html5shiv.js"></script>
       <script src="js/respond.js"></script>
     <![endif]-->
-    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+    <script src="//cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
     <script src="/js/intlTelInput.min.js"></script>

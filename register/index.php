@@ -17,11 +17,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/img/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/img/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <link href="/img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/img/favicon.ico?v=2018" rel="shortcut icon" type="image/x-icon" />
 
     <title>
         Register | Vietnamese Christians Fellowship Conference in Australia – Melbourne <?php echo AppConfig::$CONFERENCE_YEAR;?>
@@ -73,10 +73,7 @@
                             <div class="col-md-6 ">
 
                                 <h4><i class="fa fa-plane text-info"> </i> Airport transfers </h4>
-                                <p>
-                                    Airport transfers from and to airport on the 27th and the 31st can be arranged if required – booking
-                                    before December required and separate fees applied.
-                                </p>
+                                <p>Bus transfer from and to airport on the 27th and the 31st will be provided. $25 separate fee applies per person (both ways). Please select <b>Airport Transfer</b> when you register.</p>
                                 <div>&nbsp;</div>
 
                             </div>
@@ -115,9 +112,9 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <h4><i class="fa fa-envelope text-info"> </i> Correspondence address: </h4>
+                                <h4><i class="fa fa-envelope text-info"> </i> Correspondence address</h4>
                                 <p>
-                                    45 Pickett Street, Footscray VIC 3011, Australia.<br>
+                                    PO Box 2114, Footscray VIC 3011, Australia.<br>
                                     <b>website:</b> christianconference.org.au<br>
                                     <b>email:</b> info@christianconference.org.au
                                     
@@ -246,9 +243,10 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <p>
-                                                Airport transfers from and to airport on the 27th and the 31st can be arranged if required – booking before 1st December is essential and a $25 fee applies per person (both ways).                                                 
-                                                </p>
+                                                <p>On Thursday, 27 December, there will be scheduled buses to pick you up from Tullamarine Airport to Đại Hội campus. Buses departure 10:00AM and 3:00PM from Tullamarine Airport.</p>
+                                                <p>On Monday, 31 December, there will be buses to take you from campus back to Tullamarine Airport.</p>
+                                                <p>Buses departure 11:00 AM (arriving Tullamarine Airport 1:30PM), and 5:00PM (arriving Tullamarine Airport 7:30pm)</p>
+                                                <p>The cost is AUD 25 per person per round trip. Please select <b>Airport Transfer</b> when you register.</p>
                                             </td>
                                         </tr>
                                     </tbody>

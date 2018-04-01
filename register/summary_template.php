@@ -273,7 +273,7 @@
                                 </tr>
                             </thead>
                         </table>
-                        <p>Airport transfers from and to airport on the 27th and the 31st can be arranged if required – booking before December required and separate fees applied.</p>
+                        <p>Bus transfer from and to airport on the 27th and the 31st will be provided. $25 separate fee applies per person (both ways). Please select <b>Airport Transfer</b> when you register.</p>
 
                         <!-- <div>
 
