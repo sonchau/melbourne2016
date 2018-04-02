@@ -67,7 +67,7 @@
                 </tr>
 
                 <tr>
-                    <td colspan="2">{9}</td>
+                    <td colspan="2">({17}): {9}</td>
                 </tr>
 
                 <tr>

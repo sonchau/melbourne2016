@@ -13,9 +13,6 @@
                     <h4 style="border-bottom: 2px solid #4ebdc0; padding-bottom:10px;">Links</h4>
                     <ul style="list-style-type:none; padding:0px;">
                         <li><a href="/">Home</a></li>
-                        <li><a href="/speakers.html">Speakers</a></li>
-                        <li><a href="/faq.html">FAQ</a></li>
-                        <li><a href="/files.html">Files</a></li>
                         <li><a href="/register/">Registration</a></li>
                         <li><a href="/register/view">View Registration</a></li>
                     </ul>
@@ -23,8 +20,8 @@
                 </div>
                 <div class="col-lg-4">
                     <h4 style="border-bottom: 2px solid #4ebdc0; padding-bottom:10px;">Contact Us</h4>
-                    <p>Vietnamese Christians Fellowship Conference in Australia</p>
-                    <!-- <p><i class="glyphicon glyphicon-envelope" style="color:#C0C0C0"> </i> info@melbourne2016.net.au</p> -->
+                    <p>Vietnamese Christian Fellowship Conference in Australia - Melbourne 2018</p>
+                    <p><i class="glyphicon glyphicon-envelope" style="color:#C0C0C0"> </i> info@christianconference.org.au</p>
                     <!-- <p><i class="glyphicon glyphicon-phone" style="color:#C0C0C0"> </i> +61 404 889 336 </p> -->
                 </div>
             </div>

@@ -79,7 +79,8 @@
         var gender   = el.options[el.selectedIndex].value;
         el = document.getElementById("tRole");
         var role = el.options[el.selectedIndex].value;
-
+        el = document.getElementById("tState");
+        var zState = el.options[el.selectedIndex].value;
 
         return {
             email       : htmlEncode($.trim(email)),
@@ -94,7 +95,8 @@
             notes       : htmlEncode($.trim(notes)),
             role        : role,
             gender      : gender,
-            pensioner   : pensioner
+            pensioner   : pensioner,
+            state       : zState
         }
 
 
@@ -122,6 +124,7 @@
         groupRego.Role            = info.role;
         groupRego.Gender          = info.gender;
         groupRego.Pensioner       = info.pensioner;
+        groupRego.State           = info.state;
 
         var total = 0;
         var person;
@@ -315,7 +318,8 @@
                 registrants,
                 regoInfo.sumTotalFees(true),
                 paymentSummary,
-                regoInfo.sumTotalFees()
+                regoInfo.sumTotalFees(),
+                regoInfo.State
                 )
             ).html()
 
@@ -345,6 +349,7 @@
         attachEventsToMainContact();
         attachEventsToRegistrants();
         addCountriesToPhone();
+        hookStateChange();
 
         PAGE_VALIDATOR =  $("#rego-form").validate({
             debug: true,
@@ -382,6 +387,10 @@
 
         });
 
+
+
+        //init shepard
+        //initShepard();
 
     });
 
@@ -560,7 +569,7 @@
 
         var tour;
 
-        $(function(){
+        function initShepard(){
 
             tour = new Shepherd.Tour({
               defaults: {
@@ -752,7 +761,7 @@
             }); 
             //tour.start();
 
-        });
+        };
 
 
 
@@ -774,3 +783,40 @@
 
         }
 
+
+    function hookStateChange(){
+        console.log('hookStateChange')
+        $('#tState').on('change',function(){
+            triggerStateChange();
+        });
+    }
+
+    function triggerStateChange(){
+        var myState = $('#tState').val();
+        var selectedIndex = 0;
+        
+        $('#tChurch option').map(function(index, el) { 
+            var $el = $(this);
+            var currentState = $el.attr('data-state');
+
+            if (myState == "") {
+                $el.show();
+            }else{
+                if (currentState == myState ){
+
+                    if (selectedIndex == 0) { selectedIndex = index} 
+                    $el.show();
+                } else{
+
+                    if (currentState.indexOf(myState) > -1) {
+                        if (selectedIndex == 0) { selectedIndex = index} 
+                        $el.show();
+                    }else{
+                        $el.hide();
+                    }
+                }    
+            }
+        });
+
+        document.getElementById('tChurch').selectedIndex = selectedIndex;
+    }

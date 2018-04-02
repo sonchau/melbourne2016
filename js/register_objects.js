@@ -20,6 +20,7 @@
         this.DiscountAmount  = 0,
         this.Pensioner       = false,
         this.EarlyBirdSpecial= EARLY_BIRD_DISCOUNT,
+        this.State           = '',
 
         this.Name = function(){
             var n = this.Firstname + ' ' + this.Surname; 

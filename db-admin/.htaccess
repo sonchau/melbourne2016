@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Please Log In"
-AuthUserFile "/home8/melbou99/.htpasswds/public_html/db-admin/passwd"
-require valid-user

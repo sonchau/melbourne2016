@@ -137,6 +137,7 @@
 
 			var $EarlyBirdSpecial= false;
 
+			var $State 			 = "";
 
 			// db details
 			var $SQL_DB_NAME 		= '';
@@ -370,6 +371,7 @@
 
 					$this->Pensioner       = ($rego['Pensioner'] == '' ? 0 : $rego['Pensioner']);
 
+					$this->State            = trim($rego['State']);
 
 					foreach ($rego['Registrants'] as $member) {
 
@@ -651,7 +653,7 @@
 
 				/* Prepared statement, stage 1: prepare */
 
-				if (!($stmt = $mysqli->prepare("INSERT INTO MainContact (FullName, Age, Church, Email, Phone, DateTimeEntered, AirportTransfer, Airbed, Comments, Fee, Reference, Role, Gender, Firstname, Surname, Pensioner, EarlyBirdSpecial) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"))) {
+				if (!($stmt = $mysqli->prepare("INSERT INTO MainContact (FullName, Age, Church, Email, Phone, DateTimeEntered, AirportTransfer, Airbed, Comments, Fee, Reference, Role, Gender, Firstname, Surname, Pensioner, EarlyBirdSpecial, State) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"))) {
 
 				    $this->logError("Prepare failed MainContact: (" . $mysqli->errno . ") " . $mysqli->error);
 
@@ -692,9 +694,11 @@
 
 				$Pensioner       = $this->Pensioner;
 
-				$EarlyBirdSpecial=$this->EarlyBirdSpecial;
+				$EarlyBirdSpecial= $this->EarlyBirdSpecial;
 
-				if (!$stmt->bind_param("sssssssssssssssss", $FullName, 
+				$State 			 = $this->State;
+
+				if (!$stmt->bind_param("ssssssssssssssssss", $FullName, 
 															$Age, 
 															$Church, 
 															$Email, 
@@ -710,7 +714,8 @@
 															$Firstname,
 															$Surname, 
 															$Pensioner,
-															$EarlyBirdSpecial)) {												
+															$EarlyBirdSpecial,
+															$State)) {												
 
 				    $this->logError( "Binding parameters failed MainContact: (" . $stmt->errno . ")<br />  " . $stmt->error );
 
@@ -1044,6 +1049,7 @@
 
 												$this->Pensioner	   = $row['Pensioner'];
 
+												$this->State 		   = $row['State'];
 
 												//add to payment summary row
 
@@ -1173,7 +1179,7 @@
 									$html = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/register/summary_template.php");
 
 
-									for ($i=0; $i < 18 ;  $i++) { 
+									for ($i=0; $i <= 17 ;  $i++) { 
 
 										$html = str_replace( "{" . $i . "}", "%s", $html);
 
@@ -1235,8 +1241,8 @@
 										file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/includes/_bankdetails.php"),$html);
 
 
-
-
+									$output = $html;
+									
 									$output = sprintf($html, 
 
 										'<span class="pull-right">Reference: <span class="label label-success label-summary-total">' . $this->Reference . '</span></span>', 
@@ -1257,6 +1263,8 @@
 
 										$this->ToYesNo($this->Pensioner),
 
+										$this->State,
+
 										$this->Church, 
 
 										$this->Fee,
@@ -1276,7 +1284,6 @@
 										null
 
 										);
-
 
 
 							}else{

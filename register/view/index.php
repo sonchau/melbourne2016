@@ -8,14 +8,9 @@ error_reporting(E_ALL & ~E_NOTICE);
 <html lang="en">
 <head>
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-        View | Vietnamese Christians Fellowship Conference in Australia – Melbourne 2018
-    </title>
-
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_scripts.php');?>
-
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_meta.php'); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_scripts.php'); ?>
+    
 	<style type="text/css">
 
 		.panel-footer button {
