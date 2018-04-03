@@ -192,7 +192,7 @@
 
 			/*
 			// validates the entire fee structure
-			// this function used to check the integrity of the inputted fees against the fee structure.
+			// function used to check the integrity of the inputted fees against the fee structure.
 			*/
 			function validateFees(){ 
 
@@ -216,13 +216,17 @@
 
 								if ($fee !== $member->Fee){ //validates fee
 
-									$this->logError('Member ('. $member->FullName() . ') Fee expected: ' . $fee . ', but received:  ' . $member->Fee . '.');
+									$this->logError('Member ('. $member->FullName() . ') Fee expected: ' . $fee . ', but received: ' . $member->Fee . '.');
 
 									return false;
 
 								}
 
-							}	
+							}else {
+								$this->logError('Member ('. $member->FullName() . ') is invalid, integrity checked failed.');
+
+								return false;
+							}
 
 					}
 

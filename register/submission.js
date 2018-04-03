@@ -24,16 +24,16 @@ var SUBMISSION =  {
                         }, 100);
                     }else{
                         //alert("registration error: \n" + obj.message);
-                        $("#myModal").modal("show").find("div.modal-body").text(obj.message + ', please try again or contact the registration team!')
+                        $("#myModal").modal("show").find("div.modal-body").text(obj.message + ', please click CANCEL to review your details and try again or contact the registration team.')
                     }
                 }else {
-                    $("#myModal").modal("show").find("div.modal-body").text("Error: registration error, no data returned, please try again or contact the registration team.");
+                    $("#myModal").modal("show").find("div.modal-body").text("Error: registration error, no data returned, please click CANCEL to review your details and try again or contact the registration team.");
                 }
                 
             })
             .fail(function () {
                 console.log("error");
-                $("#myModal").modal("show").find("div.modal-body").text("Error: failed sync, please try again or contact the registration team.");
+                $("#myModal").modal("show").find("div.modal-body").text("Error: failed sync, please click CANCEL to review your details and try again or contact the registration team.");
             })
             .always(function () {
                 console.log("complete");

@@ -94,12 +94,12 @@
 				//if ($fee >= self::AIRBED_DISCOUNT_AMOUNT && $Airbed) { //airbed discount
 				//	$fee = $fee - self::AIRBED_DISCOUNT_AMOUNT;
 				//}
+        		if ($fee < 0) { $fee = 0 ;}				
 
 
 				//airport transfer fee
 				if ($AirportTransfer) {
 					$fee = $fee + self::AIRPORT_FEE;
-
 				}
 
 				//adjustment of fee
