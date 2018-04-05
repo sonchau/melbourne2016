@@ -163,8 +163,6 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 							$html_body = $html_body . '<td>' .  $row["RName"] . '</td>' ;
 
-							$html_body = $html_body . '<td>' .  $row["RName"] . '</td>' ;
-
 							$html_body = $html_body . '<td>' .  $row["Reference"] . '</td>' ;
 
 							$html_body = $html_body . '<td>' .  $row["RAge"] . '</td>' ;

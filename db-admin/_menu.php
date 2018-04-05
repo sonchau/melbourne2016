@@ -13,7 +13,7 @@
   </div>
   <div class="top-bar-right">
     <ul class="menu" data-responsive-menu="drilldown medium-dropdown">
-      <li><a href="/db-admin/export-html.php">Export</a></li>
+      <li><a href="/db-admin/export-html.php"><i class="fa fa-file-excel-o" aria-hidden="true" style="padding-bottom: 2px;"></i> Export</a></li>
       <li><a href="list.php">List</a></li>
     </ul>
   </div>
