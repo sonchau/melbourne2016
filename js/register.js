@@ -70,6 +70,7 @@
         //collect other information
         el = document.getElementById("tChurch");
         var church = el.options[el.selectedIndex].text;
+        if (el.selectedIndex == 0) { church = ""}
         var phone  = $("#tPhone").intlTelInput("getNumber"); //document.getElementById("tPhone").value;
         var name   = document.getElementById("tFullName").value;
         var surname= document.getElementById("tSurname").value;
@@ -803,7 +804,6 @@
                 $el.show();
             }else{
                 if (currentState == myState ){
-
                     if (selectedIndex == 0) { selectedIndex = index} 
                     $el.show();
                 } else{

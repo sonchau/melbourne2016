@@ -436,7 +436,7 @@
                                     <label class="col-md-2 control-label">State</label>
                                     <div class="col-md-3">
                                             <select name="tState" id="tState" class="form-control state" data-rule-required="true">
-                                                <option value="">- YOUR STATE -</option>
+                                                <option value="">-- YOUR STATE --</option>
                                                 <option value="VIC">VIC</option>
                                                 <option value="NSW">NSW</option>
                                                 <option value="QLD">QLD</option>
@@ -451,7 +451,7 @@
 
                                     <label class="col-md-1 control-label">Church</label>
                                     <div class="col-md-6">
-                                        <select name="tChurch" id="tChurch" class="form-control">
+                                        <select name="tChurch" id="tChurch" class="form-control" data-rule-required="true">
                                             <?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_churches.php');?>
                                         </select>
                                     </div>

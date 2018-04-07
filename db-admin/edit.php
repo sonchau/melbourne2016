@@ -107,7 +107,6 @@ error_reporting(E_ALL & ~E_NOTICE);
       <div class="medium-6 columns"> 
     	 		<label>Church</label>
       		<select id="ddlChurch" <?php echo ($IsMainContact) ? '' :  'disabled="disabled"' ?> <?php echo $IsDisabledHtml; ?> >
-            <option value=""> - </option>
       			<?php include($_SERVER['DOCUMENT_ROOT'] . '/includes/_churches.php');?>
       		</select>
           <input type="hidden" id="tChurchHidden" value="<?php echo $row["Church"]; ?>" />
