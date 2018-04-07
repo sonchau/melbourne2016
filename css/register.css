@@ -317,6 +317,15 @@
     }
 }
 
+
+@media (min-width: 1200px) { 
+    .fixed-top {
+        left: 25%;
+        width: 50%;
+    }
+}
+
+
 .transparent {background-color: transparent;}
 .no-radius {
     border-radius: 0;
