@@ -296,3 +296,34 @@
             color: #FF8B8B;
             font-weight: normal !important;
         }
+
+
+/*CALLOUT STYLE*/        
+
+
+.fixed-top {
+     position: fixed;
+     top: 0px;
+     left: 17.5%;
+     width: 70%;
+     z-index: 1100;
+}
+
+
+@media (max-width: 640px) { 
+    .fixed-top {
+        left: 5%;
+        width: 96%;
+    }
+}
+
+.transparent {background-color: transparent;}
+.no-radius {
+    border-radius: 0;
+}
+
+
+
+#callout {display: none; width: 98%; margin: 0 auto;}
+
+

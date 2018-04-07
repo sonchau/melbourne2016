@@ -524,7 +524,7 @@
                                             <label for="airbed00">Airbed Discount</label>
                                         </div>                          
                                         <div class="checkbox checkbox-info form-control1">
-                                            <input type="checkbox" class="pensioner styled" value="1" id="pensioner00" name="pensioner00">
+                                            <input type="checkbox" class="pensioner styled" value="1" id="pensioner00" name="pensioner00" onchange="alertPensioner(this,'main');">
                                             <label for="pensioner00">Pensioner</label>
                                         </div> 
                                     </div>
@@ -615,7 +615,7 @@
 
                                         <div class="form-group">
                                             <div class="checkbox checkbox-info form-control">
-                                                <input type="checkbox" class="pensioner styled" value="1" id="pensioner-{0}" name="pensioner-{0}">
+                                                <input type="checkbox" class="pensioner styled" value="1" id="pensioner-{0}" name="pensioner-{0}" onchange="alertPensioner(this,'other');">
                                                 <label for="pensioner-{0}">Pensioner</label>
                                             </div>
                                         </div>
@@ -744,6 +744,7 @@
 
                             </div>
 
+
                         </div>
 
                         <!--END ADDITIONAL -->
@@ -771,7 +772,33 @@
 
     </div>
 
+<div class="row fixed-top">
 
+    <div class="col-md-12">
+
+        <div class="panel clearfix no-radius transparent">
+
+          <div id="callout" class="alert alert-warning no-radius">
+            <a href="javascript:void(0); $('#callout').hide();" class="close">&times;</a>
+            <div>
+                <div style="float: left; display: block;    padding-right: 10px;">
+                    <i class="fa fa-address-card fa-4x" aria-hidden="true"></i>
+                </div>
+                <div style="    display: block;    position: relative;">
+                    <h3>Attention</h3>
+                    <p>This alert box could indicate a warning that might need attention.</p>
+                    <p class="text-right"><input type="button" class="btn btn-primary btn-sm" onclick="javascript:void(0); $('#callout').hide();" value="OK, I Understand" /></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+           
+          </div>
+
+        </div>  
+
+    </div>
+
+</div>    
   
 
 
@@ -792,7 +819,6 @@
           <div class="modal-body text-center" style="padding-bottom: 35px; padding-top: 35px;">
             <p>
                 
-
             </p>
           </div>
           <div class="modal-footer">
@@ -812,8 +838,6 @@
     <link href="shepherd-helper.css"        rel="stylesheet" type="text/css" />
     <script src="tether.min.js"></script>
     <script src="shepherd.min.js"></script>
-
-
 
 </body>
 

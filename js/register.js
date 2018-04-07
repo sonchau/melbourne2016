@@ -820,3 +820,30 @@
 
         document.getElementById('tChurch').selectedIndex = selectedIndex;
     }
+
+
+    //callout for pensioner
+    var main_contact_pensioner_alert = 0;
+    var other_registrants_pensioner_alert = 0;
+    function alertPensioner(el, type){
+        if (!el.checked) {return false}
+
+        if (type == 'main') {
+            if (main_contact_pensioner_alert == 1){
+                return false;
+            }
+            main_contact_pensioner_alert = 1;
+        }
+        if (type == 'other') {
+            if (other_registrants_pensioner_alert == 1){
+                return false;
+            }
+            other_registrants_pensioner_alert = 1;
+        }
+
+
+        $("#callout").slideDown()
+                .find("p:first")
+                .text('Please note, only select Pensioner if you are holding a valid Pensioner Concession Card.');
+
+    }    
